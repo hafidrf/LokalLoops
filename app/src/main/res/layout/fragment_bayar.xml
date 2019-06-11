@@ -1,0 +1,267 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:app="http://schemas.android.com/apk/res-auto"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:orientation="vertical"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:background="@color/bg_base"
+              tools:context="com.hafidrf.lokaloops.fragments.Bayar">
+
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="60dp"
+            android:background="@color/blue_accent">
+
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:padding="8dp"
+                android:orientation="horizontal">
+
+            <ImageButton android:id="@+id/btn_backk"
+                         android:layout_width="30dp"
+                         android:layout_height="30dp"
+                         app:layout_constraintTop_toTopOf="parent"
+                         android:background="@drawable/btn_base_round"
+                         android:layout_marginTop="5dp"
+                         android:src="@drawable/ic_arrow_back" app:layout_constraintStart_toStartOf="parent"
+                         android:layout_marginStart="8dp"/>
+
+            <TextView android:layout_width="wrap_content"
+                      android:layout_height="wrap_content"
+                      android:text="Bayar"
+                      android:id="@+id/tv_checkout"
+                      android:textSize="24sp"
+                      android:textColor="@android:color/white"
+                      android:layout_marginEnd="8dp"
+                      android:layout_marginStart="8dp"
+                      app:layout_constraintStart_toEndOf="@+id/btn_backk"
+                      app:layout_constraintTop_toTopOf="parent"
+                      app:layout_constraintHorizontal_bias="0.18" android:layout_marginTop="5dp"
+                      app:layout_constraintEnd_toEndOf="parent"/>
+
+
+        </android.support.constraint.ConstraintLayout>
+
+
+    </FrameLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout android:orientation="vertical"
+                      android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:layout_marginTop="8dp"
+                      android:background="@color/cardview_light_background">
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:background="@drawable/bg_checkout"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="Total"/>
+                <TextView
+                        android:id="@+id/tv_jml_bayar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        android:text=":  Rp ..."/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content"
+                          android:background="@drawable/bg_checkout"
+                          android:padding="5dp"
+                          android:weightSum="5"
+                          android:orientation="horizontal">
+                <TextView android:layout_width="wrap_content"
+                          android:layout_height="wrap_content"
+                          android:layout_weight="3"
+                          android:text="BAYAR DENGAN : "/>
+                <Button android:id="@+id/btn_tunai"
+                        android:layout_width="wrap_content"
+                        android:text="TUNAI"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+                <Button android:layout_width="wrap_content"
+                        android:text="Kartu Kredit"
+                        android:layout_weight="1"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:weightSum="2"
+                    android:layout_height="wrap_content">
+                <Button android:id="@+id/btn20"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bt_pesan"
+                        android:textSize="20sp"
+                        android:padding="4dp"
+                        android:text="Rp 20.000"/>
+                <Button android:id="@+id/btn50"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bt_pesan"
+                        android:textSize="20sp"
+                        android:padding="4dp"
+                        android:text="Rp 50.000"/>
+            </LinearLayout>
+            <LinearLayout android:layout_width="match_parent"
+                          android:layout_height="wrap_content">
+                <Button android:id="@+id/btn100"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bt_pesan"                    android:layout_marginStart="16dp"
+                        android:textSize="20sp"
+                        android:padding="4dp"
+                        android:text="Rp 100.000"/>
+                <Button android:id="@+id/uang_pas"
+                        android:layout_weight="1"
+                        android:layout_margin="5dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/bt_pesan"                    android:layout_marginStart="16dp"
+                        android:textSize="20sp"
+                        android:padding="4dp"
+                        android:text="Uang Pas"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <EditText
+                        android:layout_width="wrap_content"
+                        android:layout_weight="4"
+                        android:layout_height="50dp"
+                        android:layout_margin="10dp"
+                        android:inputType="textMultiLine"
+                        android:hint="Bayar Manual"
+                        android:id="@+id/et_byr_manual"/>
+                <Button android:id="@+id/btn_manual"
+                        android:layout_weight="1"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:background="@drawable/btn_bg"                    android:layout_marginStart="16dp"
+                        android:textSize="16dp"
+                        android:layout_margin="15dp"
+                        android:text="OK"/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="Bayar"/>
+                <TextView
+                        android:id="@+id/tv_grand_bayar"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        android:text=":  Rp ..."/>
+            </LinearLayout>
+            <LinearLayout
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <TextView
+                        android:layout_width="120dp"
+                        android:layout_height="wrap_content"
+                        android:textSize="30dp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="1"
+                        android:text="Kembali"/>
+                <TextView
+                        android:id="@+id/tv_kembalian"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:textSize="30sp"
+                        android:layout_margin="10dp"
+                        android:layout_weight="3"
+                        android:text=":  Rp ..."/>
+            </LinearLayout>
+            <LinearLayout
+                    android:layout_marginTop="50dp"
+                    android:background="@color/bg_base"
+                    android:orientation="vertical"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <EditText
+                            android:drawableStart="@drawable/ic_account"
+                            android:drawablePadding="10dp"
+                            android:layout_weight="4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:id="@+id/et_nama_user"
+                            android:singleLine="true"
+                            android:background="@drawable/et_pencarian"
+                            android:layout_margin="5dp"/>
+                    <Button
+                            android:id="@+id/btn_sign_up"
+                            android:layout_weight="1"
+                            android:text="Daftar"
+                            android:background="@drawable/btn_bg"
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="22sp"
+                            android:text="Nama"/>
+                    <TextView
+                            android:id="@+id/tv_nama_pelanggan"
+                            android:layout_weight="4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="22sp"
+                            android:text="Customer"/>
+                </LinearLayout>
+            </LinearLayout>
+            <Button
+                    android:id="@+id/btn_print"
+                    android:text="Print"
+                    android:background="@drawable/btn_bg"
+                    android:layout_margin="35dp"
+                    android:layout_gravity="center"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+        </LinearLayout>
+    </ScrollView>
+
+
+</LinearLayout>

@@ -1,0 +1,12 @@
+<resources>
+    <string name="app_name">lokaloops</string>
+    <string name="font_family_medium">sans-serif-medium</string>
+
+    <string name="title_store">Store</string>
+    <string name="title_history">History</string>
+    <string name="title_account">Account</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+
+</resources>

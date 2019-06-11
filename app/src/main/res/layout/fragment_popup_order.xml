@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              android:gravity="center">
+
+    <TextView android:layout_width="match_parent"
+              android:layout_height="wrap_content"
+              android:paddingTop="16dp"
+              android:paddingBottom="16dp"
+              android:text="NAMA BARANG"
+              android:textSize="20sp"
+              android:textStyle="bold"
+              android:textAlignment="center"
+              android:id="@+id/tv_namabarang"/>
+
+    <LinearLayout android:layout_width="match_parent"
+                  android:layout_height="wrap_content"
+                  android:orientation="horizontal"
+                  android:gravity="center"
+                  android:layout_marginTop="8dp">
+        <Button android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="-"
+                android:textSize="35sp"
+                android:background="@drawable/btn_min_plus"
+                android:id="@+id/bt_min"/>
+        <TextView android:layout_width="wrap_content"
+                  android:layout_height="wrap_content"
+                  android:paddingStart="16dp"
+                  android:paddingEnd="16dp"
+                  android:text="0"
+                  android:id="@+id/tv_stock2"
+                  android:textSize="24dp"/>
+        <Button android:layout_width="50dp"
+                android:layout_height="50dp"
+                android:text="+"
+                android:textSize="35sp"
+                android:background="@drawable/btn_min_plus"
+                android:id="@+id/bt_plus"/>
+    </LinearLayout>
+
+    <EditText
+            android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="100dp"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:inputType="textMultiLine"
+            android:hint="Catatan"
+            android:id="@+id/et_note"/>
+
+    <Button android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="BackToMenu"
+            android:id="@+id/btn_backtomenu"
+            android:background="@drawable/bt_pesan"/>
+
+    <Button android:layout_marginTop="8dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="24dp"
+            android:layout_marginEnd="24dp"
+            android:layout_marginBottom="16dp"
+            android:text="Update Keranjang"
+            android:id="@+id/btn_keranjang"
+            android:visibility="gone"
+            android:background="@drawable/bt_pesan"
+    />
+
+
+</LinearLayout>

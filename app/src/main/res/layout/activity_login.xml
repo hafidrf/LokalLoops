@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:background="@color/bg_base_login"
+            android:fitsSystemWindows="true">
+
+    <LinearLayout
+            android:orientation="vertical"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:paddingLeft="24dp"
+            android:paddingRight="24dp" android:gravity="center">
+
+        <ImageView android:src="@drawable/logo"
+                   android:layout_width="wrap_content"
+                   android:layout_height="138dp"
+                   android:layout_marginBottom="32dp"
+                   android:layout_gravity="center_horizontal"/>
+
+        <!-- Email Label -->
+        <EditText android:id="@+id/et_email"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textWebEmailAddress"
+                  android:hint="Email Address"
+                  android:textColorHint="@color/fontForm"
+                  android:textColor="@color/bg_base_login"
+                  android:padding="16dp"
+                  android:drawableStart="@drawable/ic_email"
+                  android:drawablePadding="10dp"
+                  android:background="@drawable/et_bg_email"/>
+
+        <!-- Password Label -->
+        <EditText android:id="@+id/et_password"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:inputType="textPassword"
+                  android:hint="Password"
+                  android:textColorHint="@color/fontForm"
+                  android:textColor="@color/bg_base_login"
+                  android:padding="16dp"
+                  android:drawableStart="@drawable/ic_password"
+                  android:drawablePadding="10dp"
+                  android:background="@drawable/et_bg_password"/>
+
+
+        <Button
+                android:background="@drawable/btn_bg"
+                android:layout_width="fill_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="16dp"
+                android:text="Sign In"
+                android:textSize="22dp"
+                android:textAllCaps="false"
+                android:textColor="#ffffff"
+                android:id="@+id/btn_login"/>
+
+        <TextView android:id="@+id/link_signup"
+                  android:layout_width="fill_parent"
+                  android:layout_height="wrap_content"
+                  android:layout_marginTop="24dp"
+                  android:layout_marginBottom="24dp"
+                  android:textColor="@color/colorpesan"
+                  android:text="Daftar disini!"
+                  android:gravity="center"
+                  android:textSize="16dip"/>
+
+    </LinearLayout>
+</ScrollView>

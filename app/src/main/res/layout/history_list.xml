@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.design.card.MaterialCardView
+        xmlns:android="http://schemas.android.com/apk/res/android" xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools" app:contentPadding="16dp"
+        app:cardUseCompatPadding="true"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:id="@+id/materialCardView"
+
+>
+
+    <LinearLayout
+            android:id="@+id/ln_his"
+            android:orientation="horizontal"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:clickable="true"
+            android:background="@drawable/button"
+            >
+
+        <LinearLayout android:layout_width="match_parent"
+                      android:layout_height="match_parent"
+                      android:orientation="vertical"
+        >
+
+
+            <TextView
+                    android:id="@+id/tv_tanggal"
+                    android:text="tgl"
+                    android:textSize="16sp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+
+            <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                         android:layout_height="wrap_content">
+
+                <TextView
+                        android:text="No. Pelanggan : "
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        android:id="@+id/textView2" app:layout_constraintTop_toTopOf="parent"
+                        app:layout_constraintBottom_toBottomOf="parent" app:layout_constraintStart_toStartOf="parent"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_no_order" android:layout_marginEnd="7dp"/>
+                <TextView
+                        android:id="@+id/tv_no_order"
+                        android:text="No. 1234dsfwer"
+                        android:textSize="16sp"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteY="0dp" app:layout_constraintStart_toEndOf="@+id/textView2"
+                        android:layout_marginStart="8dp"/>
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout android:layout_width="wrap_content"
+                                                         android:layout_height="wrap_content">
+
+                <TextView
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="Nama : "
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        app:layout_constraintStart_toStartOf="parent" app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintTop_toTopOf="parent" android:id="@+id/textView3"/>
+                <TextView
+                        android:id="@+id/tv_costumer"
+                        android:textStyle="bold"
+                        android:textSize="20sp"
+                        android:text="xxxxx"
+                        android:layout_width="match_parent" android:layout_height="wrap_content"
+                        tools:layout_editor_absoluteY="0dp" app:layout_constraintEnd_toEndOf="parent"
+                        android:layout_marginEnd="1dp" app:layout_constraintStart_toEndOf="@+id/textView3"/>
+
+            </android.support.constraint.ConstraintLayout>
+
+
+
+            <TextView
+                    android:id="@+id/tv_stock"
+                    android:text="Pesanan :"
+                    android:textSize="16sp"
+                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+            <android.support.v7.widget.RecyclerView
+                    app:layout_behavior="@string/appbar_scrolling_view_behavior"
+                    android:background="@color/bg_base"
+                    android:id="@+id/rv_list_history_item"
+                    android:layout_width="match_parent"
+                    android:layout_height="120dp"
+            />
+
+            <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                         android:layout_height="wrap_content">
+                <TextView
+                        android:text="Total harga : Rp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp" android:id="@+id/textView"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_total_harga"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+                <TextView
+                        android:id="@+id/tv_total_harga"
+                        android:text="tess"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                         android:layout_height="wrap_content">
+                <TextView
+                        android:text="Total bayar : Rp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_total_bayar"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+                <TextView
+                        android:id="@+id/tv_total_bayar"
+                        android:text="tess"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                />
+
+            </android.support.constraint.ConstraintLayout>
+
+            <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                         android:layout_height="wrap_content">
+                <TextView
+                        android:text="Uang Kembalian : Rp"
+                        android:textSize="18sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content"
+                        android:layout_height="0dp"
+                        android:layout_marginEnd="8dp"
+                        app:layout_constraintEnd_toStartOf="@+id/tv_uang_kembali"
+                        app:layout_constraintTop_toTopOf="parent" app:layout_constraintBottom_toBottomOf="parent"/>
+                <TextView
+                        android:id="@+id/tv_uang_kembali"
+                        android:text="tess"
+                        android:textStyle="bold"
+                        android:textSize="18sp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="16dp"
+                />
+
+            </android.support.constraint.ConstraintLayout>
+
+        </LinearLayout>
+    </LinearLayout>
+
+
+</android.support.design.card.MaterialCardView>

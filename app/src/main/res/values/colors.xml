@@ -1,0 +1,37 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="trans">#C9C9CC</color>
+    <color name="colorPrimary">#263669</color>
+    <color name="colorPrimaryDark">#FF5722</color>
+    <color name="colorAccent">#FF4081</color>
+    <color name="bg_base">#EFF5FF</color>
+    <color name="bg_base_login">#263669</color>
+    <color name="greenPastel">#3cd3ad</color>
+    <color name="bluePastel">#4cb8c4</color>
+    <color name="navbar">#D9DFE9</color>
+    <color name="navbar_icon">#949494</color>
+    <color name="orange_base">#FFCC00</color>
+    <color name="blue_base">#263669</color>
+    <color name="blue_accent">#364A94</color>
+
+
+    <color name="loginFormDetail">#ccffffff</color>
+    <color name="loginFormDetailLight">#1affffff</color>
+    <color name="loginFormDetailMedium">#66ffffff</color>
+
+    <color name="pencarianForm">#05FFFFFF</color>
+    <color name="pencarian">#D6090505</color>
+    <color name="fontHint">#DCE9FF</color>
+    <color name="fontForm">#858F9B</color>
+
+    <color name="colorNew">#feffff</color>
+    <color name="colorBlue">#070a46</color>
+    <color name="colorBackgroundAll">#EEEEEF</color>
+    <color name="colorFont">#000064</color>
+    <color name="colorHint">#FF868484</color>
+    <color name="colorHint1">#dfdfdf</color>
+    <color name="colorborder">#757575</color>
+    <color name="colorBackgroundLoginRegister">#FFEFECEC</color>
+    <color name="colorFontBaru">#FF000000</color>
+    <color name="colorpesan">#ffb347</color>
+</resources>
