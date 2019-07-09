@@ -4,9 +4,11 @@ import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
 import android.view.View
+import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.ListItem
+import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.fragment_popup_order.*
 import kotlinx.android.synthetic.main.item_list.view.*
@@ -17,8 +19,9 @@ import org.jetbrains.anko.toast
 
 class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data: com.hafidrf.lokaloops.models.ListItem, callback: Callback) {
+    fun bind(data: ListItem, callback: Callback) {
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+        val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
 
         itemView.tv_name?.text = data.name
@@ -79,14 +82,16 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
                 val price = data.price.toString()
                 val num = number.toString()
                 val catatan = dialog.et_note.text.toString()
-                sharedPreference.save("id", id)
-                sharedPreference.save("produk", produk)
-                sharedPreference.save("price", price)
-                sharedPreference.save("num", num)
-                sharedPreference.save("catatan", catatan)
-                sharedPreference.save("stock", stck.toString())
-                val upd = sharedPreference.getValueString("stock")!!
-                itemView.tv_stock?.text = "Stock : " + upd
+//                sharedPreference.save("id", id)
+//                sharedPreference.save("produk", produk)
+//                sharedPreference.save("price", price)
+//                sharedPreference.save("num", num)
+//                sharedPreference.save("catatan", catatan)
+//                sharedPreference.save("stock", stck.toString())
+                keranjangSession.addProduct(data,num.toInt(),catatan)
+
+//                val upd = sharedPreference.getValueString("stock")!!
+//                itemView.tv_stock?.text = "Stock : " + upd
                 dialog.dismiss()
 
 //                if (sharedPreference.getValueString("id").equals(id)){

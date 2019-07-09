@@ -27,10 +27,10 @@ import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), ListItemVH.Callback {
 
-    override fun onSubmit(data: com.hafidrf.lokaloops.models.ListItem, number: Int) {
-        tv_name_check?.text = data.name
-        tv_price_check?.text = "Rp. " + data.price
-        tv_stock_check?.text = "Stock : " + number
+    override fun onSubmit(data: ListItem, number: Int) {
+//        tv_name_check?.text = data.name
+//        tv_price_check?.text = "Rp. " + data.price
+//        tv_stock_check?.text = "Stock : " + number
 
     }
 
@@ -49,7 +49,7 @@ class MainActivity : AppCompatActivity(), ListItemVH.Callback {
         //bottom navbar
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationView)
         bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        val firstFragment = com.hafidrf.lokaloops.fragments.StoreFragment()
+        val firstFragment = StoreFragment()
         openFragment(firstFragment)
 
         //bottom sheet

@@ -1,12 +1,15 @@
 package com.hafidrf.lokaloops.models
 
+import com.google.gson.annotations.Expose
+import com.google.gson.annotations.SerializedName
+
 data class ListItem(
-    val id: String?,
-    val name: String?,
-    val price: String?,
-    val foto: String?,
-    val barcode: String?,
-    val quantity: String?
+    @SerializedName("id") @Expose val id: String?,
+    @SerializedName("name") @Expose val name: String?,
+    @SerializedName("price") @Expose val price: Int?,
+    @SerializedName("foto") @Expose val foto: String?,
+    @SerializedName("barcode") @Expose val barcode: String?,
+    @SerializedName("quantity") @Expose val quantity: String?
 ){
     companion object {
         const val TB_ITEM: String = "TB_ITEM"
