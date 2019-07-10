@@ -26,14 +26,14 @@
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="handleButtonClick"
-                android:text="Print Raw" />
+                android:text="Print template" />
 
         <Button
                 android:id="@+id/btn_print_programmatically"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:onClick="handleButtonClick"
-                android:text="Print Programmatically" />
+                android:text="Print Final" />
 
         <TextView
                 android:id="@+id/tv_state"

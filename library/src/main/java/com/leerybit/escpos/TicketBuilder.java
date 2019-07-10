@@ -30,6 +30,7 @@ public class TicketBuilder {
     CENTER
   }
 
+
   private final Ticket ticket;
   private int charsOnLine;
 
