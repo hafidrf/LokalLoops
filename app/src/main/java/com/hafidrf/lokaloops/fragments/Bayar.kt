@@ -25,9 +25,6 @@ import retrofit2.Response
 import android.R.attr.password
 import android.app.Activity
 import android.content.Intent
-import android.widget.Button
-import android.widget.TextView
-import android.widget.Toast
 import com.hafidrf.lokaloops.utils.Food
 import com.leerybit.escpos.DeviceCallbacks
 import com.leerybit.escpos.PosPrinter60mm
@@ -35,6 +32,7 @@ import com.leerybit.escpos.widgets.TicketPreview
 import android.support.v7.app.AppCompatActivity
 import android.support.v4.content.ContextCompat
 import android.text.format.DateFormat
+import android.widget.*
 import com.hafidrf.lokaloops.activities.MainActivity
 import com.hafidrf.lokaloops.activities.Print_factur
 import com.leerybit.escpos.Ticket
@@ -57,6 +55,45 @@ class Bayar : Fragment() {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        // Initializing a String Array
+        val metBayar = arrayOf("Tunai","KartuKredit")
+
+        // Initializing an ArrayAdapter
+        val adapter = ArrayAdapter(
+            activity, // Context
+            android.R.layout.simple_spinner_item, // Layout
+            metBayar // Array
+        )
+
+        // Set the drop down view resource
+        adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
+
+        // Finally, data bind the spinner object with dapter
+        spin_bayar.adapter = adapter;
+
+        // Set an on item selected listener for spinner object
+        spin_bayar.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
+            override fun onItemSelected(parent:AdapterView<*>, view: View, position: Int, id: Long){
+                // Display the selected item text on text view
+                if (parent.getItemAtPosition(position).toString() == "KartuKredit"){
+                    btn_tunai1.setVisibility(View.GONE)
+                    btn_tunai2.setVisibility(View.GONE)
+                    btn_tunai3.setVisibility(View.GONE)
+                    btn_tunai4.setVisibility(View.GONE)
+                    btn_tunai5.setVisibility(View.GONE)
+                } else {
+                    btn_tunai1.setVisibility(View.VISIBLE)
+                    btn_tunai2.setVisibility(View.VISIBLE)
+                    btn_tunai3.setVisibility(View.VISIBLE)
+                    btn_tunai4.setVisibility(View.VISIBLE)
+                    btn_tunai5.setVisibility(View.VISIBLE)
+                }
+            }
+
+            override fun onNothingSelected(parent: AdapterView<*>){
+                // Another interface callback
+            }
+        }
 
         val sharedPreference: SharedPreference = SharedPreference(view.context)
         val keranjangSession: KeranjangSession = KeranjangSession(view.context)

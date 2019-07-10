@@ -29,10 +29,8 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import android.view.KeyEvent
 import android.widget.EditText
-
-
-
-
+import com.hafidrf.lokaloops.activities.Print_factur
+import com.hafidrf.lokaloops.activities.TransaksiActivity
 
 
 class StoreFragment : Fragment(), ListItemVH.Callback {
@@ -61,17 +59,8 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
     }
 
     fun ngaleh(){
-        val fragmentCheckout = com.hafidrf.lokaloops.fragments.Checkout()
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager!!.beginTransaction()
-//        // ngirim data antar fragment
-//        val args = Bundle()
-//        args.putParcelable("model", CheckoutModel(tv_name?.text as String, tv_stock?.text as String))
-//        //
-//        fragmentCheckout.arguments = args
-        fragmentTransaction.replace(R.id.container, fragmentCheckout)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+        val intent = Intent (activity, TransaksiActivity::class.java)
+        activity!!.startActivity(intent)
     }
 
 
