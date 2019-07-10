@@ -1,5 +1,6 @@
 package com.hafidrf.lokaloops.fragments
 
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -68,6 +69,10 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val loading = ProgressDialog(view.context)
+        loading.setMessage("Loading data...")
+        loading.show()
+
         btn_bayar.setOnClickListener{
             ngaleh()
         }
@@ -81,7 +86,9 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
             EndPoint.client.create(InterfacePoint::class.java).cariData(ap.name).enqueue(object : Callback<ListItemResponse> {
                 override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
 
-                    if(response.isSuccessful) listAdapter.updateList(response.body()!!.result)
+                    if(response.isSuccessful)
+                        loading.dismiss()
+                        listAdapter.updateList(response.body()!!.result)
 
                 }
 
@@ -112,7 +119,9 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
             override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
 
-                if(response.isSuccessful) listAdapter.updateList(response.body()!!.result)
+                if(response.isSuccessful)
+                    loading.dismiss()
+                    listAdapter.updateList(response.body()!!.result)
 
             }
 

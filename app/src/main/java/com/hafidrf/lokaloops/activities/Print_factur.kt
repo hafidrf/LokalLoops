@@ -24,6 +24,7 @@ import java.io.IOException
 import java.util.*
 import com.google.android.gms.analytics.HitBuilders
 import com.hafidrf.lokaloops.utils.KeranjangSession
+import com.hafidrf.lokaloops.utils.SharedPreference
 import org.jetbrains.anko.db.INTEGER
 
 class Print_factur : AppCompatActivity() {
@@ -32,7 +33,9 @@ class Print_factur : AppCompatActivity() {
     private val preview by lazy { findViewById<TicketPreview>(R.id.ticket) }
     private val messageView by lazy { findViewById<TextView>(R.id.tv_message) }
     private val stateView by lazy { findViewById<TextView>(R.id.tv_state) }
+
     val keranjangSession: KeranjangSession = KeranjangSession(this)
+    val sharedPreference: SharedPreference = SharedPreference(this)
 
     private var ticketNumber = 0
 
@@ -135,15 +138,9 @@ class Print_factur : AppCompatActivity() {
             var tot = 0
 
 
-//            listProduk.forEach {
-//                item = it.item.name.toString()
-//                tot = it.total
-//                price = it.total * it.item.price!!
-//                coba += it.total * it.item.price!!
-////                TicketBuilder(printer).menuLine("- ${tot}  ${item}  ", "Rp ${price}")
-//            }
-
-
+            val n = sharedPreference.getValueString("uang_bayar")!!
+            val nm_pembeli = sharedPreference.getValueString("nama_pembeli")!!
+            var uang_bayar = Integer.parseInt(n.toString())
 
 
             ticketHeader = TicketBuilder(printer)
@@ -153,9 +150,11 @@ class Print_factur : AppCompatActivity() {
                 .text("Date: ${DateFormat.format("dd.MM.yyyy", date)}")
                 .text("Time: ${DateFormat.format("HH:mm", date)}")
                 .text("Ticket No: ${++ticketNumber}")
+                .text("Nama Pelanggan: ${nm_pembeli}")
                 .fiscalInt("ticket_no", ticketNumber)
+                .dividerDouble()
                 .build()
-
+            preview.setTicket(ticketHeader)
             printer.send(ticketHeader)
 
 
@@ -169,23 +168,28 @@ class Print_factur : AppCompatActivity() {
                 .isCyrillic(true)
                 .menuLine("- ${tot}  ${item}  ", "Rp ${price}")
                 .build()
+
+            preview.setTicket(ticketIsi)
             printer.send(ticketIsi)
             }
-            var bayar = coba + 10000
-            var kembali = bayar - coba
+
+            var kembali = uang_bayar - coba
             ticketFooter = TicketBuilder(printer)
                 .isCyrillic(true)
                 .dividerDouble()
                 .menuLine("Total", "Rp ${coba}")
-                .menuLine("Tunai", "Rp ${bayar}")
+                .menuLine("Tunai", "Rp ${uang_bayar}")
                 .menuLine("Kembali", "Rp ${kembali}")
                 .dividerDouble()
                 .stared("THANK YOU")
                 .feedLine(4)
                 .build()
 
+            preview.setTicket(ticketFooter)
             printer.send(ticketFooter)
 
+            keranjangSession.clearSharedPreference()
+            sharedPreference.clearSharedPreference()
         } catch (e: IOException) {
             e.printStackTrace()
         }

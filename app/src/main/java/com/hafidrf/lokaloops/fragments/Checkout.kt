@@ -12,6 +12,8 @@ import android.view.ViewGroup
 import android.widget.Toast
 
 import com.hafidrf.lokaloops.R
+import com.hafidrf.lokaloops.activities.MainActivity
+import com.hafidrf.lokaloops.activities.TransaksiActivity
 import com.hafidrf.lokaloops.common.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.models.ListItem
@@ -52,12 +54,9 @@ class Checkout : Fragment(){
     }
 
     fun kembali(){
-        val storeFrag = com.hafidrf.lokaloops.fragments.StoreFragment()
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.container, storeFrag)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
+//        val intent = Intent (activity, MainActivity::class.java)
+//        activity!!.startActivity(intent)
+
     }
     fun bayarAkhir(){
         val bayarin = com.hafidrf.lokaloops.fragments.Bayar()

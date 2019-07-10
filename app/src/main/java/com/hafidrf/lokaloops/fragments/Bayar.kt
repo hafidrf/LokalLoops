@@ -107,7 +107,16 @@ class Bayar : Fragment() {
         tv_jml_bayar?.text = ":  Rp "+price
         var ung_byr = ""
         var ung_kmbl = ""
-        println("-->"+price)
+
+        var listProduk = keranjangSession.getKeranjangFull()!!
+        var coba = 0
+        listProduk.forEach {
+            println(it.item.name)
+            coba += it.total * it.item.price!!
+        }
+        println("-->"+coba)
+
+        sharedPreference.save("total_hrg", coba.toString())
 
         btn_manual?.setOnClickListener {
             btn20.isEnabled = true
@@ -115,52 +124,55 @@ class Bayar : Fragment() {
             btn100.isEnabled = true
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
-//            var kembali = n-hasil
-//            tv_kembalian?.text = ":  Rp "+kembali.toString()
-//            ung_kmbl = kembali.toString()
-//            ung_byr = total_bayar
+            var kembali = n-coba
+            tv_kembalian?.text = ":  Rp "+kembali.toString()
+            ung_kmbl = kembali.toString()
+            ung_byr = total_bayar
             sharedPreference.save("uang_bayar",ung_byr)
             tv_grand_bayar.text = ":  Rp "+ung_byr
             et_byr_manual.text.clear()
         }
         btn20?.setOnClickListener {
-//            var kembali = 20000 - hasil
-//            ung_byr = "20000"
+            var kembali = 20000 - coba
+            ung_byr = "20000"
             sharedPreference.save("uang_bayar",ung_byr)
             tv_grand_bayar.text = ":  Rp 20000"
-//            tv_kembalian?.text = ":  Rp " + kembali.toString()
-//            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            ung_kmbl = kembali.toString()
             btn20.isEnabled = false
             btn50.isEnabled = true
             btn100.isEnabled = true
         }
         btn50?.setOnClickListener {
-//            var kembali = 50000 - hasil
-//            ung_byr = "50000"
+            var kembali = 50000 - coba
+            ung_byr = "50000"
             sharedPreference.save("uang_bayar",ung_byr)
             tv_grand_bayar.text = ":  Rp 50000"
-//            tv_kembalian?.text = ":  Rp " + kembali.toString()
-//            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            ung_kmbl = kembali.toString()
             btn50.isEnabled = false
             btn20.isEnabled = true
             btn100.isEnabled = true
         }
         btn100?.setOnClickListener {
-//            var kembali = 100000 - hasil
-//            ung_byr = "100000"
+            var kembali = 100000 - coba
+            ung_byr = "100000"
             sharedPreference.save("uang_bayar",ung_byr)
             tv_grand_bayar.text = ":  Rp 100000"
-//            tv_kembalian?.text = ":  Rp " + kembali.toString()
-//            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            ung_kmbl = kembali.toString()
             btn100.isEnabled = false
             btn20.isEnabled = true
             btn50.isEnabled = true
         }
 
 
+
+
         btn_print?.setOnClickListener {
 
             print()
+
 
 //            //----start json-------
 //            var listProduk = keranjangSession.getKeranjangFull()!!

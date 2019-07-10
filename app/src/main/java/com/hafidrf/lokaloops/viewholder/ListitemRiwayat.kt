@@ -17,7 +17,7 @@ import kotlinx.android.synthetic.main.history_list.view.*
 
 class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data: com.hafidrf.lokaloops.models.ListHistory, callback: Callback) {
+    fun bind(data: ListHistory, callback: Callback) {
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
 
         itemView.tv_tanggal?.text = data.tanggal
