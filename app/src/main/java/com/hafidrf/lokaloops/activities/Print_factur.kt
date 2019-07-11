@@ -30,7 +30,9 @@ import org.jetbrains.anko.db.INTEGER
 class Print_factur : AppCompatActivity() {
 
     private val printer by lazy { PosPrinter60mm(this) }
-    private val preview by lazy { findViewById<TicketPreview>(R.id.ticket) }
+    private val preview1 by lazy { findViewById<TicketPreview>(R.id.ticket1) }
+    private val preview2 by lazy { findViewById<TicketPreview>(R.id.ticket2) }
+    private val preview3 by lazy { findViewById<TicketPreview>(R.id.ticket3) }
     private val messageView by lazy { findViewById<TextView>(R.id.tv_message) }
     private val stateView by lazy { findViewById<TextView>(R.id.tv_state) }
 
@@ -156,7 +158,7 @@ class Print_factur : AppCompatActivity() {
                 .fiscalInt("ticket_no", ticketNumber)
                 .dividerDouble()
                 .build()
-            preview.setTicket(ticketHeader)
+            preview1.setTicket(ticketHeader)
             printer.send(ticketHeader)
 
 
@@ -170,9 +172,8 @@ class Print_factur : AppCompatActivity() {
                 .isCyrillic(true)
                 .menuLine("- ${tot}  ${item}  ", "Rp ${price}")
                 .build()
-
-            preview.setTicket(ticketIsi)
             printer.send(ticketIsi)
+                preview2.setTicket(ticketIsi)
             }
 
             var kembali = uang_bayar - coba
@@ -187,7 +188,7 @@ class Print_factur : AppCompatActivity() {
                 .feedLine(4)
                 .build()
 
-            preview.setTicket(ticketFooter)
+            preview3.setTicket(ticketFooter)
             printer.send(ticketFooter)
 
 

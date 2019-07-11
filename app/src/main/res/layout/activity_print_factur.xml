@@ -53,7 +53,21 @@
                 android:textColor="#263238" />
 
         <com.leerybit.escpos.widgets.TicketPreview
-                android:id="@+id/ticket"
+                android:id="@+id/ticket1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
+                android:textColor="#000" />
+        <com.leerybit.escpos.widgets.TicketPreview
+                android:id="@+id/ticket2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
+                android:textColor="#000" />
+        <com.leerybit.escpos.widgets.TicketPreview
+                android:id="@+id/ticket3"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:paddingLeft="@dimen/activity_vertical_margin"
