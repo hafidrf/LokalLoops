@@ -98,24 +98,26 @@ class Print_factur : AppCompatActivity() {
 
     private fun printRawTicket() {
         try {
-            val date = Date()
-            val ticket: Ticket
-
-            ticket = TicketBuilder(printer)
-                .isCyrillic(true)
-                .raw(this, R.raw.ticket,
-                    DateFormat.format("dd.MM.yyyy", date).toString(),
-                    DateFormat.format("HH:mm", date).toString(),
-                    (++ticketNumber).toString() + ""
-                )
-                .fiscalInt("ticket_no", ticketNumber)
-                .fiscalDouble("gift", 3.0, 2)
-                .fiscalDouble("price", 131.30, 2)
-                .fiscalDouble("out_price", 128.30, 2)
-                .build()
-
-            preview.setTicket(ticket)
-            printer.send(ticket)
+            keranjangSession.clearSharedPreference()
+            sharedPreference.clearSharedPreference()
+//            val date = Date()
+//            val ticket: Ticket
+//
+//            ticket = TicketBuilder(printer)
+//                .isCyrillic(true)
+//                .raw(this, R.raw.ticket,
+//                    DateFormat.format("dd.MM.yyyy", date).toString(),
+//                    DateFormat.format("HH:mm", date).toString(),
+//                    (++ticketNumber).toString() + ""
+//                )
+//                .fiscalInt("ticket_no", ticketNumber)
+//                .fiscalDouble("gift", 3.0, 2)
+//                .fiscalDouble("price", 131.30, 2)
+//                .fiscalDouble("out_price", 128.30, 2)
+//                .build()
+//
+//            preview.setTicket(ticket)
+//            printer.send(ticket)
         } catch (e: IOException) {
             e.printStackTrace()
         }
@@ -188,8 +190,7 @@ class Print_factur : AppCompatActivity() {
             preview.setTicket(ticketFooter)
             printer.send(ticketFooter)
 
-            keranjangSession.clearSharedPreference()
-            sharedPreference.clearSharedPreference()
+
         } catch (e: IOException) {
             e.printStackTrace()
         }
