@@ -44,10 +44,6 @@ class TransaksiActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_transaksi)
 
-        val loading = ProgressDialog(this)
-        loading.setMessage("Loading data...")
-        loading.show()
-
         val sharedPreference: SharedPreference = SharedPreference(this)
         val keranjangSession: KeranjangSession = KeranjangSession(this)
 
@@ -77,7 +73,6 @@ class TransaksiActivity : AppCompatActivity() {
         ){
             override fun bindView(holder: ListCheckoutVH, model: ListItemKeranjang, position: Int) {
                 holder.bind(model)
-                loading.dismiss()
             }
 
         }
