@@ -108,18 +108,20 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bt_pesan"
+                        android:background="@color/bluePastel"
                         android:textSize="20sp"
                         android:padding="4dp"
+                        android:textColor="@color/bg_base"
                         android:text="Rp 20.000"/>
                 <Button android:id="@+id/btn50"
                         android:layout_weight="1"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bt_pesan"
+                        android:background="@color/bluePastel"
                         android:textSize="20sp"
                         android:padding="4dp"
+                        android:textColor="@color/bg_base"
                         android:text="Rp 50.000"/>
             </LinearLayout>
             <LinearLayout
@@ -131,18 +133,20 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bt_pesan" android:layout_marginStart="16dp"
+                        android:background="@color/bluePastel" android:layout_marginStart="16dp"
                         android:textSize="20sp"
                         android:padding="4dp"
+                        android:textColor="@color/bg_base"
                         android:text="Rp 100.000"/>
                 <Button android:id="@+id/btn_uang_pas"
                         android:layout_weight="1"
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@drawable/bt_pesan" android:layout_marginStart="16dp"
+                        android:background="@color/bluePastel" android:layout_marginStart="16dp"
                         android:textSize="20sp"
                         android:padding="4dp"
+                        android:textColor="@color/bg_base"
                         android:text="Uang Pas"/>
             </LinearLayout>
             <LinearLayout
@@ -235,7 +239,8 @@
                             android:id="@+id/btn_sign_up"
                             android:layout_weight="1"
                             android:text="Daftar"
-                            android:background="@drawable/btn_bg"
+                            android:textColor="@color/bg_base"
+                            android:background="@color/bluePastel"
                             android:layout_margin="5dp"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"/>

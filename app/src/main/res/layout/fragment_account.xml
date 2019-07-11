@@ -1,36 +1,184 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-                                             xmlns:app="http://schemas.android.com/apk/res-auto"
-                                             xmlns:tools="http://schemas.android.com/tools"
-                                             android:layout_width="match_parent"
-                                             android:layout_height="match_parent"
-                                             android:background="@android:color/holo_blue_dark"
-                                             tools:context="com.hafidrf.lokaloops.fragments.AccountFragment">
+<LinearLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical"
+        android:background="@color/bg_base"
+        tools:context="com.hafidrf.lokaloops.fragments.AccountFragment">
 
-    <ImageView android:src="@drawable/man" android:layout_width="200dp" android:layout_height="200dp"
-               app:layout_constraintTop_toTopOf="parent" android:layout_marginTop="128dp" android:id="@+id/imageView"
-               app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"
-               app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"/>
-    <TextView
-            android:layout_width="0dp"
-            android:layout_height="43dp"
-            android:layout_marginEnd="8dp"
-            android:layout_marginStart="8dp"
-            android:text="Hai, There "
-            android:textAlignment="center"
-            android:textColor="@android:color/background_light"
-            android:textSize="30sp"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/imageView"
-            android:id="@+id/tv_nama_login"/>
+    <FrameLayout
+            android:layout_width="match_parent"
+            android:layout_height="240dp"
+            android:background="@color/blue_accent">
 
-    <Button android:id="@+id/btn_logout"
-            android:text="Logout"
-            android:background="@drawable/bt_pesan"
-            android:layout_width="wrap_content" android:layout_height="wrap_content" android:layout_marginBottom="8dp"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent" app:layout_constraintStart_toStartOf="parent"
-            android:layout_marginTop="8dp" app:layout_constraintTop_toBottomOf="@+id/tv_nama_login"
-            app:layout_constraintVertical_bias="0.00999999"/>
-</android.support.constraint.ConstraintLayout>
+        <android.support.constraint.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:padding="8dp"
+                android:orientation="horizontal">
+            <ImageView android:src="@drawable/man"
+                       android:layout_width="100dp"
+                       android:layout_height="100dp"
+                       app:layout_constraintTop_toTopOf="parent"
+                       android:layout_marginTop="30dp"
+                       android:id="@+id/imageView"
+                       app:layout_constraintEnd_toEndOf="parent"
+                       android:layout_marginEnd="8dp"
+                       app:layout_constraintStart_toStartOf="parent"
+                       android:layout_marginStart="8dp"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Hai, There "
+                    android:textAlignment="center"
+                    android:textColor="@android:color/background_light"
+                    android:textSize="30sp"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/imageView"
+                    android:id="@+id/tv_nama_login"/>
+
+            <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="43dp"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp"
+                    android:text="Owner of Tegar Coffe Shop"
+                    android:textAlignment="center"
+                    android:textColor="@color/colorHint1"
+                    android:textSize="18sp"
+                    android:textStyle="italic"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/tv_nama_login"
+                    android:id="@+id/tv_role_login"/>
+
+        </android.support.constraint.ConstraintLayout>
+
+    </FrameLayout>
+
+    <ScrollView android:layout_width="match_parent" android:layout_height="match_parent">
+        <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical"
+                android:layout_marginBottom="25dp">
+
+            <LinearLayout
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:orientation="vertical">
+
+
+                <!--SOSIAL MEDIA-->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="Sosial Media"
+                        android:textSize="18sp"
+                        android:textColor="@color/colorHint"
+                        android:textStyle="bold"/>
+
+                <LinearLayout android:padding="4dp"
+                              android:layout_width="match_parent"
+                              android:layout_height="wrap_content">
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/man"/>
+                    <View android:layout_width="24dp" android:layout_height="match_parent"/>
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/man"/>
+                    <View android:layout_width="24dp" android:layout_height="match_parent"/>
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/man"/>
+                    <View android:layout_width="24dp" android:layout_height="match_parent"/>
+                    <ImageView android:layout_width="28dp" android:layout_height="28dp" android:src="@drawable/man"/>
+
+                </LinearLayout>
+
+                <View android:layout_width="wrap_content"
+                      android:layout_height="1dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_marginBottom="8dp"
+                      android:background="#C9C7C7"/>
+
+                <!--EMAIL-->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Email"
+                        android:textColor="@color/colorHint"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:id="@+id/tv_email_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/bluePastel"
+                        android:text="tegaraditia@lokaloop.com"/>
+
+                <View android:layout_width="wrap_content"
+                      android:layout_height="1dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_marginBottom="8dp"
+                      android:background="#C9C7C7"/>
+
+                <!--CONTACT-->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Contact"
+                        android:textColor="@color/colorHint"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:id="@+id/tv_contact_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/bluePastel"
+                        android:text="+6282335300640"/>
+
+                <View android:layout_width="wrap_content"
+                      android:layout_height="1dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_marginBottom="8dp"
+                      android:background="#C9C7C7"/>
+
+                <!--ALAMAT-->
+                <TextView
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:text="Address"
+                        android:textColor="@color/colorHint"
+                        android:textStyle="bold"/>
+
+                <TextView
+                        android:id="@+id/tv_address_account"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:textSize="18sp"
+                        android:textColor="@color/bluePastel"
+                        android:text="Jl. Tlogosuryo No.2 Tlogosari"/>
+
+                <View android:layout_width="wrap_content"
+                      android:layout_height="1dp"
+                      android:layout_marginTop="8dp"
+                      android:layout_marginBottom="8dp"
+                      android:background="#C9C7C7"/>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </ScrollView>
+
+</LinearLayout>

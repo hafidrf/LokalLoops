@@ -37,16 +37,16 @@ class LoginActivity : AppCompatActivity() {
 //    }
 
     private fun login() {
-        iPoint.login(et_email.text.toString(), et_password.text.toString()).enqueue(object : Callback<UserResponse> {
-            override fun onFailure(call: Call<UserResponse>, t: Throwable) {
+        iPoint.login(et_email.text.toString(), et_password.text.toString()).enqueue(object : Callback<com.hafidrf.lokaloops.models.UserResponse> {
+            override fun onFailure(call: Call<com.hafidrf.lokaloops.models.UserResponse>, t: Throwable) {
             }
 
-            override fun onResponse(call: Call<UserResponse>, response: Response<UserResponse>) {
+            override fun onResponse(call: Call<com.hafidrf.lokaloops.models.UserResponse>, response: Response<com.hafidrf.lokaloops.models.UserResponse>) {
                 if (response.isSuccessful) {
                     user = response.body()!!
 //                    prefs.save("username",user)
 //                    prefs.saveUser("login",user)
-                    startActivity(MainActivity.getIntent(this@LoginActivity))
+                    startActivity(com.hafidrf.lokaloops.activities.MainActivity.Companion.getIntent(this@LoginActivity))
                     finish()
                 } else {
                 }
