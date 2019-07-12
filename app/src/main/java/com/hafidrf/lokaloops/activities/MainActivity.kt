@@ -7,23 +7,9 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.fragments.AccountFragment
-import com.hafidrf.lokaloops.fragments.HistoryFragment
 import com.hafidrf.lokaloops.fragments.StoreFragment
 import com.hafidrf.lokaloops.models.ListItem
-import com.hafidrf.lokaloops.models.ListItemResponse
-import com.hafidrf.lokaloops.rest.EndPoint
-import com.hafidrf.lokaloops.rest.InterfacePoint
-import com.hafidrf.lokaloops.rest.database
-import com.hafidrf.lokaloops.utils.SharedPreference
 import com.hafidrf.lokaloops.viewholder.ListItemVH
-import kotlinx.android.synthetic.main.item_list_checkout.*
-import org.jetbrains.anko.db.TEXT
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.toast
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class MainActivity : AppCompatActivity(), ListItemVH.Callback {
 
@@ -43,7 +29,7 @@ class MainActivity : AppCompatActivity(), ListItemVH.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_main)
-        val sharedPreference: SharedPreference = SharedPreference(this)
+//        val sharedPreference: SharedPreference = SharedPreference(this)
 
 
         //bottom navbar

@@ -25,10 +25,15 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.widget.LinearLayout
-
+import com.hafidrf.lokaloops.activities.DetailHistoryActivity
+import org.jetbrains.anko.support.v4.intentFor
 
 
 class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
+
+    override fun onClick(data: ListHistory) {
+       startActivity(intentFor<DetailHistoryActivity>() )
+    }
 
     override fun onSubmit(data: ListHistory, number: Int) {
         println("google coy cou")
@@ -41,14 +46,14 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
 
     }
 
-    fun next(){
-        val detailhf = DetailHisFragment()
-        val fragmentManager = fragmentManager
-        val fragmentTransaction = fragmentManager!!.beginTransaction()
-        fragmentTransaction.replace(R.id.container, detailhf)
-        fragmentTransaction.addToBackStack(null)
-        fragmentTransaction.commit()
-    }
+//    fun next(){
+//        val detailhf = DetailHisFragment()
+//        val fragmentManager = fragmentManager
+//        val fragmentTransaction = fragmentManager!!.beginTransaction()
+//        fragmentTransaction.replace(R.id.container, detailhf)
+//        fragmentTransaction.addToBackStack(null)
+//        fragmentTransaction.commit()
+//    }
 
     private lateinit var listAdapter : Adapter<ListHistory, ListitemRiwayat>
 
@@ -61,9 +66,9 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-        ln_his?.setOnClickListener {
-            next()
-        }
+//        ln_his?.setOnClickListener {
+//            next()
+//        }
 
         listAdapter = object : com.hafidrf.lokaloops.models.Adapter<ListHistory, ListitemRiwayat>(
             R.layout.history_list,

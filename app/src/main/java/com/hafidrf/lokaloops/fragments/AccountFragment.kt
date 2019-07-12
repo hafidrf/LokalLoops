@@ -7,11 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.models.UserResponse
-import com.hafidrf.lokaloops.utils.PrefsUtil
-import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.fragment_account.*
-import kotlinx.android.synthetic.main.fragment_checkout.*
 
 class AccountFragment : Fragment() {
     // TODO: Rename and change types of parameters

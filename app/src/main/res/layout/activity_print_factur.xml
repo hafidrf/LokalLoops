@@ -14,26 +14,54 @@
             android:paddingRight="@dimen/activity_horizontal_margin"
             android:paddingBottom="@dimen/activity_vertical_margin">
 
-        <Button
-                android:id="@+id/btn_search"
+        <com.leerybit.escpos.widgets.TicketPreview
+                android:id="@+id/ticket"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:onClick="handleButtonClick"
-                android:text="Connect" />
+                android:paddingLeft="@dimen/activity_vertical_margin"
+                android:paddingRight="@dimen/activity_vertical_margin"
+                android:textColor="#000" />
+        <TextView
+                android:layout_width="match_parent"
+                android:text="INI STRUK"
+                android:gravity="center"
+                android:textStyle="bold"
+                android:textSize="50dp"
+                android:background="@color/colorHint"
+                android:layout_height="300dp"/>
 
-        <Button
-                android:id="@+id/btn_print_raw"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="handleButtonClick"
-                android:text="Refresh Pesan" />
+        <LinearLayout android:orientation="horizontal" android:padding="8dp" android:weightSum="2" android:layout_width="match_parent" android:layout_height="wrap_content">
+            <Button
+                    android:id="@+id/btn_search"
+                    android:background="@drawable/btn_connect_printer"
+                    android:textColor="@android:color/white"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:onClick="handleButtonClick"
+                    android:text="Connect" />
 
-        <Button
-                android:id="@+id/btn_print_programmatically"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:onClick="handleButtonClick"
-                android:text="Print Final" />
+            <Button
+                    android:id="@+id/btn_print_programmatically"
+                    android:layout_weight="1"
+                    android:layout_width="0dp"
+                    android:background="@drawable/btn_print_final"
+                    android:textColor="@android:color/white"
+                    android:layout_height="wrap_content"
+                    android:onClick="handleButtonClick"
+                    android:text="Print" />
+        </LinearLayout>
+
+
+
+        <!--<Button-->
+                <!--android:id="@+id/btn_print_raw"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:onClick="handleButtonClick"-->
+                <!--android:text="Print template" />-->
+
+
 
         <TextView
                 android:id="@+id/tv_state"
@@ -52,27 +80,7 @@
                 android:text="Tittle Message"
                 android:textColor="#263238" />
 
-        <com.leerybit.escpos.widgets.TicketPreview
-                android:id="@+id/ticket1"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:textColor="#000" />
-        <com.leerybit.escpos.widgets.TicketPreview
-                android:id="@+id/ticket2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:textColor="#000" />
-        <com.leerybit.escpos.widgets.TicketPreview
-                android:id="@+id/ticket3"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:textColor="#000" />
+
 
     </LinearLayout>
 </ScrollView>

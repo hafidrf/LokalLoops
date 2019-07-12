@@ -4,14 +4,22 @@ import android.app.ProgressDialog
 import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.util.Log
 import android.view.View
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
+import com.hafidrf.lokaloops.BuildConfig
+import retrofit2.Callback
 import com.hafidrf.lokaloops.R
+import com.hafidrf.lokaloops.rest.EndPoint
+import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.SharedPreference
-import kotlinx.android.synthetic.main.fragment_bayar.*
+import kotlinx.android.synthetic.main.activity_bayar.*
 import org.jetbrains.anko.themedImageSwitcher
+import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Response
 
 class BayarActivity : AppCompatActivity() {
 
@@ -127,6 +135,9 @@ class BayarActivity : AppCompatActivity() {
         }
         btn_print?.setOnClickListener {
             print()
+
+            requestBayar()
+
         }
 
         btn_sign_up?.setOnClickListener{
@@ -137,6 +148,22 @@ class BayarActivity : AppCompatActivity() {
         btn_backk?.setOnClickListener {
             kembali()
         }
+    }
+
+    private fun requestBayar() {
+
+        val data = KeranjangSession(this).getKeranjangServer()
+
+        EndPoint.client.create(InterfacePoint::class.java).saveData(data).enqueue(object : Callback<String>{
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                toast("error ${t.message}")
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                toast("berhasil")
+            }
+
+        })
     }
 
     fun kembali(){

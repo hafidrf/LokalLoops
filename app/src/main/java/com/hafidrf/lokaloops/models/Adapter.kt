@@ -53,4 +53,14 @@ abstract class Adapter<T, VH : RecyclerView.ViewHolder>(
 
     fun lastItemIndex(): Int = list.lastIndex
 
+    fun removeItem(position: Int) {
+        list.removeAt(position)
+        notifyDataSetChanged()
+    }
+
+    fun clear() {
+        list.clear()
+        notifyDataSetChanged()
+    }
+
 }

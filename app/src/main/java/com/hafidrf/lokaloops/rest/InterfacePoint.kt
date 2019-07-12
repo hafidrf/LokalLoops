@@ -43,6 +43,7 @@ interface InterfacePoint {
     ): Call<ListItemResponse>
 
     @POST("kirim")
-    fun saveData(@Body food: Food): Call<ListItemKeranjang>
+    fun saveData(@Body food: String): Call<String>
+
 
 }

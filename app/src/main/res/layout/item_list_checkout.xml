@@ -5,66 +5,86 @@
         android:layout_height="wrap_content">
 
     <LinearLayout
-            android:orientation="vertical"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
-
+            android:layout_height="wrap_content"
+            android:weightSum="10"
+            android:orientation="horizontal">
         <LinearLayout
-                android:layout_marginTop="5dp"
-                android:weightSum="4"
-                android:orientation="horizontal"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content">
-            <!--<TextView-->
+                android:orientation="vertical"
+                android:layout_weight="9"
+                android:layout_width="0dp"
+                android:layout_height="match_parent">
+
+            <LinearLayout
+                    android:layout_marginTop="5dp"
+                    android:weightSum="6"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                <!--<TextView-->
                 <!--android:layout_margin="5dp"-->
                 <!--android:textSize="25sp"-->
                 <!--android:layout_width="wrap_content"-->
                 <!--android:layout_weight="1"-->
                 <!--android:text=""-->
                 <!--android:layout_height="wrap_content"/>-->
-            <TextView
-                android:layout_margin="5dp"
-                android:id="@+id/tv_item_detail"
-                android:textSize="18sp"
-                android:layout_width="wrap_content"
-                android:layout_weight="2"
-                android:text="Marjan"
-                android:layout_height="wrap_content"/>
+                <TextView
+                        android:layout_margin="5dp"
+                        android:id="@+id/tv_item_detail"
+                        android:textSize="18sp"
+                        android:layout_width="0dp"
+                        android:layout_weight="3"
+                        android:text="Marjan"
+                        android:layout_height="wrap_content"/>
 
+                <TextView
+                        android:layout_margin="5dp"
+                        android:id="@+id/tv_jumlah"
+                        android:layout_width="0dp"
+                        android:layout_weight="1"
+                        android:textSize="18sp"
+                        android:text="40"
+                        android:layout_height="wrap_content"/>
+                <TextView
+                        android:layout_margin="5dp"
+                        android:id="@+id/tv_total_harga_barang"
+                        android:layout_width="0dp"
+                        android:layout_weight="2"
+                        android:text="Rp 30000"
+                        android:textSize="18sp"
+                        android:layout_height="wrap_content"/>
+            </LinearLayout>
             <TextView
-                android:layout_margin="5dp"
-                android:id="@+id/tv_jumlah"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:textSize="18sp"
-                android:text="40"
-                android:layout_height="wrap_content"/>
+                    android:layout_marginLeft="5dp"
+                    android:layout_marginRight="5dp"
+                    android:textSize="14sp"
+                    android:textStyle="bold"
+                    android:layout_width="wrap_content"
+                    android:text="catatan: "
+                    android:layout_height="wrap_content"/>
             <TextView
-                android:layout_margin="5dp"
-                android:id="@+id/tv_total_harga_barang"
-                android:layout_width="wrap_content"
-                android:layout_weight="1"
-                android:text="Rp 30000"
-                android:textSize="18sp"
-                android:layout_height="wrap_content"/>
+                    android:layout_marginLeft="15dp"
+                    android:layout_marginRight="5dp"
+                    android:id="@+id/tv_note"
+                    android:layout_width="match_parent"
+                    android:text="coba"
+                    android:textSize="14sp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_height="wrap_content"/>
         </LinearLayout>
-        <TextView
-                android:layout_marginLeft="5dp"
-                android:layout_marginRight="5dp"
-                android:textSize="14sp"
-                android:textStyle="bold"
-                android:layout_width="wrap_content"
-                android:text="catatan: "
-                android:layout_height="wrap_content"/>
-        <TextView
-                android:layout_marginLeft="15dp"
-                android:layout_marginRight="5dp"
-                android:id="@+id/tv_note"
-                android:layout_width="match_parent"
-                android:text="coba"
-                android:textSize="14sp"
-                android:layout_marginBottom="8dp"
-                android:layout_height="wrap_content"/>
+
+        <LinearLayout
+                android:layout_width="0dp"
+                android:layout_weight="1"
+                android:layout_height="match_parent">
+            <ImageButton
+                    android:id="@+id/btn_delete"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:layout_gravity="right"
+                    android:background="@android:color/white"
+                    android:src="@drawable/ic_delete_red"/>
+        </LinearLayout>
     </LinearLayout>
 
 </android.support.design.card.MaterialCardView>

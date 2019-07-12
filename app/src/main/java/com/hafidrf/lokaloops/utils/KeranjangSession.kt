@@ -123,13 +123,7 @@ class KeranjangSession (context: Context){
 */
 
     fun clearSharedPreference() {
-
-        val editor: SharedPreferences.Editor = prefs.edit()
-
-        //sharedPref = PreferenceManager.getDefaultSharedPreferences(context);
-
-        editor.clear()
-        editor.commit()
+        prefs.edit().clear().apply()
     }
 
 

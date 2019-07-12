@@ -5,7 +5,7 @@
               android:orientation="vertical"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg_base"
+              android:background="@android:color/white"
               tools:context="com.hafidrf.lokaloops.fragments.Bayar">
 
     <FrameLayout
@@ -51,41 +51,104 @@
         <LinearLayout android:orientation="vertical"
                       android:layout_width="match_parent"
                       android:layout_height="match_parent"
-                      android:layout_marginTop="8dp"
                       android:background="@color/cardview_light_background">
+
+            <LinearLayout
+                    android:background="@color/bg_base"
+                    android:orientation="vertical"
+                    android:paddingStart="8dp"
+                    android:paddingEnd="8dp"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginTop="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <EditText
+                            android:drawableStart="@drawable/ic_account"
+                            android:drawablePadding="10dp"
+                            android:layout_weight="4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="8dp"
+                            android:id="@+id/et_nama_user"
+                            android:singleLine="true"
+                            android:background="@drawable/et_pencarian"
+                            android:layout_margin="5dp"/>
+                    <Button
+                            android:id="@+id/btn_sign_up"
+                            android:layout_weight="1"
+                            android:text="Daftar"
+                            android:textColor="@color/bg_base"
+                            android:background="@drawable/btn_daftar"
+                            android:layout_margin="5dp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+                </LinearLayout>
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_width="match_parent"
+                        android:layout_marginStart="12dp"
+                        android:layout_marginBottom="8dp"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:layout_weight="1"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="24sp"
+                            android:text="Nama"/>
+                    <TextView
+                            android:id="@+id/tv_nama_pelanggan"
+                            android:layout_weight="4"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_margin="5dp"
+                            android:textSize="24sp"
+                            android:text="Customer"/>
+                </LinearLayout>
+            </LinearLayout>
+
             <LinearLayout
                     android:orientation="horizontal"
+                    android:layout_marginStart="12dp"
+                    android:padding="8dp"
                     android:layout_width="match_parent"
-                    android:background="@drawable/bg_checkout"
                     android:layout_height="wrap_content">
                 <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp"
-                        android:layout_margin="10dp"
+                        android:textSize="28sp"
                         android:layout_weight="1"
                         android:text="Total"/>
                 <TextView
                         android:id="@+id/tv_jml_bayar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:layout_margin="10dp"
+                        android:textSize="28sp"
                         android:layout_weight="3"
                         android:text=":  Rp ..."/>
             </LinearLayout>
+            <View android:layout_width="wrap_content"
+                  android:layout_height="1dp"
+                  android:layout_marginTop="8dp"
+                  android:layout_marginBottom="8dp"
+                  android:background="#C9C7C7"/>
             <LinearLayout android:layout_width="match_parent"
                           android:layout_height="wrap_content"
-                          android:background="@drawable/bg_checkout"
-                          android:padding="5dp"
+                          android:layout_marginStart="12dp"
+                          android:padding="8dp"
                           android:weightSum="5"
                           android:orientation="horizontal">
                 <TextView android:layout_width="wrap_content"
-                          android:layout_height="wrap_content"
-                          android:layout_weight="4"
+                          android:layout_height="match_parent"
+                          android:layout_weight="3"
+                          android:textSize="18sp"
                           android:text="BAYAR DENGAN : "/>
                 <Spinner android:id="@+id/spin_bayar" android:layout_width="wrap_content"
-                         android:layout_height="wrap_content" android:layout_weight="1" android:gravity="left"/>
+                         android:layout_height="match_parent" android:layout_weight="2" android:gravity="left"/>
 
                 <!--<Button android:id="@+id/btn_tunai"-->
                 <!--android:layout_width="wrap_content"-->
@@ -108,7 +171,7 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluePastel"
+                        android:background="@drawable/btn_nominal"
                         android:textSize="20sp"
                         android:padding="4dp"
                         android:textColor="@color/bg_base"
@@ -118,7 +181,7 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluePastel"
+                        android:background="@drawable/btn_nominal"
                         android:textSize="20sp"
                         android:padding="4dp"
                         android:textColor="@color/bg_base"
@@ -133,7 +196,7 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluePastel" android:layout_marginStart="16dp"
+                        android:background="@drawable/btn_nominal" android:layout_marginStart="16dp"
                         android:textSize="20sp"
                         android:padding="4dp"
                         android:textColor="@color/bg_base"
@@ -143,7 +206,7 @@
                         android:layout_margin="5dp"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:background="@color/bluePastel" android:layout_marginStart="16dp"
+                        android:background="@drawable/btn_nominal" android:layout_marginStart="16dp"
                         android:textSize="20sp"
                         android:padding="4dp"
                         android:textColor="@color/bg_base"
@@ -173,100 +236,51 @@
             </LinearLayout>
             <LinearLayout
                     android:id="@+id/btn_tunai4"
+                    android:layout_marginStart="12dp"
+                    android:padding="8dp"
                     android:orientation="horizontal"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:layout_margin="10dp"
+                        android:textSize="28dp"
                         android:layout_weight="1"
                         android:text="Bayar"/>
                 <TextView
                         android:id="@+id/tv_grand_bayar"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp"
-                        android:layout_margin="10dp"
+                        android:textSize="28sp"
                         android:layout_weight="3"
                         android:text=":  Rp ..."/>
             </LinearLayout>
             <LinearLayout
                     android:id="@+id/btn_tunai5"
                     android:orientation="horizontal"
+                    android:layout_marginStart="12dp"
+                    android:padding="8dp"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content">
                 <TextView
                         android:layout_width="120dp"
                         android:layout_height="wrap_content"
-                        android:textSize="30dp"
-                        android:layout_margin="10dp"
+                        android:textSize="28sp"
                         android:layout_weight="1"
                         android:text="Kembali"/>
                 <TextView
                         android:id="@+id/tv_kembalian"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textSize="30sp"
-                        android:layout_margin="10dp"
+                        android:textSize="28sp"
                         android:layout_weight="3"
                         android:text=":  Rp ..."/>
             </LinearLayout>
-            <LinearLayout
-                    android:layout_marginTop="50dp"
-                    android:background="@color/bg_base"
-                    android:orientation="vertical"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
 
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <EditText
-                            android:drawableStart="@drawable/ic_account"
-                            android:drawablePadding="10dp"
-                            android:layout_weight="4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:padding="8dp"
-                            android:id="@+id/et_nama_user"
-                            android:singleLine="true"
-                            android:background="@drawable/et_pencarian"
-                            android:layout_margin="5dp"/>
-                    <Button
-                            android:id="@+id/btn_sign_up"
-                            android:layout_weight="1"
-                            android:text="Daftar"
-                            android:textColor="@color/bg_base"
-                            android:background="@color/bluePastel"
-                            android:layout_margin="5dp"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"/>
-                </LinearLayout>
-                <LinearLayout
-                        android:orientation="horizontal"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
-                    <TextView
-                            android:layout_weight="1"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:textSize="22sp"
-                            android:text="Nama"/>
-                    <TextView
-                            android:id="@+id/tv_nama_pelanggan"
-                            android:layout_weight="4"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_margin="5dp"
-                            android:textSize="22sp"
-                            android:text="Customer"/>
-                </LinearLayout>
-            </LinearLayout>
-            <LinearLayout android:layout_width="match_parent"
+            <LinearLayout
+                    android:layout_marginTop="24dp"
+                    android:layout_marginBottom="8dp"
+                    android:layout_width="match_parent"
                           android:layout_height="wrap_content"
                           android:orientation="vertical">
                 <Button

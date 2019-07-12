@@ -4,16 +4,13 @@ import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
-import com.hafidrf.lokaloops.utils.SharedPreference
-import kotlinx.android.synthetic.main.fragment_checkout.*
-import kotlinx.android.synthetic.main.fragment_checkout.view.*
-import kotlinx.android.synthetic.main.fragment_popup_order.*
+import kotlinx.android.synthetic.main.activity_transaksi.view.*
 import kotlinx.android.synthetic.main.item_list_checkout.view.*
 
 
 class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data: ListItemKeranjang) {
+    fun bind(data: ListItemKeranjang, callback: ListCheckOutListener) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
         var harga = Integer.parseInt(data.item.price.toString())  * data.total
@@ -22,11 +19,19 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 //        itemView.tv_total_harga_barang?.text = " Rp "+tot
         itemView.tv_total_harga_barang?.text = " Rp "+harga
         itemView.tv_note?.text = data.catatan
+
+        itemView.btn_delete?.setOnClickListener {
+            callback.onDelete(data, adapterPosition)
+        }
+
     }
 
 //    interface Callback{
 //        fun onSubmit(data: ListCheckoutVH, number:Int)
 //    }
 
+}
 
+interface ListCheckOutListener{
+    fun onDelete(data: ListItemKeranjang, position: Int)
 }
