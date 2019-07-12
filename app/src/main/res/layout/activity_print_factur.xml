@@ -1,86 +1,73 @@
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
-            xmlns:tools="http://schemas.android.com/tools"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical"
-            tools:context=".activities.Print_factur">
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+              xmlns:tools="http://schemas.android.com/tools"
+              android:layout_width="match_parent"
+              android:layout_height="match_parent"
+              android:orientation="vertical"
+              tools:context=".activities.Print_factur">
 
-    <LinearLayout
+    <com.leerybit.escpos.widgets.TicketPreview
+            android:id="@+id/ticketHeader"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:orientation="vertical"
-            android:paddingLeft="@dimen/activity_horizontal_margin"
-            android:paddingTop="@dimen/activity_vertical_margin"
-            android:paddingRight="@dimen/activity_horizontal_margin"
-            android:paddingBottom="@dimen/activity_vertical_margin">
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin"
+            android:textColor="#000"/>
 
-        <com.leerybit.escpos.widgets.TicketPreview
-                android:id="@+id/ticket"
-                android:layout_width="match_parent"
+    <com.leerybit.escpos.widgets.TicketPreview
+            android:id="@+id/ticketIsi"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin"
+            android:textColor="#000"/>
+
+    <com.leerybit.escpos.widgets.TicketPreview
+            android:id="@+id/ticketFooter"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:paddingLeft="@dimen/activity_vertical_margin"
+            android:paddingRight="@dimen/activity_vertical_margin"
+            android:textColor="#000"/>
+
+    <LinearLayout android:orientation="horizontal"
+                  android:padding="8dp"
+                  android:weightSum="2"
+                  android:layout_width="match_parent" android:layout_height="wrap_content">
+        <Button
+                android:id="@+id/btn_search"
+                android:background="@drawable/btn_connect_printer"
+                android:textColor="@android:color/white"
+                android:layout_weight="1"
+                android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:paddingLeft="@dimen/activity_vertical_margin"
-                android:paddingRight="@dimen/activity_vertical_margin"
-                android:textColor="#000" />
-        <TextView
-                android:layout_width="match_parent"
-                android:text="INI STRUK"
-                android:gravity="center"
-                android:textStyle="bold"
-                android:textSize="50dp"
-                android:background="@color/colorHint"
-                android:layout_height="300dp"/>
+                android:onClick="handleButtonClick"
+                android:text="Connect"/>
 
-        <LinearLayout android:orientation="horizontal" android:padding="8dp" android:weightSum="2" android:layout_width="match_parent" android:layout_height="wrap_content">
-            <Button
-                    android:id="@+id/btn_search"
-                    android:background="@drawable/btn_connect_printer"
-                    android:textColor="@android:color/white"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:onClick="handleButtonClick"
-                    android:text="Connect" />
-
-            <Button
-                    android:id="@+id/btn_print_programmatically"
-                    android:layout_weight="1"
-                    android:layout_width="0dp"
-                    android:background="@drawable/btn_print_final"
-                    android:textColor="@android:color/white"
-                    android:layout_height="wrap_content"
-                    android:onClick="handleButtonClick"
-                    android:text="Print" />
-        </LinearLayout>
-
-
-
-        <!--<Button-->
-                <!--android:id="@+id/btn_print_raw"-->
-                <!--android:layout_width="match_parent"-->
-                <!--android:layout_height="wrap_content"-->
-                <!--android:onClick="handleButtonClick"-->
-                <!--android:text="Print template" />-->
-
-
-
-        <TextView
-                android:id="@+id/tv_state"
-                android:layout_width="match_parent"
+        <Button
+                android:id="@+id/btn_print_programmatically"
+                android:layout_weight="1"
+                android:layout_width="0dp"
+                android:background="@drawable/btn_print_final"
+                android:textColor="@android:color/white"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="16dp"
-                android:layout_marginBottom="8dp"
-                android:text="Tittle State"
-                android:textColor="#263238" />
-
-        <TextView
-                android:id="@+id/tv_message"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginBottom="8dp"
-                android:text="Tittle Message"
-                android:textColor="#263238" />
-
-
-
+                android:onClick="handleButtonClick"
+                android:text="Print"/>
     </LinearLayout>
-</ScrollView>
+
+    <TextView
+            android:id="@+id/tv_state"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="8dp"
+            android:text="Tittle State"
+            android:textColor="#263238"/>
+
+    <TextView
+            android:id="@+id/tv_message"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="8dp"
+            android:text="Tittle Message"
+            android:textColor="#263238"/>
+</LinearLayout>

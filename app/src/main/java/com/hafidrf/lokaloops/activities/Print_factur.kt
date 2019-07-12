@@ -11,26 +11,24 @@ import android.widget.Button
 import android.widget.TextView
 import android.widget.Toast
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.rest.EndPoint
-import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.leerybit.escpos.DeviceCallbacks
 import com.leerybit.escpos.PosPrinter60mm
 import com.leerybit.escpos.Ticket
 import com.leerybit.escpos.TicketBuilder
 import com.leerybit.escpos.bluetooth.BTService
 import com.leerybit.escpos.widgets.TicketPreview
-import kotlinx.android.synthetic.main.activity_login.*
 import java.io.IOException
 import java.util.*
 import com.google.android.gms.analytics.HitBuilders
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.SharedPreference
-import org.jetbrains.anko.db.INTEGER
 
 class Print_factur : AppCompatActivity() {
 
     private val printer by lazy { PosPrinter60mm(this) }
-    private val preview by lazy { findViewById<TicketPreview>(R.id.ticket) }
+    private val previewHeader by lazy { findViewById<TicketPreview>(R.id.ticketHeader) }
+    private val previewIsi by lazy { findViewById<TicketPreview>(R.id.ticketIsi) }
+    private val previewFooter by lazy { findViewById<TicketPreview>(R.id.ticketFooter) }
     private val messageView by lazy { findViewById<TextView>(R.id.tv_message) }
     private val stateView by lazy { findViewById<TextView>(R.id.tv_state) }
 
@@ -96,41 +94,41 @@ class Print_factur : AppCompatActivity() {
         }
     }
 
-    private fun printRawTicket() {
-        try {
-            val date = Date()
-            val ticket: Ticket
-
-            ticket = TicketBuilder(printer)
-                .isCyrillic(true)
-                .raw(this, R.raw.ticket,
-                    DateFormat.format("dd.MM.yyyy", date).toString(),
-                    DateFormat.format("HH:mm", date).toString(),
-                    (++ticketNumber).toString() + ""
-                )
-                .fiscalInt("ticket_no", ticketNumber)
-                .fiscalDouble("gift", 3.0, 2)
-                .fiscalDouble("price", 131.30, 2)
-                .fiscalDouble("out_price", 128.30, 2)
-                .build()
-
-            preview.setTicket(ticket)
-            printer.send(ticket)
-        } catch (e: IOException) {
-            e.printStackTrace()
-        }
-    }
+//    private fun printRawTicket() {
+//        try {
+//            val date = Date()
+//            val ticket: Ticket
+//
+//            ticket = TicketBuilder(printer)
+//                .isCyrillic(true)
+//                .raw(this, R.raw.ticket,
+//                    DateFormat.format("dd.MM.yyyy", date).toString(),
+//                    DateFormat.format("HH:mm", date).toString(),
+//                    (++ticketNumber).toString() + ""
+//                )
+//                .fiscalInt("ticket_no", ticketNumber)
+//                .fiscalDouble("gift", 3.0, 2)
+//                .fiscalDouble("price", 131.30, 2)
+//                .fiscalDouble("out_price", 128.30, 2)
+//                .build()
+//
+//            preview.setTicket(ticket)
+//            printer.send(ticket)
+//        } catch (e: IOException) {
+//            e.printStackTrace()
+//        }
+//    }
 
 
 
     private fun printTicket() {
         try {
             val date = Date()
-            var ticketHeader: Ticket
+            val ticketHeader: Ticket
             var ticketIsi: Ticket
-            var ticketFooter: Ticket
+            val ticketFooter: Ticket
 
-            var listProduk = keranjangSession.getKeranjangFull()!!
+            val listProduk = keranjangSession.getKeranjangFull()!!
 
             var item = ""
             var price = 0
@@ -140,7 +138,7 @@ class Print_factur : AppCompatActivity() {
 
             val n = sharedPreference.getValueString("uang_bayar")!!
             val nm_pembeli = sharedPreference.getValueString("nama_pembeli")!!
-            var uang_bayar = Integer.parseInt(n.toString())
+            val uang_bayar = Integer.parseInt(n.toString())
 
 
             ticketHeader = TicketBuilder(printer)
@@ -154,7 +152,7 @@ class Print_factur : AppCompatActivity() {
                 .fiscalInt("ticket_no", ticketNumber)
                 .dividerDouble()
                 .build()
-            preview.setTicket(ticketHeader)
+            previewHeader.setTicket(ticketHeader)
             printer.send(ticketHeader)
 
 
@@ -169,7 +167,7 @@ class Print_factur : AppCompatActivity() {
                 .menuLine("- ${tot}  ${item}  ", "Rp ${price}")
                 .build()
 
-            preview.setTicket(ticketIsi)
+            previewIsi.setTicket(ticketIsi)
             printer.send(ticketIsi)
             }
 
@@ -185,7 +183,7 @@ class Print_factur : AppCompatActivity() {
                 .feedLine(4)
                 .build()
 
-            preview.setTicket(ticketFooter)
+            previewFooter.setTicket(ticketFooter)
             printer.send(ticketFooter)
 
             keranjangSession.clearSharedPreference()
