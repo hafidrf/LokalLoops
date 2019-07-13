@@ -70,7 +70,7 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
 //            next()
 //        }
 
-        listAdapter = object : com.hafidrf.lokaloops.models.Adapter<ListHistory, ListitemRiwayat>(
+        listAdapter = object : Adapter<ListHistory, ListitemRiwayat>(
             R.layout.history_list,
             arrayListOf(),
             ListitemRiwayat::class.java,

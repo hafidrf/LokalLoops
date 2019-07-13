@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import com.hafidrf.lokaloops.activities.DetailHistoryActivity
 import com.hafidrf.lokaloops.models.ListHistory
+import com.hafidrf.lokaloops.utils.KeranjangSession
 import kotlinx.android.synthetic.main.history_list.view.*
 
 
@@ -13,6 +14,7 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     fun bind(data: ListHistory, callback: Callback) {
 //        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+        val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
         itemView.rv_to_hisdetail.setOnClickListener {
             callback.onClick(data)
@@ -25,6 +27,10 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tv_total_bayar?.text = data.uang_bayar
 //        itemView.tv_uang_kembali?.text = data.uang_kembali
         Log.e("data", data.toString())
+
+//        keranjangSession.addHis(data.id,data.nama_pembeli,data.total_bayar,data.uang_bayar,data.uang_kembali,data.tanggal,data.item)
+
+
 
 //        itemView.rv_list_history_item?.apply {
 //

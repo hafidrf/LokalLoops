@@ -20,8 +20,11 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
         itemView.tv_total_harga_barang?.text = " Rp "+harga
         itemView.tv_note?.text = data.catatan
 
+
+
         itemView.btn_delete?.setOnClickListener {
             callback.onDelete(data, adapterPosition)
+            keranjangSession.remProduct(data.item,data.total,data.catatan)
         }
 
     }
