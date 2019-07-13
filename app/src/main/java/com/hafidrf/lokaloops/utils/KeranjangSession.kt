@@ -67,7 +67,7 @@ class KeranjangSession (context: Context){
     }
 
 
-    fun remProduct(product : ListItem, total:Int, catatan: String){
+    fun remProduct(product:ListItem, total:Int, catatan: String){
 
         val list = getKeranjangFull()
         for (i in 0 until list.size){

@@ -10,6 +10,7 @@ import android.util.Log
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.common.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.Adapter
+import com.hafidrf.lokaloops.models.ListItem
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
 import com.hafidrf.lokaloops.utils.SharedPreference
@@ -105,6 +106,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
 
     override fun onDelete(data: ListItemKeranjang, position: Int) {
         listAdapter.removeItem(position)
+        session.remProduct(data.item,data.total, data.catatan)
     }
 
 
