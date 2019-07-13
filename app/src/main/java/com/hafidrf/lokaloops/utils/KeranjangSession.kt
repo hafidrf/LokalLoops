@@ -9,7 +9,9 @@ import com.google.gson.Gson
 import com.google.gson.annotations.Expose
 import com.google.gson.annotations.SerializedName
 import com.google.gson.reflect.TypeToken
+import com.hafidrf.lokaloops.models.ListHistory
 import com.hafidrf.lokaloops.models.ListItem
+import com.hafidrf.lokaloops.models.Pesanan
 import org.json.JSONObject
 
 class KeranjangSession (context: Context){
@@ -78,19 +80,41 @@ class KeranjangSession (context: Context){
         saveKeranjangFull(list)
     }
 
-//    fun coba(): ArrayList<ListItemKeranjang>{
-//        val typeList = object : TypeToken <ArrayList<ListItemKeranjang>>(){}.type
-//        val jsonList = prefs.getString("keranjang-full", "null")
+//    fun addHis(id: String, nama_pembeli : String, total_bayar: String, uang_bayar: String,uang_kembali:String,tanggal:String, product : Pesanan){
 //
-//
-//        val list = Gson().fromJson<ArrayList<ListItemKeranjang>>(jsonList, typeList) ?: return arrayListOf()
-//
-//        var sum = 0.0
-//        for (i in 0 until list.size)
-//            list.get(2)
-//
-//        return list
+//        var exist = false
+//        val list = getHistoryFull()
+//        for (i in 0 until list.size){
+//            if(list[i].item.id_pesan == product.id_pesan){
+//                exist = true
+//                list[i] = ListHistory(id,nama_pembeli,total_bayar,uang_bayar,uang_kembali,tanggal,product)
+//            }
+//        }
+//        if (!exist) list.add(ListHistory(id,nama_pembeli,total_bayar,uang_bayar,uang_kembali,tanggal,product))
+//        saveHistoryFull(list)
 //    }
+
+    fun saveHistoryFull(data : ArrayList<ListHistory>){
+        val list = Gson().toJson(data)
+        prefs.edit().apply {
+            putString("history-full", list)
+        }.apply()
+
+        Log.e("Saved" , list.toString())
+
+    }
+
+    fun getHistoryFull (): ArrayList<ListHistory>{
+
+        val typeList = object : TypeToken <ArrayList<ListHistory>>(){}.type
+        val jsonList = prefs.getString("history-full", "null")
+
+
+        val list = Gson().fromJson<ArrayList<ListHistory>>(jsonList, typeList) ?: return arrayListOf()
+
+        return list
+
+    }
 
     fun getKeranjangFull (): ArrayList<ListItemKeranjang>{
 
