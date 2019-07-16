@@ -24,7 +24,7 @@
                   android:layout_width="fill_parent"
                   android:layout_height="wrap_content"
                   android:inputType="textWebEmailAddress"
-                  android:hint="Email Address"
+                  android:hint="Username"
                   android:textColorHint="@color/fontForm"
                   android:textColor="@color/bg_base_login"
                   android:padding="16dp"
