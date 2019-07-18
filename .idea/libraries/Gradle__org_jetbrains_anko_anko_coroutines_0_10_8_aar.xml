@@ -1,8 +1,8 @@
 <component name="libraryTable">
   <library name="Gradle: org.jetbrains.anko:anko-coroutines:0.10.8@aar">
     <CLASSES>
-      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a8aed7434072d266fbb0ed9664fb91c9/res" />
-      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/a8aed7434072d266fbb0ed9664fb91c9/jars/classes.jar!/" />
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9789d08ff2ceb50f64fe9c316acf8ca6/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/9789d08ff2ceb50f64fe9c316acf8ca6/res" />
     </CLASSES>
     <JAVADOC />
     <SOURCES>

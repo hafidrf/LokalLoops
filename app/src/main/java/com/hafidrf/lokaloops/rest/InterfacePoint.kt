@@ -22,6 +22,9 @@ interface InterfacePoint {
     @GET("riwayat")
     fun listHistory(): Call<ListHistoryResponse>
 
+    @GET("")
+    fun listAccount(): Call<ListAccountResponse>
+
 //    @POST("kirim")
 //    fun saveData(@Body test: Test ): Call<ApiResponse>
 
