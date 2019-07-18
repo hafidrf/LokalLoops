@@ -2,6 +2,7 @@ package com.hafidrf.lokaloops.activities
 
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
+import android.widget.Toast
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.UserResponse
 import com.hafidrf.lokaloops.rest.EndPoint
@@ -39,15 +40,24 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         iPoint.login(et_email.text.toString(), et_password.text.toString()).enqueue(object : Callback<com.hafidrf.lokaloops.models.UserResponse> {
             override fun onFailure(call: Call<com.hafidrf.lokaloops.models.UserResponse>, t: Throwable) {
+                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<com.hafidrf.lokaloops.models.UserResponse>, response: Response<com.hafidrf.lokaloops.models.UserResponse>) {
                 if (response.isSuccessful) {
                     user = response.body()!!
+                    prefs.saveUser(user)
+                    if (user.role == "owner") {
 //                    prefs.save("username",user)
 //                    prefs.saveUser("login",user)
-                    startActivity(com.hafidrf.lokaloops.activities.MainActivity.Companion.getIntent(this@LoginActivity))
-                    finish()
+                        startActivity(MainActivity.getIntent(this@LoginActivity))
+                        finish()
+                    }else if(user.role=="kasir"){
+                        startActivity(Main2Activity.getIntent(this@LoginActivity))
+                        finish()
+                    }else{
+
+                    }
                 } else {
                 }
 

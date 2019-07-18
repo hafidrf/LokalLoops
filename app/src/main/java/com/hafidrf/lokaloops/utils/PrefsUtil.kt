@@ -12,11 +12,12 @@ class PrefsUtil{
 
     private lateinit var prefs : SharedPreferences
 
-    fun saveUser(KEY_NAME: String, user : com.hafidrf.lokaloops.models.UserResponse){
+    fun saveUser(user : UserResponse){
         val editor = prefs.edit()
         editor.putString("username", user.username)
-        editor.putString("password",user.password)
-        editor!!.commit()
+        editor.putString("password",user.role)
+//        editor!!.commit()
+        editor.apply()
     }
 
 //    fun getValueString(KEY_NAME: String, user: UserResponse): SharedPreferences {
