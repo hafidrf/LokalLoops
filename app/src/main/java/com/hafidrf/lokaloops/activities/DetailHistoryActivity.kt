@@ -54,6 +54,7 @@ class DetailHistoryActivity : AppCompatActivity(), ListitemRiwayat.Callback {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_history)
 
+        
 
 //        val keranjangSession: KeranjangSession = KeranjangSession(this)
 //

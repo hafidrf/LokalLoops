@@ -133,6 +133,18 @@ class BayarActivity : AppCompatActivity() {
             btn20.isEnabled = true
             btn50.isEnabled = true
         }
+        btn_uang_pas?.setOnClickListener {
+            btn20.isEnabled = true
+            btn50.isEnabled = true
+            btn100.isEnabled = true
+            var kembali = "0"
+            tv_kembalian?.text = ":  Rp "+kembali
+            ung_kmbl = kembali
+            ung_byr = coba.toString()
+            sharedPreference.save("uang_bayar",ung_byr)
+            tv_grand_bayar.text = ":  Rp "+ung_byr
+            et_byr_manual.text.clear()
+        }
         btn_print?.setOnClickListener {
             print()
 

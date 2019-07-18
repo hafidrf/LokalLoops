@@ -155,16 +155,23 @@ class Print_factur : AppCompatActivity() {
             previewHeader.setTicket(ticketHeader)
             printer.send(ticketHeader)
 
+            for ((index, value) in listProduk.withIndex()) {
+                println("the element at $index is $value")
+            }
+
+            var har= 0
 
             listProduk.forEach {
             item = it.item.name.toString()
             tot = it.total
+                har = it.item.price!!
             price = it.total * it.item.price!!
             coba += it.total * it.item.price!!
 
             ticketIsi = TicketBuilder(printer)
                 .isCyrillic(true)
-                .menuLine("- ${tot}  ${item}  ", "Rp ${price}")
+                .menuLine("- ${item}(${har}) ", "")
+                .menuLine(" x${tot}  ", "Rp ${price}")
                 .build()
 
             previewIsi.setTicket(ticketIsi)

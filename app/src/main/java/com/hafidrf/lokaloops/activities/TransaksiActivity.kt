@@ -101,6 +101,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
         btn_cancel_order?.setOnClickListener {
             listAdapter.clear()
             session.clearSharedPreference()
+            kembali()
         }
     }
 
