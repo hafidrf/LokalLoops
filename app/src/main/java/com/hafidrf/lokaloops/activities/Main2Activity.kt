@@ -7,6 +7,7 @@ import android.os.Bundle
 import android.support.design.widget.BottomNavigationView
 import android.support.v4.app.Fragment
 import com.hafidrf.lokaloops.R
+import com.hafidrf.lokaloops.fragments.AccountFragment
 import com.hafidrf.lokaloops.fragments.DoneFragment
 import com.hafidrf.lokaloops.fragments.KitchenFragment
 
@@ -24,7 +25,7 @@ class Main2Activity : AppCompatActivity() {
 
         //bottom navbar
         val bottomNavigation: BottomNavigationView = findViewById(R.id.navigationViewKitchen)
-        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        bottomNavigation.setOnNavigationItemSelectedListener(mOnNavItemSelectedListener)
         val firstFragment = KitchenFragment()
         openFragment(firstFragment)
 
@@ -34,28 +35,28 @@ class Main2Activity : AppCompatActivity() {
 
     private fun openFragment(fragment: Fragment) {
         val transaction = supportFragmentManager.beginTransaction()
-        transaction.replace(R.id.container, fragment)
+        transaction.replace(R.id.container2, fragment)
         transaction.addToBackStack(null)
         transaction.commit()
     }
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
+    private val mOnNavItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener {
         when (it.itemId) {
 
-            R.id.navigation_store -> {
+            R.id.navigation_kitchen -> {
                 val accountFragment = KitchenFragment()
                 openFragment(accountFragment)
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.navigation_report -> {
+            R.id.navigation_done -> {
                 val doneFragment = DoneFragment()
                 openFragment(doneFragment)
                 return@OnNavigationItemSelectedListener true
             }
 
-            R.id.navigation_account -> {
-                val accountFragment = com.hafidrf.lokaloops.fragments.AccountFragment()
+            R.id.navigation_account2 -> {
+                val accountFragment = AccountFragment()
                 openFragment(accountFragment)
                 return@OnNavigationItemSelectedListener true
             }

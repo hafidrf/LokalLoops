@@ -9,28 +9,17 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.common.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.*
 import com.hafidrf.lokaloops.rest.EndPoint
 import com.hafidrf.lokaloops.rest.InterfacePoint
-import com.hafidrf.lokaloops.utils.SharedPreference
 import com.hafidrf.lokaloops.viewholder.ListItemVH
 import kotlinx.android.synthetic.main.fragment_store.*
 import kotlinx.android.synthetic.main.item_list.*
-import kotlinx.android.synthetic.main.item_list_checkout.*
-import org.jetbrains.anko.db.insert
-import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import com.hafidrf.lokaloops.rest.database
-import android.view.inputmethod.EditorInfo
-import android.widget.TextView
-import android.view.KeyEvent
-import android.widget.EditText
-import com.hafidrf.lokaloops.activities.Print_factur
 import com.hafidrf.lokaloops.activities.TransaksiActivity
 
 

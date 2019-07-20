@@ -67,16 +67,24 @@ class BayarActivity : AppCompatActivity() {
             }
         }
 
+
         val sharedPreference: SharedPreference = SharedPreference(this)
         val keranjangSession: KeranjangSession = KeranjangSession(this)
 
         val price = sharedPreference.getValueString("total_hrg")!!
+
+//        val hargaAwal = price.toInt()
+//        val diskon = et_diskon.text.toString()
+//        val diskon2 = Integer.parseInt(diskon)
+//        val ppn = 10/100
+//        val hargaAkhir = hargaAwal - (hargaAwal * (diskon2/100)) - (hargaAwal * ppn)
+
         val tot = price.toString()
         tv_jml_bayar?.text = ":  Rp "+price
         var ung_byr = ""
         var ung_kmbl = ""
 
-        var listProduk = keranjangSession.getKeranjangFull()!!
+        val listProduk = keranjangSession.getKeranjangFull()!!
         var coba = 0
         listProduk.forEach {
             println(it.item.name)
@@ -186,4 +194,6 @@ class BayarActivity : AppCompatActivity() {
         val intent = Intent(this, Print_factur::class.java)
         startActivity(intent)
     }
+
+
 }

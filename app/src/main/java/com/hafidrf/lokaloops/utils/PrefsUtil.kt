@@ -20,10 +20,26 @@ class PrefsUtil{
         editor.apply()
     }
 
-//    fun getValueString(KEY_NAME: String, user: UserResponse): SharedPreferences {
-//        prefs.getString(KEY_NAME, user.username)
-//        return prefs
-//    }
+    fun getValueString(user: UserResponse): SharedPreferences {
+        prefs.getString("username", user.username)
+        prefs.getString("username", user.role)
+        return prefs
+    }
+
+    fun save(KEY_NAME: String, text: String) {
+
+        val editor: SharedPreferences.Editor = prefs.edit()
+
+        editor.putString(KEY_NAME, text)
+
+        editor!!.commit()
+    }
+    fun getValueString(KEY_NAME: String): String? {
+
+        return prefs.getString(KEY_NAME, null)
+
+
+    }
 
 
 }

@@ -40,13 +40,20 @@ class LoginActivity : AppCompatActivity() {
     private fun login() {
         iPoint.login(et_email.text.toString(), et_password.text.toString()).enqueue(object : Callback<com.hafidrf.lokaloops.models.UserResponse> {
             override fun onFailure(call: Call<com.hafidrf.lokaloops.models.UserResponse>, t: Throwable) {
-                Toast.makeText(applicationContext, t.message, Toast.LENGTH_LONG).show()
+                Toast.makeText(applicationContext, "Password atau username salah", Toast.LENGTH_LONG).show()
             }
 
             override fun onResponse(call: Call<com.hafidrf.lokaloops.models.UserResponse>, response: Response<com.hafidrf.lokaloops.models.UserResponse>) {
                 if (response.isSuccessful) {
                     user = response.body()!!
-                    prefs.saveUser(user)
+//                    prefs.saveUser(user)
+                    prefs.save("username",user.username)
+                    prefs.save("role",user.role)
+                    prefs.save("password",user.password)
+                    prefs.save("telp", user.telp)
+                    prefs.save("email", user.email)
+                    prefs.save("tentang", user.tentang)
+                    prefs.save("nama", user.nama)
                     if (user.role == "owner") {
 //                    prefs.save("username",user)
 //                    prefs.saveUser("login",user)
