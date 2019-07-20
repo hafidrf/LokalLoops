@@ -28,7 +28,7 @@ class BayarActivity : AppCompatActivity() {
         setContentView(R.layout.activity_bayar)
 
         // Initializing a String Array
-        val metBayar = arrayOf("Tunai","KartuKredit")
+        val metBayar = arrayOf("Tunai", "KartuKredit", "Ovo", "Sakuku")
 
         // Initializing an ArrayAdapter
         val adapter = ArrayAdapter(
@@ -41,13 +41,13 @@ class BayarActivity : AppCompatActivity() {
         adapter.setDropDownViewResource(android.R.layout.simple_dropdown_item_1line)
 
         // Finally, data bind the spinner object with dapter
-        spin_bayar.adapter = adapter;
+        spin_bayar.adapter = adapter
 
         // Set an on item selected listener for spinner object
-        spin_bayar.onItemSelectedListener = object: AdapterView.OnItemSelectedListener{
-            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long){
+        spin_bayar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
+            override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 // Display the selected item text on text view
-                if (parent.getItemAtPosition(position).toString() == "KartuKredit"){
+                if (parent.getItemAtPosition(position).toString() == "KartuKredit") {
                     btn_tunai1.setVisibility(View.GONE)
                     btn_tunai2.setVisibility(View.GONE)
                     btn_tunai3.setVisibility(View.GONE)
@@ -62,7 +62,7 @@ class BayarActivity : AppCompatActivity() {
                 }
             }
 
-            override fun onNothingSelected(parent: AdapterView<*>){
+            override fun onNothingSelected(parent: AdapterView<*>) {
                 // Another interface callback
             }
         }
@@ -73,14 +73,8 @@ class BayarActivity : AppCompatActivity() {
 
         val price = sharedPreference.getValueString("total_hrg")!!
 
-//        val hargaAwal = price.toInt()
-//        val diskon = et_diskon.text.toString()
-//        val diskon2 = Integer.parseInt(diskon)
-//        val ppn = 10/100
-//        val hargaAkhir = hargaAwal - (hargaAwal * (diskon2/100)) - (hargaAwal * ppn)
-
         val tot = price.toString()
-        tv_jml_bayar?.text = ":  Rp "+price
+        tv_jml_bayar?.text = ":  Rp " + price
         var ung_byr = ""
         var ung_kmbl = ""
 
@@ -90,9 +84,18 @@ class BayarActivity : AppCompatActivity() {
             println(it.item.name)
             coba += it.total * it.item.price!!
         }
-        println("-->"+coba)
+        println("-->" + coba)
 
         sharedPreference.save("total_hrg", coba.toString())
+
+        chk_diskon?.setOnCheckedChangeListener { buttonView, isChecked ->
+            val hargaAwal = Integer.parseInt(price)
+            val diskon = et_diskon.text.toString().toInt() / 100
+            val diskon2 = hargaAwal * diskon
+            val ppn = hargaAwal * (10 / 100)
+            val hargaAkhir = hargaAwal - (diskon2 + ppn)
+            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
+        }
 
         btn_manual?.setOnClickListener {
             btn20.isEnabled = true
@@ -100,18 +103,18 @@ class BayarActivity : AppCompatActivity() {
             btn100.isEnabled = true
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
-            var kembali = n-coba
-            tv_kembalian?.text = ":  Rp "+kembali.toString()
+            var kembali = n - coba
+            tv_kembalian?.text = ":  Rp " + kembali.toString()
             ung_kmbl = kembali.toString()
             ung_byr = total_bayar
-            sharedPreference.save("uang_bayar",ung_byr)
-            tv_grand_bayar.text = ":  Rp "+ung_byr
+            sharedPreference.save("uang_bayar", ung_byr)
+            tv_grand_bayar.text = ":  Rp " + ung_byr
             et_byr_manual.text.clear()
         }
         btn20?.setOnClickListener {
             var kembali = 20000 - coba
             ung_byr = "20000"
-            sharedPreference.save("uang_bayar",ung_byr)
+            sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 20000"
             tv_kembalian?.text = ":  Rp " + kembali.toString()
             ung_kmbl = kembali.toString()
@@ -122,7 +125,7 @@ class BayarActivity : AppCompatActivity() {
         btn50?.setOnClickListener {
             var kembali = 50000 - coba
             ung_byr = "50000"
-            sharedPreference.save("uang_bayar",ung_byr)
+            sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 50000"
             tv_kembalian?.text = ":  Rp " + kembali.toString()
             ung_kmbl = kembali.toString()
@@ -133,7 +136,7 @@ class BayarActivity : AppCompatActivity() {
         btn100?.setOnClickListener {
             var kembali = 100000 - coba
             ung_byr = "100000"
-            sharedPreference.save("uang_bayar",ung_byr)
+            sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 100000"
             tv_kembalian?.text = ":  Rp " + kembali.toString()
             ung_kmbl = kembali.toString()
@@ -146,11 +149,11 @@ class BayarActivity : AppCompatActivity() {
             btn50.isEnabled = true
             btn100.isEnabled = true
             var kembali = "0"
-            tv_kembalian?.text = ":  Rp "+kembali
+            tv_kembalian?.text = ":  Rp " + kembali
             ung_kmbl = kembali
             ung_byr = coba.toString()
-            sharedPreference.save("uang_bayar",ung_byr)
-            tv_grand_bayar.text = ":  Rp "+ung_byr
+            sharedPreference.save("uang_bayar", ung_byr)
+            tv_grand_bayar.text = ":  Rp " + ung_byr
             et_byr_manual.text.clear()
         }
         btn_print?.setOnClickListener {
@@ -160,9 +163,9 @@ class BayarActivity : AppCompatActivity() {
 
         }
 
-        btn_sign_up?.setOnClickListener{
-            tv_nama_pelanggan?.text =  ":  "+et_nama_user?.text.toString()
-            sharedPreference.save("nama_pembeli",et_nama_user?.text.toString())
+        btn_sign_up?.setOnClickListener {
+            tv_nama_pelanggan?.text = ":  " + et_nama_user?.text.toString()
+            sharedPreference.save("nama_pembeli", et_nama_user?.text.toString())
         }
 
         btn_backk?.setOnClickListener {
@@ -174,7 +177,7 @@ class BayarActivity : AppCompatActivity() {
 
         val data = KeranjangSession(this).getKeranjangServer()
 
-        EndPoint.client.create(InterfacePoint::class.java).saveData(data).enqueue(object : Callback<String>{
+        EndPoint.client.create(InterfacePoint::class.java).saveData(data).enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 toast("error ${t.message}")
             }
@@ -186,11 +189,11 @@ class BayarActivity : AppCompatActivity() {
         })
     }
 
-    fun kembali(){
+    fun kembali() {
         finish()
     }
 
-    fun print(){
+    fun print() {
         val intent = Intent(this, Print_factur::class.java)
         startActivity(intent)
     }
