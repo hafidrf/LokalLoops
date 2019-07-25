@@ -19,6 +19,9 @@ interface InterfacePoint {
     @GET("home")
     fun listItem(): Call<ListItemResponse>
 
+    @GET("home2")
+    fun listItem2(): Call<ListItemResponse>
+
     @GET("riwayat")
     fun listHistory(): Call<ListHistoryResponse>
 

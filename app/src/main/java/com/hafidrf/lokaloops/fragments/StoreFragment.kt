@@ -30,8 +30,6 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         tv_stock?.text = number.toString()
     }
 
-
-
     companion object {
 
         fun getIntent(ctx : Context?) = Intent(ctx, com.hafidrf.lokaloops.fragments.StoreFragment::class.java)
@@ -105,19 +103,55 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
             addItemDecoration(VerticalSpaceItem(context, 5f, 2f))
         }
 
-        EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
-            override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
+        btn_offline?.setOnClickListener {
+            btn_offline.visibility = View.GONE
+            btn_online.visibility = View.VISIBLE
+            EndPoint.client.create(InterfacePoint::class.java).listItem2().enqueue(object : Callback<ListItemResponse> {
+                override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
 
-                if(response.isSuccessful)
-                    loading.dismiss()
+                    if(response.isSuccessful)
+                        loading.dismiss()
                     listAdapter.updateList(response.body()!!.result)
 
-            }
+                }
 
-            override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
+                override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
 
-            }
-        })
+                }
+            })
+        }
+
+        btn_online?.setOnClickListener {
+            btn_online.visibility = View.GONE
+            btn_offline.visibility = View.VISIBLE
+            EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
+                override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
+
+                    if(response.isSuccessful)
+                        loading.dismiss()
+                    listAdapter.updateList(response.body()!!.result)
+
+                }
+
+                override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
+
+                }
+            })
+        }
+
+//        EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
+//            override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
+//
+//                if(response.isSuccessful)
+//                    loading.dismiss()
+//                    listAdapter.updateList(response.body()!!.result)
+//
+//            }
+//
+//            override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
+//
+//            }
+//        })
 
 
     }

@@ -18,6 +18,26 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:orientation="horizontal">
+
+            <Button android:id="@+id/btn_offline"
+                    android:text="OFFLINE"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@color/blue_accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
+
+            <Button android:id="@+id/btn_online"
+                    android:text="ONLINE"
+                    android:textStyle="bold"
+                    android:textColor="@android:color/white"
+                    android:background="@color/blue_accent"
+                    android:layout_width="wrap_content"
+                    android:layout_height="match_parent"
+                    app:layout_constraintStart_toStartOf="parent"/>
+
             <EditText android:layout_width="0dp"
                       android:layout_height="match_parent"
                       android:id="@+id/et_pencarian"
@@ -27,7 +47,7 @@
                       android:singleLine="true"
                       android:textColorHint="@color/fontForm"
                       android:background="@drawable/et_pencarian"
-                      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="8dp"
+                      app:layout_constraintStart_toStartOf="parent" android:layout_marginStart="100dp"
                       app:layout_constraintTop_toTopOf="parent"
                       android:layout_marginEnd="8dp"
                       app:layout_constraintEnd_toStartOf="@+id/btn_bayar"
