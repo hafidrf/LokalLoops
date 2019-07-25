@@ -20,6 +20,11 @@ import org.jetbrains.anko.themedImageSwitcher
 import org.jetbrains.anko.toast
 import retrofit2.Call
 import retrofit2.Response
+import java.util.*
+import java.text.NumberFormat
+
+
+
 
 class BayarActivity : AppCompatActivity() {
 
@@ -74,7 +79,17 @@ class BayarActivity : AppCompatActivity() {
         val price = sharedPreference.getValueString("total_hrg")!!
 
         val tot = price.toString()
-        tv_jml_bayar?.text = ":  Rp " + price
+
+        //format rupiah
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+
+        val hargaAwal = price.toDouble()
+        val ppn = hargaAwal * 0.1
+        val hargaKenaPpn = hargaAwal + ppn
+
+        tv_jml_bayar?.text = formatRupiah.format(hargaKenaPpn)
+
         var ung_byr = ""
         var ung_kmbl = ""
 
@@ -88,14 +103,14 @@ class BayarActivity : AppCompatActivity() {
 
         sharedPreference.save("total_hrg", coba.toString())
 
-        chk_diskon?.setOnCheckedChangeListener { buttonView, isChecked ->
-            val hargaAwal = Integer.parseInt(price)
-            val diskon = et_diskon.text.toString().toInt() / 100
+        btn_diskon.setOnClickListener {
+            val diskon = et_diskon.text.toString().toDouble() / 100
             val diskon2 = hargaAwal * diskon
-            val ppn = hargaAwal * (10 / 100)
-            val hargaAkhir = hargaAwal - (diskon2 + ppn)
-            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
+            val hargaAkhir = hargaKenaPpn - diskon2
+//            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
+            tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
         }
+
 
         btn_manual?.setOnClickListener {
             btn20.isEnabled = true

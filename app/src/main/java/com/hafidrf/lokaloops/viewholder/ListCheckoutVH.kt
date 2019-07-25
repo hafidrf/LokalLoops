@@ -6,6 +6,8 @@ import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
 import kotlinx.android.synthetic.main.activity_transaksi.view.*
 import kotlinx.android.synthetic.main.item_list_checkout.view.*
+import java.text.NumberFormat
+import java.util.*
 
 
 class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -13,11 +15,16 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun bind(data: ListItemKeranjang, callback: ListCheckOutListener) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
+        //format rupiah
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+
+
         var harga = Integer.parseInt(data.item.price.toString())  * data.total
         itemView.tv_item_detail?.text = data.item.name
         itemView.tv_jumlah?.text = "  x "+data.total
 //        itemView.tv_total_harga_barang?.text = " Rp "+tot
-        itemView.tv_total_harga_barang?.text = " Rp "+harga
+        itemView.tv_total_harga_barang?.text = formatRupiah.format(harga)
         itemView.tv_note?.text = data.catatan
 
 

@@ -16,10 +16,10 @@ interface InterfacePoint {
         @Query("password") password:String
     ): Call<com.hafidrf.lokaloops.models.UserResponse>
 
-    @GET("home")
+    @GET("store_offline")
     fun listItem(): Call<ListItemResponse>
 
-    @GET("home2")
+    @GET("store_online")
     fun listItem2(): Call<ListItemResponse>
 
     @GET("riwayat")

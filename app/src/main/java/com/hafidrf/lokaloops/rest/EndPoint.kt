@@ -4,7 +4,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 object EndPoint {
-    val BASE_URL = "https://saptorenggo-pakis.com/api/poslite/"
+    val BASE_URL = "https://hafidrf.com/lokaloops/"
     private var retrofit: Retrofit? = null
     val client: Retrofit
         get() {

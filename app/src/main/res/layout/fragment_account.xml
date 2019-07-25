@@ -5,6 +5,7 @@
         xmlns:tools="http://schemas.android.com/tools"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
+        android:background="@android:color/white"
         android:orientation="vertical"
         tools:context="com.hafidrf.lokaloops.fragments.AccountFragment">
 
@@ -101,12 +102,6 @@
                       android:background="#C9C7C7"/>
 
                 <!--PASSWORD-->
-                <LinearLayout android:orientation="horizontal" android:weightSum="5" android:layout_width="match_parent"
-                              android:layout_height="wrap_content">
-
-
-                </LinearLayout>
-
                 <android.support.constraint.ConstraintLayout
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content">
@@ -186,7 +181,7 @@
                         android:textSize="18sp"
                         android:textColor="@color/blue_accent"
 
-                android:text="Jl. Tlogosuryo No.2 Tlogosari"/>
+                        android:text="Jl. Tlogosuryo No.2 Tlogosari"/>
 
                 <View android:layout_width="wrap_content"
                       android:layout_height="1dp"

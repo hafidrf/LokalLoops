@@ -18,6 +18,8 @@ import com.hafidrf.lokaloops.viewholder.ListCheckOutListener
 import com.hafidrf.lokaloops.viewholder.ListCheckoutVH
 import kotlinx.android.synthetic.main.activity_transaksi.*
 import org.jetbrains.anko.toast
+import java.text.NumberFormat
+import java.util.*
 
 
 class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
@@ -59,6 +61,12 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
         }
 
 
+        //format rupiah
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+
+
+
         var coba = 0
         listProduk.forEach {
             println(it.item.name)
@@ -67,7 +75,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
         println("-->" + coba)
 
         sharedPreference.save("total_hrg", coba.toString())
-        tv_hrg.text = "Rp " + coba
+        tv_hrg.text = formatRupiah.format(coba)
 
         listAdapter = object : Adapter<ListItemKeranjang, ListCheckoutVH>(
             R.layout.item_list_checkout,

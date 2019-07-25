@@ -139,19 +139,19 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
             })
         }
 
-//        EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
-//            override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
-//
-//                if(response.isSuccessful)
-//                    loading.dismiss()
-//                    listAdapter.updateList(response.body()!!.result)
-//
-//            }
-//
-//            override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
-//
-//            }
-//        })
+        EndPoint.client.create(InterfacePoint::class.java).listItem().enqueue(object : Callback<ListItemResponse> {
+            override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
+
+                if(response.isSuccessful)
+                    loading.dismiss()
+                    listAdapter.updateList(response.body()!!.result)
+
+            }
+
+            override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
+
+            }
+        })
 
 
     }

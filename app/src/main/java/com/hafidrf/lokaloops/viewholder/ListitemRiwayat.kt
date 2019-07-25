@@ -8,13 +8,22 @@ import com.hafidrf.lokaloops.activities.DetailHistoryActivity
 import com.hafidrf.lokaloops.models.ListHistory
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import kotlinx.android.synthetic.main.history_list.view.*
+import java.text.NumberFormat
+import java.util.*
 
 
 class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
+
     fun bind(data: ListHistory, callback: Callback) {
 //        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+
+
+        //format rupiah
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
+
 
         itemView.rv_to_hisdetail.setOnClickListener {
             callback.onClick(data)
@@ -24,7 +33,7 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tv_no_order?.text = data.id
         itemView.tv_costumer?.text = data.nama_pembeli
 //        itemView.tv_total_harga?.text = data.total_bayar
-        itemView.tv_total_bayar?.text = data.uang_bayar
+        itemView.tv_total_bayar?.text = formatRupiah.format(data.uang_bayar)
 //        itemView.tv_uang_kembali?.text = data.uang_kembali
         Log.e("data", data.toString())
 
