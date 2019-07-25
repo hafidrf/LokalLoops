@@ -12,6 +12,9 @@ import kotlinx.android.synthetic.main.activity_login.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
+import android.content.Intent
+
+
 
 class LoginActivity : AppCompatActivity() {
 
@@ -22,13 +25,25 @@ class LoginActivity : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_login)
+        setContentView(com.hafidrf.lokaloops.R.layout.activity_login)
 
 //        setupToolbar()
+        val iLogin = prefs.getValueString("role")
+        if (prefs.getSPSudahLogin()== true) {
+            if (iLogin == "owner") {
+                startActivity(MainActivity.getIntent(this@LoginActivity))
+                finish()
+            }else if(iLogin =="kasir") {
+                startActivity(Main2Activity.getIntent(this@LoginActivity))
+                finish()
+            }else{
 
-        iPoint = EndPoint.client.create(InterfacePoint::class.java)
-        btn_login.setOnClickListener {
-            login()
+            }
+        }else {
+            iPoint = EndPoint.client.create(InterfacePoint::class.java)
+            btn_login.setOnClickListener {
+                login()
+            }
         }
     }
 
@@ -54,6 +69,7 @@ class LoginActivity : AppCompatActivity() {
                     prefs.save("email", user.email)
                     prefs.save("tentang", user.tentang)
                     prefs.save("nama", user.nama)
+                    prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, true);
                     if (user.role == "owner") {
 //                    prefs.save("username",user)
 //                    prefs.saveUser("login",user)

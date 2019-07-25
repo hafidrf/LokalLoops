@@ -1,11 +1,15 @@
 package com.hafidrf.lokaloops.fragments
 
+import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hafidrf.lokaloops.R
+import com.hafidrf.lokaloops.activities.LoginActivity
+import com.hafidrf.lokaloops.activities.MainActivity
+import com.hafidrf.lokaloops.activities.TransaksiActivity
 import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.PrefsUtil
 import kotlinx.android.synthetic.main.fragment_account.*
@@ -41,6 +45,11 @@ class AccountFragment : Fragment() {
         tv_role_login?.text = tvNama
         tv_about?.text = tvTentang
 
+        btnLogout.setOnClickListener {
+            prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, false);
+            val intent = Intent (activity, LoginActivity::class.java)
+            activity!!.startActivity(intent)
+        }
 
     }
 }

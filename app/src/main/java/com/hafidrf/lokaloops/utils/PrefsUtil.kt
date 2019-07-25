@@ -11,6 +11,7 @@ class PrefsUtil{
     }
 
     private lateinit var prefs : SharedPreferences
+    val SP_SUDAH_LOGIN = "spSudahLogin"
 
     fun saveUser(user : UserResponse){
         val editor = prefs.edit()
@@ -20,11 +21,11 @@ class PrefsUtil{
         editor.apply()
     }
 
-    fun getValueString(user: UserResponse): SharedPreferences {
-        prefs.getString("username", user.username)
-        prefs.getString("username", user.role)
-        return prefs
-    }
+//    fun getValueString(user: UserResponse): SharedPreferences {
+//        prefs.getString("username", user.username)
+//        prefs.getString("username", user.role)
+//        return prefs
+//    }
 
     fun save(KEY_NAME: String, text: String) {
 
@@ -37,8 +38,16 @@ class PrefsUtil{
     fun getValueString(KEY_NAME: String): String? {
 
         return prefs.getString(KEY_NAME, null)
+    }
 
 
+    fun saveSPBoolean(KEY_NAME: String, value: Boolean) {
+        val editor: SharedPreferences.Editor = prefs.edit()
+        editor.putBoolean(KEY_NAME, value)
+        editor.commit()
+    }
+    fun getSPSudahLogin(): Boolean? {
+        return prefs.getBoolean(SP_SUDAH_LOGIN, false)
     }
 
 

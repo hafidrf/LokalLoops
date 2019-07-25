@@ -22,12 +22,12 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun bind(data: ListItem, callback: Callback) {
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
-
+        var cekStock = 0
 
         itemView.tv_name?.text = data.name
         itemView.tv_stock?.text = "Stock : " + data.quantity
         itemView.tv_price?.text = "Rp. " + data.price
-
+        cekStock = Integer.parseInt(data.quantity.toString())
         itemView.iv_product?.apply {
 
             Glide.with(this)
@@ -60,7 +60,11 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
             }
 
             dialog.bt_plus?.setOnClickListener {
-                number +=1
+                if (number < cekStock) {
+                    number += 1
+                }else{
+                    number = cekStock
+                }
 
                 if (number >= 1) {
                     dialog.bt_min.isEnabled = true

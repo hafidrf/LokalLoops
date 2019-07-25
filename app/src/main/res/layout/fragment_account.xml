@@ -185,7 +185,8 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="@color/blue_accent"
-                        android:text="Blablablaba"/>
+
+                android:text="Jl. Tlogosuryo No.2 Tlogosari"/>
 
                 <View android:layout_width="wrap_content"
                       android:layout_height="1dp"
@@ -198,7 +199,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
-                        android:text="Address"
+                        android:text="Description"
                         android:textColor="@color/colorHint"
                         android:textStyle="bold"/>
 
@@ -208,13 +209,20 @@
                         android:layout_height="wrap_content"
                         android:textSize="18sp"
                         android:textColor="@color/blue_accent"
-                        android:text="Jl. Tlogosuryo No.2 Tlogosari"/>
+                        android:text="Blablablaba"/>
 
                 <View android:layout_width="wrap_content"
                       android:layout_height="1dp"
                       android:layout_marginTop="8dp"
                       android:layout_marginBottom="8dp"
                       android:background="#C9C7C7"/>
+
+                <Button
+                        android:id="@+id/btnLogout"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:text="logout"
+                        android:layout_alignParentBottom="true"/>
 
             </LinearLayout>
 
