@@ -214,10 +214,12 @@
 
                 <Button
                         android:id="@+id/btnLogout"
+                        android:textStyle="bold"
+                        android:textColor="@android:color/white"
+                        android:background="@drawable/btn_bg"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
-                        android:text="logout"
-                        android:layout_alignParentBottom="true"/>
+                        android:text="logout"/>
 
             </LinearLayout>
 

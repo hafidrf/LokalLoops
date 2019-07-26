@@ -73,6 +73,7 @@ class LoginActivity : AppCompatActivity() {
                     prefs.save("email", user.email)
                     prefs.save("tentang", user.tentang)
                     prefs.save("nama", user.nama)
+                    prefs.save("id", user.id)
                     prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, true);
                     if (user.role == "owner") {
 //                    prefs.save("username",user)

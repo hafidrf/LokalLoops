@@ -8,4 +8,5 @@ class UserResponse {
     lateinit var email: String
     lateinit var tentang: String
     lateinit var nama: String
+    lateinit var id: String
 }
