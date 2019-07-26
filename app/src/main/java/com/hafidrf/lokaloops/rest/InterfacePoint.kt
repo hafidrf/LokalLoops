@@ -25,7 +25,7 @@ interface InterfacePoint {
     @GET("riwayat")
     fun listHistory(): Call<ListHistoryResponse>
 
-    @GET("")
+    @GET("edit_password")
     fun listAccount(): Call<ListAccountResponse>
 
 //    @POST("kirim")
