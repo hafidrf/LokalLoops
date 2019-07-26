@@ -1,5 +1,6 @@
 package com.hafidrf.lokaloops.fragments
 
+import android.app.AlertDialog
 import android.app.Dialog
 import android.content.Intent
 import android.os.Bundle
@@ -63,6 +64,9 @@ class AccountFragment : Fragment() {
         tv_about?.text = tvTentang
 
         btnLogout.setOnClickListener {
+            val alDialog = AlertDialog.Builder(context)
+
+
             prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, false);
             val intent = Intent(activity, LoginActivity::class.java)
             activity!!.startActivity(intent)
