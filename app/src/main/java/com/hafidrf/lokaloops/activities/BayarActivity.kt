@@ -134,7 +134,7 @@ class BayarActivity : AppCompatActivity() {
             ung_byr = "20000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 20.000"
-            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn20.isEnabled = false
             btn50.isEnabled = true
@@ -145,7 +145,7 @@ class BayarActivity : AppCompatActivity() {
             ung_byr = "50000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 50.000"
-            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn50.isEnabled = false
             btn20.isEnabled = true
@@ -156,7 +156,7 @@ class BayarActivity : AppCompatActivity() {
             ung_byr = "100000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 100.000"
-            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn100.isEnabled = false
             btn20.isEnabled = true
@@ -170,7 +170,7 @@ class BayarActivity : AppCompatActivity() {
             tv_kembalian?.text = ":  Rp " + kembali
             ung_kmbl = kembali
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = ":  Rp " + formatRupiah.format(hargaAkhir)
+            tv_grand_bayar.text = ":  " + formatRupiah.format(hargaAkhir)
             et_byr_manual.text.clear()
         }
         btn_print?.setOnClickListener {
