@@ -16,6 +16,12 @@ interface InterfacePoint {
         @Query("password") password:String
     ): Call<com.hafidrf.lokaloops.models.UserResponse>
 
+    @GET("edit_password")
+    fun kirimPass(
+        @Query("id") id:String,
+        @Query("password_baru") password_baru: String
+    ): Call<NewPassResponse>
+
     @GET("store_offline")
     fun listItem(): Call<ListItemResponse>
 
