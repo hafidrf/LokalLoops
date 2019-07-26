@@ -3,8 +3,6 @@ package com.hafidrf.lokaloops.activities
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.widget.Toast
-import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.models.UserResponse
 import com.hafidrf.lokaloops.rest.EndPoint
 import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.PrefsUtil
@@ -13,7 +11,8 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import android.content.Intent
-
+import android.text.method.LinkMovementMethod
+import android.text.Html
 
 
 class LoginActivity : AppCompatActivity() {
@@ -45,6 +44,11 @@ class LoginActivity : AppCompatActivity() {
                 login()
             }
         }
+
+        link_signup.isClickable = true
+        link_signup.movementMethod = LinkMovementMethod.getInstance()
+        val link = "<a href='http://hafidrf.com/lokaloops/register/'> Daftar disini </a>"
+        link_signup.text = Html.fromHtml(link)
     }
 
 //    private fun setupToolbar() {
@@ -88,6 +92,5 @@ class LoginActivity : AppCompatActivity() {
 
         })
     }
-
 
 }
