@@ -93,32 +93,35 @@ class BayarActivity : AppCompatActivity() {
         var ung_byr = ""
         var ung_kmbl = ""
 
-        val listProduk = keranjangSession.getKeranjangFull()!!
-        var coba = 0
-        listProduk.forEach {
-            println(it.item.name)
-            coba += it.total * it.item.price!!
-        }
-        println("-->" + coba)
+//        val listProduk = keranjangSession.getKeranjangFull()!!
+//        
+//        listProduk.forEach {
+//            println(it.item.name)
+//            coba += it.total * it.item.price!!
+//        }
+//        println("-->" + coba)
 
-        sharedPreference.save("total_hrg", coba.toString())
 
+        var hargaAkhir = 0.00
         btn_diskon.setOnClickListener {
             val diskon = et_diskon.text.toString().toDouble() / 100
             val diskon2 = hargaAwal * diskon
-            val hargaAkhir = hargaKenaPpn - diskon2
+            hargaAkhir = hargaKenaPpn - diskon2
 //            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
             tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
         }
 
-
+        if (hargaAkhir.equals(0.00)){
+            hargaAkhir = hargaKenaPpn
+        }
+        
         btn_manual?.setOnClickListener {
             btn20.isEnabled = true
             btn50.isEnabled = true
             btn100.isEnabled = true
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
-            var kembali = n - coba
+            var kembali = n.toDouble() - hargaAkhir
             tv_kembalian?.text = ":  Rp " + kembali.toString()
             ung_kmbl = kembali.toString()
             ung_byr = total_bayar
@@ -127,33 +130,33 @@ class BayarActivity : AppCompatActivity() {
             et_byr_manual.text.clear()
         }
         btn20?.setOnClickListener {
-            var kembali = 20000 - coba
+            var kembali = 20000.00 - hargaAkhir
             ung_byr = "20000"
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = ":  Rp 20000"
-            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            tv_grand_bayar.text = ":  Rp 20.000"
+            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn20.isEnabled = false
             btn50.isEnabled = true
             btn100.isEnabled = true
         }
         btn50?.setOnClickListener {
-            var kembali = 50000 - coba
+            var kembali = 50000.00 - hargaAkhir
             ung_byr = "50000"
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = ":  Rp 50000"
-            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            tv_grand_bayar.text = ":  Rp 50.000"
+            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn50.isEnabled = false
             btn20.isEnabled = true
             btn100.isEnabled = true
         }
         btn100?.setOnClickListener {
-            var kembali = 100000 - coba
+            var kembali = 100000.00 - hargaAkhir
             ung_byr = "100000"
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = ":  Rp 100000"
-            tv_kembalian?.text = ":  Rp " + kembali.toString()
+            tv_grand_bayar.text = ":  Rp 100.000"
+            tv_kembalian?.text = ":  Rp " + formatRupiah.format(kembali)
             ung_kmbl = kembali.toString()
             btn100.isEnabled = false
             btn20.isEnabled = true
@@ -166,13 +169,13 @@ class BayarActivity : AppCompatActivity() {
             var kembali = "0"
             tv_kembalian?.text = ":  Rp " + kembali
             ung_kmbl = kembali
-            ung_byr = coba.toString()
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = ":  Rp " + ung_byr
+            tv_grand_bayar.text = ":  Rp " + formatRupiah.format(hargaAkhir)
             et_byr_manual.text.clear()
         }
         btn_print?.setOnClickListener {
             print()
+            sharedPreference.save("total_hrg", hargaAkhir.toString())
 
             requestBayar()
 
