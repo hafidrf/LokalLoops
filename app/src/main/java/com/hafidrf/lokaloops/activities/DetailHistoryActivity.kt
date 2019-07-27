@@ -5,44 +5,43 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
+import android.widget.ArrayAdapter
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.fragments.HistoryFragment
 import com.hafidrf.lokaloops.models.ListHistory
-import com.hafidrf.lokaloops.utils.KeranjangSession
-import com.hafidrf.lokaloops.viewholder.ListItemVH
+import com.hafidrf.lokaloops.utils.PrefsUtil
 import com.hafidrf.lokaloops.viewholder.ListitemRiwayat
 import kotlinx.android.synthetic.main.activity_detail_history.*
-import kotlinx.android.synthetic.main.activity_detail_history.tv_stock
-import kotlinx.android.synthetic.main.activity_transaksi.*
-import kotlinx.android.synthetic.main.item_list.*
-import org.jetbrains.anko.support.v4.intentFor
 
-class DetailHistoryActivity : AppCompatActivity(), ListitemRiwayat.Callback {
+class DetailHistoryActivity : AppCompatActivity(){
 
-    override fun onSubmit(data: ListHistory, number: Int) {
-        data.pesanan.forEach {
-            tv_produkitem.text = it.item
-            tv_jumlahpesan.text = it.jumlah_pesan
-            tv_hargabarang.text = it.total_harga
-        }
-        tv_no_order.text = data.id
-        tv_costumer.text = data.nama_pembeli
-        println(data.nama_pembeli)
-        Log.e("ini", data.toString())
-    }
+    var array = arrayOf("Melbourne", "Vienna", "Vancouver", "Toronto", "Calgary", "Adelaide", "Perth", "Auckland", "Helsinki", "Hamburg", "Munich", "New York", "Sydney", "Paris", "Cape Town", "Barcelona", "London", "Bangkok")
 
-    override fun onClick(data: ListHistory) {
-        data.pesanan.forEach {
-            tv_produkitem.text = it.item
-            tv_jumlahpesan.text = it.jumlah_pesan
-            tv_hargabarang.text = it.total_harga
+    private val prefs by lazy { PrefsUtil(this) }
 
-        }
-        tv_no_order.text = data.id
-        tv_costumer.text = data.nama_pembeli
-        println(data.nama_pembeli)
-        Log.e("ini", data.toString())
-    }
+//    override fun onSubmit(data: ListHistory, number: Int) {
+//        data.pesanan.forEach {
+//            tv_produkitem.text = it.item
+//            tv_jumlahpesan.text = it.jumlah_pesan
+//            tv_hargabarang.text = it.total_harga
+//        }
+//        tv_no_order.text = data.id
+//        tv_costumer.text = data.nama_pembeli
+//        println(data.nama_pembeli)
+//        Log.e("ini", data.toString())
+//    }
+//
+//    override fun onClick(data: ListHistory) {
+//        data.pesanan.forEach {
+//            tv_produkitem.text = it.item
+//            tv_jumlahpesan.text = it.jumlah_pesan
+//            tv_hargabarang.text = it.total_harga
+//
+//        }
+//        tv_no_order.text = data.id
+//        tv_costumer.text = data.nama_pembeli
+//        println(data.nama_pembeli)
+//        Log.e("ini", data.toString())
+//    }
 
     companion object {
 
@@ -53,6 +52,12 @@ class DetailHistoryActivity : AppCompatActivity(), ListitemRiwayat.Callback {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_history)
+
+//        val adapter = ArrayAdapter(this,
+//            R.layout.ls_, array)
+//
+//        val listView:ListView = findViewById(R.id.listview_1)
+//        listView.setAdapter(adapter)
 
         
 
@@ -75,6 +80,11 @@ class DetailHistoryActivity : AppCompatActivity(), ListitemRiwayat.Callback {
 //        }
 //        tv_tanggal.text = tgl
 //        tv_no_order.text = nopel
+
+        btn_back.setOnClickListener {
+            finish()
+        }
+
 
     }
 }

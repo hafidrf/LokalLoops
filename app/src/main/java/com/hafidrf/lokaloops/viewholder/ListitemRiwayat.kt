@@ -30,10 +30,11 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
         }
 
         itemView.tv_tanggal?.text = data.tanggal
-        itemView.tv_no_order?.text = data.id
+        itemView.tv_no_order?.text = "LOK" + data.id + "LO" + 2019
         itemView.tv_costumer?.text = data.nama_pembeli
 //        itemView.tv_total_harga?.text = data.total_bayar
-        itemView.tv_total_bayar?.text = formatRupiah.format(data.uang_bayar)
+        val uangBayar = data.uang_bayar.toDouble()
+        itemView.tv_total_bayar?.text = formatRupiah.format(uangBayar)
 //        itemView.tv_uang_kembali?.text = data.uang_kembali
         Log.e("data", data.toString())
 

@@ -14,7 +14,8 @@ import kotlinx.android.synthetic.main.fragment_popup_order.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.toast
-
+import java.text.NumberFormat
+import java.util.*
 
 
 class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -22,11 +23,17 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
     fun bind(data: ListItem, callback: Callback) {
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+
+        //format rupiah
+        val localeID = Locale("in", "ID")
+        val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
         var cekStock = 0
+        val harga = data.price?.toDouble()
+        val hargaBarangRp = formatRupiah.format(harga)
 
         itemView.tv_name?.text = data.name
         itemView.tv_stock?.text = "Stock : " + data.quantity
-        itemView.tv_price?.text = "Rp. " + data.price
+        itemView.tv_price?.text = hargaBarangRp
         cekStock = Integer.parseInt(data.quantity.toString())
         itemView.iv_product?.apply {
 
@@ -42,9 +49,10 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
             val dialog = BottomSheetDialog(itemView.context)
             dialog.setContentView(R.layout.fragment_popup_order)
-            dialog.tv_namabarang?.text = data.name + "  Rp. " + data.price
+            dialog.tv_namabarang?.text = data.name + " " + hargaBarangRp
             val quan = Integer.parseInt(data.price.toString())
             var number = Integer.parseInt(dialog.tv_stock2.text.toString())
+//            val subtotal = quan * number
 
 
             dialog.bt_min?.setOnClickListener {
@@ -55,7 +63,7 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
                     dialog.btn_backtomenu.setVisibility(View.VISIBLE)
                 }
                 dialog.et_note.text.toString()
-                dialog.btn_keranjang.text = "Add to Box - Rp. " + quan * number
+                dialog.btn_keranjang.text = "Add to Box - " + formatRupiah.format(quan * number)
                 dialog.tv_stock2.text = number.toString()
             }
 
@@ -70,7 +78,7 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
                     dialog.bt_min.isEnabled = true
                     dialog.btn_backtomenu.setVisibility(View.GONE)
                     dialog.btn_keranjang.setVisibility(View.VISIBLE)
-                    dialog.btn_keranjang.text = "Add to Box - Rp. " + quan * number
+                    dialog.btn_keranjang.text = "Add to Box - " + formatRupiah.format(quan * number)
                 }
                 dialog.et_note.text.toString()
                 dialog.tv_stock2.text = number.toString()

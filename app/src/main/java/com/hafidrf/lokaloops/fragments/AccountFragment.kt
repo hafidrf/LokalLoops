@@ -2,6 +2,7 @@ package com.hafidrf.lokaloops.fragments
 
 import android.app.AlertDialog
 import android.app.Dialog
+import android.content.DialogInterface
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -52,8 +53,8 @@ class AccountFragment : Fragment() {
         val tvTentang = prefs.getValueString("tentang")
         val tvNama = prefs.getValueString("nama")
 
-//        for (i in 1..tvPassword!!.length)
-//            println("*")
+        for (i in 1..tvPassword!!.length)
+
 
 
         tv_nama_login?.text = "Hai, " + nm
@@ -65,11 +66,18 @@ class AccountFragment : Fragment() {
 
         btnLogout.setOnClickListener {
             val alDialog = AlertDialog.Builder(context)
+                .setTitle("Are you sure to Logout")
+                .setMessage("Anda yakin?")
+                .setPositiveButton("Yes", DialogInterface.OnClickListener { dialog, which ->
+                    prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, false)
+                    val intent = Intent(activity, LoginActivity::class.java)
+                    activity!!.startActivity(intent)
+                })
+                .setNegativeButton("No", DialogInterface.OnClickListener { dialog, which ->
+
+                }).show()
 
 
-            prefs.saveSPBoolean(prefs.SP_SUDAH_LOGIN, false);
-            val intent = Intent(activity, LoginActivity::class.java)
-            activity!!.startActivity(intent)
         }
 
         val dialog = Dialog(context!!)

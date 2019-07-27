@@ -1,5 +1,7 @@
 package com.hafidrf.lokaloops.fragments
 
+import android.app.DatePickerDialog
+import android.app.ProgressDialog
 import android.content.Context
 import android.content.Intent
 import android.os.Bundle
@@ -8,25 +10,21 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.common.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.models.ListHistory
 import com.hafidrf.lokaloops.models.ListHistoryResponse
-import com.hafidrf.lokaloops.models.ListItem
 import com.hafidrf.lokaloops.rest.EndPoint
 import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.viewholder.ListitemRiwayat
 import kotlinx.android.synthetic.main.fragment_history.*
-import kotlinx.android.synthetic.main.history_list.*
-import kotlinx.android.synthetic.main.item_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
-import android.widget.LinearLayout
 import com.hafidrf.lokaloops.activities.DetailHistoryActivity
 import org.jetbrains.anko.support.v4.intentFor
+import java.util.*
 
 
 class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
@@ -66,6 +64,10 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
+        val loading = ProgressDialog(view.context)
+        loading.setMessage("Loading data...")
+        loading.show()
+
 //        ln_his?.setOnClickListener {
 //            next()
 //        }
@@ -91,8 +93,10 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
         EndPoint.client.create(InterfacePoint::class.java).listHistory().enqueue(object : Callback<ListHistoryResponse> {
             override fun onResponse(call: Call<ListHistoryResponse>, response: Response<ListHistoryResponse>) {
 
-                if(response.isSuccessful) listAdapter.updateList(response.body()!!.result)
-
+                if(response.isSuccessful) {
+                    loading.dismiss()
+                    listAdapter.updateList(response.body()!!.result)
+                }
             }
 
             override fun onFailure(call: Call<ListHistoryResponse>, t: Throwable) {
@@ -100,6 +104,21 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
             }
         })
 
+        btn_filter.setOnClickListener {
+            val c = Calendar.getInstance()
+            val year = c.get(Calendar.YEAR)
+            val month = c.get(Calendar.MONTH)
+            val day = c.get(Calendar.DAY_OF_MONTH)
+
+
+            val dpd = DatePickerDialog(activity, DatePickerDialog.OnDateSetListener { view, year, monthOfYear, dayOfMonth ->
+
+                // Display Selected date in textbox
+//                tv_coba.setText("" + dayOfMonth + " " + MONTHS[monthOfYear] + ", " + year)
+            }, year, month, day)
+
+            dpd.show()
+        }
 
     }
 
