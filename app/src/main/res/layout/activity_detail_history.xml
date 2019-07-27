@@ -4,7 +4,7 @@
               xmlns:tools="http://schemas.android.com/tools"
               android:layout_width="match_parent"
               android:layout_height="match_parent"
-              android:background="@color/bg_base"
+              android:background="@android:color/white"
               tools:context=".activities.DetailHistoryActivity"
               android:orientation="vertical">
 
@@ -19,197 +19,226 @@
                 android:layout_height="wrap_content"
                 android:padding="8dp"
                 android:orientation="horizontal">
+
+            <ImageButton android:id="@+id/btn_back"
+                         android:layout_width="30dp"
+                         android:layout_height="30dp"
+                         app:layout_constraintTop_toTopOf="parent"
+                         android:background="@drawable/btn_base_round"
+                         android:layout_marginTop="5dp"
+                         android:src="@drawable/ic_arrow_back" app:layout_constraintStart_toStartOf="parent"
+                         android:layout_marginStart="8dp"/>
+
             <TextView android:layout_width="wrap_content"
                       android:layout_height="wrap_content"
                       android:text="Detail History"
+                      android:id="@+id/tv_checkout"
                       android:textSize="24sp"
                       android:textColor="@android:color/white"
                       android:layout_marginEnd="8dp"
                       android:layout_marginStart="8dp"
+                      app:layout_constraintStart_toEndOf="@+id/btn_back"
                       app:layout_constraintTop_toTopOf="parent"
-                      android:layout_marginTop="5dp" app:layout_constraintStart_toStartOf="parent"
+                      app:layout_constraintHorizontal_bias="0.18" android:layout_marginTop="5dp"
                       app:layout_constraintEnd_toEndOf="parent"/>
+
 
         </android.support.constraint.ConstraintLayout>
 
 
     </FrameLayout>
 
-    <android.support.design.card.MaterialCardView
-            android:id="@+id/ln_detail_history"
-            android:orientation="vertical"
-            app:cardCornerRadius="8dp"
-            android:layout_margin="18dp"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+    <LinearLayout
+            android:layout_margin="12dp"
+            android:layout_width="match_parent" android:layout_height="match_parent"
+            android:paddingStart="8dp" android:paddingEnd="8dp"
+            android:orientation="vertical">
 
+        <TextView
+                android:id="@+id/tv_tanggal"
+                android:text="tgl"
+                android:textSize="16sp"
+                android:layout_marginTop="8dp"
+                android:layout_width="wrap_content" android:layout_height="wrap_content"/>
 
-        <LinearLayout android:layout_width="match_parent" android:layout_height="match_parent"
-                      android:paddingStart="8dp" android:paddingEnd="8dp"
-                      android:orientation="vertical">
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
 
             <TextView
-                    android:id="@+id/tv_tanggal"
-                    android:text="tgl"
+                    android:text="No. Pelanggan  : "
                     android:textSize="16sp"
-                    android:layout_marginTop="8dp"
+                    android:layout_width="wrap_content" android:layout_height="wrap_content"
+                    android:id="@+id/textView2" app:layout_constraintTop_toTopOf="parent"
+                    android:layout_marginEnd="8dp"/>
+
+            <TextView
+                    android:id="@+id/tv_no_order"
+                    android:text="No. 1234dsfwer"
+                    android:textSize="16sp"
                     android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:text="No. Pelanggan  : "
-                        android:textSize="16sp"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"
-                        android:id="@+id/textView2" app:layout_constraintTop_toTopOf="parent"
-                        android:layout_marginEnd="8dp"/>
-
-                <TextView
-                        android:id="@+id/tv_no_order"
-                        android:text="No. 1234dsfwer"
-                        android:textSize="16sp"
-                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <View android:layout_width="wrap_content"
-                  android:layout_height="1dp"
-                  android:layout_marginTop="8dp"
-                  android:layout_marginBottom="8dp"
-                  android:background="#C9C7C7"/>
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content">
-
-                <TextView
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:text="Nama : "
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:id="@+id/tv_costumer"
-                        android:textStyle="bold"
-                        android:textSize="20sp"
-                        android:text="xxxxx"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-
-            <TextView
-                    android:id="@+id/tv_stock"
-                    android:text="Pesanan :"
-                    android:textSize="16sp"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-
-
-            <LinearLayout
-                    android:layout_marginTop="5dp"
-                    android:weightSum="6"
-                    android:orientation="horizontal"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <TextView
-                        android:layout_margin="5dp"
-                        android:id="@+id/tv_produkitem"
-                        android:textSize="18sp"
-                        android:layout_width="0dp"
-                        android:layout_weight="3"
-                        android:text="produkitem"
-                        android:layout_height="wrap_content"/>
-
-                <TextView
-                        android:layout_margin="5dp"
-                        android:id="@+id/tv_jumlahpesan"
-                        android:layout_width="0dp"
-                        android:layout_weight="1"
-                        android:textSize="18sp"
-                        android:text="40"
-                        android:layout_height="wrap_content"/>
-                <TextView
-                        android:layout_margin="5dp"
-                        android:id="@+id/tv_hargabarang"
-                        android:layout_width="0dp"
-                        android:layout_weight="2"
-                        android:text="Rp 30000"
-                        android:textSize="18sp"
-                        android:layout_height="wrap_content"/>
-            </LinearLayout>
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <TextView
-                        android:text="Total harga : Rp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
-                <TextView
-                        android:id="@+id/tv_total_harga"
-                        android:text="tess"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="right"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <TextView
-                        android:text="Total bayar : Rp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
-                <TextView
-                        android:id="@+id/tv_total_bayar"
-                        android:text="tess"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-            </LinearLayout>
-
-            <LinearLayout
-                    android:orientation="horizontal"
-                    android:gravity="right"
-                    android:layout_marginBottom="8dp"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-                <TextView
-                        android:text="Uang Kembalian : Rp"
-                        android:textSize="18sp"
-                        android:textStyle="bold"
-                        android:layout_marginEnd="4dp"
-                        android:layout_height="wrap_content"
-                        android:layout_width="wrap_content"/>
-                <TextView
-                        android:id="@+id/tv_uang_kembali"
-                        android:text="tess"
-                        android:textStyle="bold"
-                        android:textSize="18sp"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
-
-            </LinearLayout>
         </LinearLayout>
 
-    </android.support.design.card.MaterialCardView>
+        <View android:layout_width="wrap_content"
+              android:layout_height="1dp"
+              android:layout_marginTop="8dp"
+              android:layout_marginBottom="8dp"
+              android:background="#C9C7C7"/>
+
+        <LinearLayout
+                android:orientation="horizontal"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content">
+
+            <TextView
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="Nama : "
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+            <TextView
+                    android:id="@+id/tv_costumer"
+                    android:textStyle="bold"
+                    android:textSize="20sp"
+                    android:text="xxxxx"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"/>
+
+        </LinearLayout>
+
+
+        <TextView
+                android:id="@+id/tv_stock"
+                android:text="Pesanan :"
+                android:textSize="16sp"
+                android:layout_width="match_parent" android:layout_height="wrap_content"/>
+
+
+        <!--<LinearLayout-->
+        <!--android:layout_marginTop="5dp"-->
+        <!--android:weightSum="6"-->
+        <!--android:orientation="horizontal"-->
+        <!--android:layout_width="match_parent"-->
+        <!--android:layout_height="wrap_content">-->
+        <!--<TextView-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/tv_produkitem"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="3"-->
+        <!--android:text="produkitem"-->
+        <!--android:layout_height="wrap_content"/>-->
+
+        <!--<TextView-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/tv_jumlahpesan"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="1"-->
+        <!--android:textSize="18sp"-->
+        <!--android:text="40"-->
+        <!--android:layout_height="wrap_content"/>-->
+        <!--<TextView-->
+        <!--android:layout_margin="5dp"-->
+        <!--android:id="@+id/tv_hargabarang"-->
+        <!--android:layout_width="0dp"-->
+        <!--android:layout_weight="2"-->
+        <!--android:text="Rp 30000"-->
+        <!--android:textSize="18sp"-->
+        <!--android:layout_height="wrap_content"/>-->
+        <!--</LinearLayout>-->
+
+
+        <android.support.constraint.ConstraintLayout android:layout_width="match_parent"
+                                                     android:layout_height="wrap_content">
+            <ListView
+                    android:id="@+id/ls_his_pesanan"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" app:layout_constraintTop_toTopOf="parent"
+                    app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintBottom_toTopOf="@id/tv_subtotal_total">
+
+            </ListView>
+            <LinearLayout
+                    android:id="@+id/tv_subtotal_total"
+                    android:orientation="vertical"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    android:layout_marginEnd="8dp"
+                    android:layout_marginStart="8dp">
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:text="Total harga : Rp"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+                    <TextView
+                            android:id="@+id/tv_total_harga"
+                            android:text="tess"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="right"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:text="Total bayar : Rp"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+                    <TextView
+                            android:id="@+id/tv_total_bayar"
+                            android:text="tess"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+
+                <LinearLayout
+                        android:orientation="horizontal"
+                        android:gravity="right"
+                        android:layout_marginBottom="8dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                    <TextView
+                            android:text="Uang Kembalian : Rp"
+                            android:textSize="18sp"
+                            android:textStyle="bold"
+                            android:layout_marginEnd="4dp"
+                            android:layout_height="wrap_content"
+                            android:layout_width="wrap_content"/>
+                    <TextView
+                            android:id="@+id/tv_uang_kembali"
+                            android:text="tess"
+                            android:textStyle="bold"
+                            android:textSize="18sp"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"/>
+
+                </LinearLayout>
+            </LinearLayout>
+        </android.support.constraint.ConstraintLayout>
+
+
+    </LinearLayout>
 
 </LinearLayout>
