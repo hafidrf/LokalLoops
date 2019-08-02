@@ -84,7 +84,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
             ListItemKeranjang::class.java
         ) {
             override fun bindView(holder: ListCheckoutVH, model: ListItemKeranjang, position: Int) {
-                holder.bind(model, this@TransaksiActivity)
+                holder.bind(model, this@TransaksiActivity,position)
                 loading.dismiss()
             }
 
@@ -115,7 +115,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
 
     override fun onDelete(data: ListItemKeranjang, position: Int) {
         listAdapter.removeItem(position)
-        session.remProduct(data.item,data.total, data.catatan)
+        session.remProduct(position)
     }
 
 

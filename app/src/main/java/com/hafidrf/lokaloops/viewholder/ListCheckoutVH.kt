@@ -12,7 +12,7 @@ import java.util.*
 
 class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-    fun bind(data: ListItemKeranjang, callback: ListCheckOutListener) {
+    fun bind(data: ListItemKeranjang, callback: ListCheckOutListener, position: Int) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
         //format rupiah
@@ -30,8 +30,11 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
         itemView.btn_delete?.setOnClickListener {
-            callback.onDelete(data, adapterPosition)
-            keranjangSession.remProduct(data.item,data.total,data.catatan)
+            callback.onDelete(data, position)
+//            keranjangSession.remProduct(data.item,data.total,data.catatan)
+            println(position)
+//            keranjangSession.remProduct(position)
+
         }
 
     }

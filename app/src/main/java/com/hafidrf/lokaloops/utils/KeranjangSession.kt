@@ -69,14 +69,15 @@ class KeranjangSession (context: Context){
     }
 
 
-    fun remProduct(product:ListItem, total:Int, catatan: String){
+    fun remProduct(position: Int){
 
         val list = getKeranjangFull()
-        for (i in 0 until list.size){
-            if(list[i].item.id == product.id){
-                list.removeAt(i)
-            }
-        }
+//        for (i in 0 until list.size){
+//            if(list[i].item.id == product.id){
+//                list.removeAt(position)
+//            }
+//        }
+        list.removeAt(position)
         saveKeranjangFull(list)
     }
 
