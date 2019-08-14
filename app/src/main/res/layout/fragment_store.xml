@@ -63,15 +63,32 @@
                          app:layout_constraintBottom_toBottomOf="@id/et_pencarian"
                          android:layout_marginEnd="8dp"/>
 
-            <ImageButton android:id="@+id/btn_bayar"
-                         android:layout_width="40dp"
-                         android:layout_height="40dp"
-                         app:layout_constraintEnd_toEndOf="parent"
-                         android:layout_marginEnd="8dp"
-                         app:layout_constraintTop_toTopOf="parent"
-                         android:background="@drawable/btn_base_round"
-                         android:layout_marginTop="5dp"
-                         android:src="@drawable/ic_cart"/>
+            <ru.nikartm.support.ImageBadgeView
+                    android:id="@+id/btn_bayar"
+                    android:layout_width="40dp"
+                    android:layout_height="40dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_gravity="center"
+                    android:padding="10dp"
+                    app:ibv_badgeValue="25"
+                    app:ibv_badgeTextSize="12sp"
+                    app:ibv_fixedBadgeRadius="15dp"
+                    app:ibv_badgeTextStyle="bold"
+                    app:ibv_badgeTextColor="#ffffff"
+                    app:ibv_badgeColor="#00ACC1"
+                    app:ibv_badgeLimitValue="false"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    android:src="@drawable/ic_cart" />
+            <!--<ImageButton android:id="@+id/btn_bayar"-->
+            <!--android:layout_width="40dp"-->
+            <!--android:layout_height="40dp"-->
+            <!--app:layout_constraintEnd_toEndOf="parent"-->
+            <!--android:layout_marginEnd="8dp"-->
+            <!--app:layout_constraintTop_toTopOf="parent"-->
+            <!--android:background="@drawable/btn_base_round"-->
+            <!--android:layout_marginTop="5dp"-->
+            <!--android:src="@drawable/ic_cart"/>-->
 
         </android.support.constraint.ConstraintLayout>
 

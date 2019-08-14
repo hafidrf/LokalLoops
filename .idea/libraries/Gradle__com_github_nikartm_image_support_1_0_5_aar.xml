@@ -1,0 +1,12 @@
+<component name="libraryTable">
+  <library name="Gradle: com.github.nikartm:image-support:1.0.5@aar">
+    <CLASSES>
+      <root url="jar://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64b43ac1ea50088e3fffe44a72936fdb/jars/classes.jar!/" />
+      <root url="file://$USER_HOME$/.gradle/caches/transforms-2/files-2.1/64b43ac1ea50088e3fffe44a72936fdb/res" />
+    </CLASSES>
+    <JAVADOC />
+    <SOURCES>
+      <root url="jar://$USER_HOME$/.gradle/caches/modules-2/files-2.1/com.github.nikartm/image-support/1.0.5/edeb83e358c391b32113ab55ca041c9fdec348b1/image-support-1.0.5-sources.jar!/" />
+    </SOURCES>
+  </library>
+</component>

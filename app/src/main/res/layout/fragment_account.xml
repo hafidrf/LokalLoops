@@ -57,7 +57,7 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/tv_nama_login"
-                    android:id="@+id/tv_role_login"/>
+                    android:id="@+id/tv_about"/>
 
         </android.support.constraint.ConstraintLayout>
 
@@ -190,27 +190,27 @@
                       android:background="#C9C7C7"/>
 
                 <!--TENTANG-->
-                <TextView
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:text="Description"
-                        android:textColor="@color/colorHint"
-                        android:textStyle="bold"/>
+                <!--<TextView-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:text="Description"-->
+                <!--android:textColor="@color/colorHint"-->
+                <!--android:textStyle="bold"/>-->
 
-                <TextView
-                        android:id="@+id/tv_about"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:textSize="18sp"
-                        android:textColor="@color/blue_accent"
-                        android:text="Blablablaba"/>
+                <!--<TextView-->
+                <!--android:id="@+id/tv_about"-->
+                <!--android:layout_width="match_parent"-->
+                <!--android:layout_height="wrap_content"-->
+                <!--android:textSize="18sp"-->
+                <!--android:textColor="@color/blue_accent"-->
+                <!--android:text="Blablablaba"/>-->
 
-                <View android:layout_width="wrap_content"
-                      android:layout_height="1dp"
-                      android:layout_marginTop="8dp"
-                      android:layout_marginBottom="8dp"
-                      android:background="#C9C7C7"/>
+                <!--<View android:layout_width="wrap_content"-->
+                <!--android:layout_height="1dp"-->
+                <!--android:layout_marginTop="8dp"-->
+                <!--android:layout_marginBottom="8dp"-->
+                <!--android:background="#C9C7C7"/>-->
 
                 <Button
                         android:id="@+id/btnLogout"

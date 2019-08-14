@@ -20,15 +20,24 @@
                       android:orientation="vertical">
             <TextView
                     android:id="@+id/tv_name"
-                    android:textSize="20dp"
+                    android:text="cccc"
+                    android:textSize="24sp"
                     android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/tv_price"
-                    android:textStyle="bold"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
-            <TextView
-                    android:id="@+id/tv_stock"
-                    android:layout_width="match_parent" android:layout_height="wrap_content"/>
+            <android.support.constraint.ConstraintLayout android:id="@+id/paren" android:layout_width="match_parent" android:layout_height="wrap_content">
+                <TextView
+                        android:text="25"
+                        android:textSize="20sp"
+                        android:id="@+id/tv_stock"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"/>
+                <TextView
+                        android:text="Rp.30000"
+                        android:id="@+id/tv_price"
+                        android:textSize="24sp"
+                        android:textStyle="bold"
+                        android:layout_width="wrap_content" android:layout_height="wrap_content"
+                        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="8dp"/>
+
+            </android.support.constraint.ConstraintLayout>
             <Button
                     android:id="@+id/bt_order"
                     android:text="pesan"

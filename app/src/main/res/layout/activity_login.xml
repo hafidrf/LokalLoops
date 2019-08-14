@@ -62,7 +62,7 @@
                   android:layout_height="wrap_content"
                   android:layout_marginTop="24dp"
                   android:layout_marginBottom="24dp"
-                  android:textColor="@color/colorpesan"
+                  android:textColor="@android:color/white"
                   android:text="Daftar disini!"
                   android:gravity="center"
                   android:textSize="16dip"/>

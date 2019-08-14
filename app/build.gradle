@@ -55,5 +55,7 @@ dependencies {
     implementation "org.jetbrains.anko:anko-sqlite:0.10.8"
     implementation project(':library')
     implementation 'com.google.android.gms:play-services-analytics:16.0.6'
+    implementation 'com.github.nikartm:image-support:1.0.5'
+
 
 }
