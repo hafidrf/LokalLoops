@@ -77,6 +77,8 @@ class BayarActivity : AppCompatActivity() {
         val keranjangSession: KeranjangSession = KeranjangSession(this)
         val prefs by lazy { PrefsUtil(this) }
 
+
+
         val price = sharedPreference.getValueString("total_hrg")!!
 
         val tot = price.toString()

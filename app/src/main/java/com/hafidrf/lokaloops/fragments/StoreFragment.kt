@@ -21,6 +21,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.hafidrf.lokaloops.activities.TransaksiActivity
+import com.hafidrf.lokaloops.utils.SharedPreference
 
 
 class StoreFragment : Fragment(), ListItemVH.Callback {
@@ -55,6 +56,10 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
+        val sharedPreference: SharedPreference = SharedPreference(view.context)
+        var rnds = (0..1000).random()
+        sharedPreference.save("id_pembeli", rnds.toString())
 
         val loading = ProgressDialog(view.context)
         loading.setMessage("Loading data...")

@@ -23,15 +23,14 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 val sharedPreference : SharedPreference = SharedPreference(itemView.context)
 
-    var rnds = (0..1000).random()
+
 
 
     fun bind(data: ListItem, callback: Callback) {
-//        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
 
-        sharedPreference.save("id_pembeli", rnds.toString())
-
+        val idp = sharedPreference.getValueString("id_pembeli")
         //format rupiah
         val localeID = Locale("in", "ID")
         val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
@@ -113,7 +112,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
                 var totHrg = num.toInt() * data.price!!
                 keranjangSession.addProductPesanan(data.name.toString() ,data.price.toString(),
                     num.toInt().toString(), totHrg.toString(),
-                    catatan,rnds.toString())
+                    catatan,idp.toString())
 
 //                val upd = sharedPreference.getValueString("stock")!!
 //                itemView.tv_stock?.text = "Stock : " + upd
