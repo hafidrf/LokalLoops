@@ -61,7 +61,7 @@ class AccountFragment : Fragment() {
         tv_email_account?.text = tvEmail
         tv_password?.text = tvPassword
         tv_contact_account?.text = tvContact
-        tv_role_login?.text = tvNama
+//        tv_role_login?.text = tvNama
         tv_about?.text = tvTentang
 
         btnLogout.setOnClickListener {
