@@ -1,6 +1,7 @@
 package com.hafidrf.lokaloops.models
 
 class UserResponse {
+    lateinit var id_owner: String
     lateinit var username: String
     lateinit var role: String
     lateinit var password: String

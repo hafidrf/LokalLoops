@@ -14,6 +14,7 @@ import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.rest.EndPoint
 import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.KeranjangSession
+import com.hafidrf.lokaloops.utils.PrefsUtil
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_bayar.*
 import org.jetbrains.anko.themedImageSwitcher
@@ -22,8 +23,7 @@ import retrofit2.Call
 import retrofit2.Response
 import java.util.*
 import java.text.NumberFormat
-
-
+import kotlin.random.Random
 
 
 class BayarActivity : AppCompatActivity() {
@@ -75,6 +75,7 @@ class BayarActivity : AppCompatActivity() {
 
         val sharedPreference: SharedPreference = SharedPreference(this)
         val keranjangSession: KeranjangSession = KeranjangSession(this)
+        val prefs by lazy { PrefsUtil(this) }
 
         val price = sharedPreference.getValueString("total_hrg")!!
 
@@ -91,7 +92,7 @@ class BayarActivity : AppCompatActivity() {
         tv_jml_bayar?.text = formatRupiah.format(hargaKenaPpn)
 
         var ung_byr = ""
-        var ung_kmbl = ""
+        var kembalian = 0.0
 
 //        val listProduk = keranjangSession.getKeranjangFull()!!
 //        
@@ -114,53 +115,51 @@ class BayarActivity : AppCompatActivity() {
         if (hargaAkhir.equals(0.00)){
             hargaAkhir = hargaKenaPpn
         }
-        
+
+        sharedPreference.save("hargaAkhir", hargaAkhir.toString())
+
         btn_manual?.setOnClickListener {
             btn20.isEnabled = true
             btn50.isEnabled = true
             btn100.isEnabled = true
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
-            var kembali = n.toDouble() - hargaAkhir
-            tv_kembalian?.text = ":  Rp " + kembali.toString()
-            ung_kmbl = kembali.toString()
+            kembalian = n.toDouble() - hargaAkhir
+            tv_kembalian?.text = ":  Rp " + kembalian.toString()
             ung_byr = total_bayar
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = formatRupiah.format(ung_byr)
             et_byr_manual.text.clear()
         }
         btn20?.setOnClickListener {
-            var kembali = 20000.00 - hargaAkhir
+            kembalian = 20000.00 - hargaAkhir
             ung_byr = "20000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 20.000"
-            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
-            tv_kembalian?.text = formatRupiah.format(kembali)
-            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
+            tv_kembalian?.text = formatRupiah.format(kembalian)
             btn20.isEnabled = false
             btn50.isEnabled = true
             btn100.isEnabled = true
         }
         btn50?.setOnClickListener {
-            var kembali = 50000.00 - hargaAkhir
+            kembalian = 50000.00 - hargaAkhir
             ung_byr = "50000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 50.000"
-            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
-            tv_kembalian?.text = formatRupiah.format(kembali)
-            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
+            tv_kembalian?.text = formatRupiah.format(kembalian)
             btn50.isEnabled = false
             btn20.isEnabled = true
             btn100.isEnabled = true
         }
         btn100?.setOnClickListener {
-            var kembali = 100000.00 - hargaAkhir
+            kembalian = 100000.00 - hargaAkhir
             ung_byr = "100000"
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 100.000"
-            tv_kembalian?.text = ":  " + formatRupiah.format(kembali)
-            tv_kembalian?.text = formatRupiah.format(kembali)
-            ung_kmbl = kembali.toString()
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
+            tv_kembalian?.text = formatRupiah.format(kembalian)
             btn100.isEnabled = false
             btn20.isEnabled = true
             btn50.isEnabled = true
@@ -169,20 +168,14 @@ class BayarActivity : AppCompatActivity() {
             btn20.isEnabled = true
             btn50.isEnabled = true
             btn100.isEnabled = true
-            var kembali = "0"
-            tv_kembalian?.text = ":  Rp " + kembali
-            ung_kmbl = kembali
+            var kem = "0"
+            tv_kembalian?.text = ":  Rp " + kem
+            kembalian = kem.toDouble()
+            ung_byr = hargaAkhir.toString()
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  " + formatRupiah.format(hargaAkhir)
             tv_grand_bayar.text = formatRupiah.format(hargaAkhir)
             et_byr_manual.text.clear()
-        }
-        btn_print?.setOnClickListener {
-            print()
-            sharedPreference.save("total_hrg", hargaAkhir.toString())
-
-            requestBayar()
-
         }
 
         btn_sign_up?.setOnClickListener {
@@ -190,16 +183,52 @@ class BayarActivity : AppCompatActivity() {
             sharedPreference.save("nama_pembeli", et_nama_user?.text.toString())
         }
 
+//        var nm_pm = prefs.getValueString("nama")
+//        var idf = nm_pm + rnds.toString()
+
+        var rnds = sharedPreference.getValueString("id_pembeli")
+        val id_own = prefs.getValueString("id_owner")
+
+
+
+        btn_print?.setOnClickListener {
+            keranjangSession.addProductpembeli(rnds.toString(),et_nama_user?.text.toString(),hargaAkhir.toString(),
+                ung_byr!!,kembalian.toString()!!,id_own.toString())
+
+            requestPesanan()
+            requestBayar()
+            print()
+
+        }
+
         btn_backk?.setOnClickListener {
             kembali()
         }
+
+
     }
 
     private fun requestBayar() {
 
-        val data = KeranjangSession(this).getKeranjangServer()
+        var data = KeranjangSession(this).getPembeliserver()
 
         EndPoint.client.create(InterfacePoint::class.java).saveData(data).enqueue(object : Callback<String> {
+            override fun onFailure(call: Call<String>, t: Throwable) {
+                toast("error ${t.message}")
+            }
+
+            override fun onResponse(call: Call<String>, response: Response<String>) {
+                toast("berhasil")
+            }
+
+        })
+    }
+
+    private fun requestPesanan() {
+
+        var data = KeranjangSession(this).getKeranjangServer()
+
+        EndPoint.client.create(InterfacePoint::class.java).saveData2(data).enqueue(object : Callback<String> {
             override fun onFailure(call: Call<String>, t: Throwable) {
                 toast("error ${t.message}")
             }

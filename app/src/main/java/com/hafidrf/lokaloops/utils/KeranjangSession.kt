@@ -18,41 +18,63 @@ class KeranjangSession (context: Context){
 
     val prefs by lazy { context.getSharedPreferences("keranjang-lokaloops", 0) }
 
-    fun saveKeranjangFull(data : ArrayList<ListItemKeranjang>){
+
+    fun clearSharedPreference() {
+        prefs.edit().clear().apply()
+    }
+
+    fun getPembeliFull (): ArrayList<ListPembeli>{
+
+        val typeList = object : TypeToken <ArrayList<ListPembeli>>(){}.type
+        val jsonList = prefs.getString("pembeli-full", "null")
+
+
+        val list = Gson().fromJson<ArrayList<ListPembeli>>(jsonList, typeList) ?: return arrayListOf()
+
+        return list
+
+    }
+
+    fun getPembeliserver() = prefs.getString("pembeli-full", "null")
+
+    fun savePembeli(data: ArrayList<ListPembeli>){
+
         val list = Gson().toJson(data)
+
         prefs.edit().apply {
-            putString("keranjang-full", list)
+            putString("pembeli-full", list)
         }.apply()
 
-        Log.e("Saved" , list.toString())
+    }
 
-        val listFood = arrayListOf<Food>()
+    fun addProductpembeli(id: String, nama_pembeli: String, total_bayar: String,
+                   uang_bayar: String,uang_kembali: String, id_owner: String){
 
-        for(item in data){
-            listFood.add(Food(item.item.id!!, item.total, item.catatan))
+        var exist = false
+        val list = getPembeliFull()
+        for (i in 0 until list.size){
+            if(list[i].id == id){
+                exist = true
+                list[i] = ListPembeli(id,nama_pembeli, total_bayar,
+                    uang_bayar,uang_kembali, id_owner)
+            }
         }
-        saveKeranjangServer(listFood)
-        Log.e("ini" , listFood.toString())
-
+        if (!exist) list.add(ListPembeli(id,nama_pembeli, total_bayar,
+            uang_bayar,uang_kembali, id_owner))
+        savePembeli(list)
     }
 
-    fun saveKeranjangServer(data: ArrayList<Food>){
+    fun getKeranjangFull (): ArrayList<ListItemKeranjang>{
 
-        val list = Gson().toJson(data)
+        val typeList = object : TypeToken <ArrayList<ListItemKeranjang>>(){}.type
+        val jsonList = prefs.getString("keranjang-full", "null")
 
-//        val jsonygdikirim = JSONObject().apply {
-//
-//            put("id_user", 2882828282)
-//            put("kersnjsng", getKeranjangServer())
-//
-//        }.toString()
 
-        prefs.edit().apply {
-            putString("keranjang", list)
-        }.apply()
+        val list = Gson().fromJson<ArrayList<ListItemKeranjang>>(jsonList, typeList) ?: return arrayListOf()
+
+        return list
 
     }
-
 
     fun addProduct(product : ListItem, total:Int, catatan: String){
 
@@ -68,101 +90,90 @@ class KeranjangSession (context: Context){
         saveKeranjangFull(list)
     }
 
-
     fun remProduct(position: Int){
 
         val list = getKeranjangFull()
-//        for (i in 0 until list.size){
-//            if(list[i].item.id == product.id){
-//                list.removeAt(position)
-//            }
-//        }
         list.removeAt(position)
         saveKeranjangFull(list)
     }
 
-//    fun addHis(id: String, nama_pembeli : String, total_bayar: String, uang_bayar: String,uang_kembali:String,tanggal:String, product : Pesanan){
-//
-//        var exist = false
-//        val list = getHistoryFull()
-//        for (i in 0 until list.size){
-//            if(list[i].item.id_pesan == product.id_pesan){
-//                exist = true
-//                list[i] = ListHistory(id,nama_pembeli,total_bayar,uang_bayar,uang_kembali,tanggal,product)
-//            }
-//        }
-//        if (!exist) list.add(ListHistory(id,nama_pembeli,total_bayar,uang_bayar,uang_kembali,tanggal,product))
-//        saveHistoryFull(list)
-//    }
-
-    fun saveHistoryFull(data : ArrayList<ListHistory>){
+    fun saveKeranjangFull(data : ArrayList<ListItemKeranjang>){
         val list = Gson().toJson(data)
         prefs.edit().apply {
-            putString("history-full", list)
+            putString("keranjang-full", list)
         }.apply()
 
         Log.e("Saved" , list.toString())
 
     }
 
-    fun getHistoryFull (): ArrayList<ListHistory>{
-
-        val typeList = object : TypeToken <ArrayList<ListHistory>>(){}.type
-        val jsonList = prefs.getString("history-full", "null")
-
-
-        val list = Gson().fromJson<ArrayList<ListHistory>>(jsonList, typeList) ?: return arrayListOf()
-
-        return list
-
-    }
-
-    fun getKeranjangFull (): ArrayList<ListItemKeranjang>{
-
-        val typeList = object : TypeToken <ArrayList<ListItemKeranjang>>(){}.type
-        val jsonList = prefs.getString("keranjang-full", "null")
-
-
-        val list = Gson().fromJson<ArrayList<ListItemKeranjang>>(jsonList, typeList) ?: return arrayListOf()
-
-        return list
-
-    }
-
     fun getKeranjangServer() = prefs.getString("keranjang", "null")
 
-    /*
+    fun saveKeranjangServer(data: ArrayList<ListPesanan>){
 
-    {
-        "id_user" : 202020
-        "keranjang" :
+        val list = Gson().toJson(data)
 
-
-        [
-            {  "id" : 1, "total" : 2   },
-            {  "id" : 1, "total" : 2   }
-        ]
-
+        prefs.edit().apply {
+            putString("keranjang", list)
+        }.apply()
 
     }
-*/
 
-    fun clearSharedPreference() {
-        prefs.edit().clear().apply()
+    fun getPesananFull (): ArrayList<ListPesanan>{
+
+        val typeList = object : TypeToken <ArrayList<ListPesanan>>(){}.type
+        val jsonList = prefs.getString("keranjang", "null")
+
+
+        val list = Gson().fromJson<ArrayList<ListPesanan>>(jsonList, typeList) ?: return arrayListOf()
+
+        return list
+
     }
 
+    fun addProductPesanan(item: String, harga: String,jumlah_pesan: String,total_harga: String,
+                          catatan: String,id_pembeli: String){
+
+//            var exist = false
+            val list = getPesananFull()
+//            for (i in 0 until list.size){
+//                if(list[i].id == id){
+//                    exist = true
+//                    list[i] = ListPesanan( item, harga,jumlah_pesan,
+//                        total_harga,catatan,id_pembeli)
+//                }
+//            }
+//            if (!exist)
+            list.add(ListPesanan(item, harga,jumlah_pesan, total_harga,catatan,id_pembeli))
+            saveKeranjangServer(list)
+        }
 
 }
 
-
-data class Food(
-    @SerializedName("id") @Expose val id : String,
-    @SerializedName("total") @Expose val total : Int = 0,
-    @SerializedName("catatan") @Expose val catatan: String
+data class ListPembeli(
+    @SerializedName("id") @Expose val id: String?,
+    @SerializedName("nama_pembeli") @Expose val nama_pembeli: String?,
+    @SerializedName("total_bayar") @Expose val total_bayar: String?,
+    @SerializedName("uang_bayar") @Expose val uang_bayar: String?,
+    @SerializedName("uang_kembali") @Expose val uang_kembali: String?,
+    @SerializedName("id_owner") @Expose val id_owner: String?
 )
 
 data class ListItemKeranjang(
     val item: ListItem,
-    @SerializedName("total") @Expose val total: Int,
+    @SerializedName("total") @Expose val total: Int?,
     @SerializedName("catatan") @Expose val catatan: String
 )
+
+data class ListPesanan(
+//    @SerializedName("id") @Expose val id : String,
+    @SerializedName("item") @Expose val item : String,
+    @SerializedName("harga") @Expose val harga : String,
+    @SerializedName("jumlah_pesan") @Expose val jumlah_pesan: String,
+    @SerializedName("total_harga") @Expose val total_harga: String,
+    @SerializedName("catatan") @Expose val catatan: String,
+    @SerializedName("id_pembeli") @Expose val id_pembeli: String
+
+)
+
+

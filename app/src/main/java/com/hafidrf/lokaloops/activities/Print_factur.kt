@@ -163,10 +163,10 @@ class Print_factur : AppCompatActivity() {
 
             listProduk.forEach {
             item = it.item.name.toString()
-            tot = it.total
+            tot = it.total!!
                 har = it.item.price!!
-            price = it.total * it.item.price!!
-            coba += it.total * it.item.price!!
+            price = it.total!! * it.item.price!!
+            coba += it.total!! * it.item.price!!
 
             ticketIsi = TicketBuilder(printer)
                 .isCyrillic(true)

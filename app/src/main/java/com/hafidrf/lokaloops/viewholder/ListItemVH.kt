@@ -9,6 +9,7 @@ import com.bumptech.glide.Glide
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.ListItem
 import com.hafidrf.lokaloops.utils.KeranjangSession
+import com.hafidrf.lokaloops.utils.ListPesanan
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.fragment_popup_order.*
 import kotlinx.android.synthetic.main.item_list.view.*
@@ -20,9 +21,16 @@ import java.util.*
 
 class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
+val sharedPreference : SharedPreference = SharedPreference(itemView.context)
+
+    var rnds = (0..1000).random()
+
+
     fun bind(data: ListItem, callback: Callback) {
-        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+//        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+
+        sharedPreference.save("id_pembeli", rnds.toString())
 
         //format rupiah
         val localeID = Locale("in", "ID")
@@ -101,6 +109,11 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 //                sharedPreference.save("catatan", catatan)
 //                sharedPreference.save("stock", stck.toString())
                 keranjangSession.addProduct(data,num.toInt(),catatan)
+
+                var totHrg = num.toInt() * data.price!!
+                keranjangSession.addProductPesanan(data.name.toString() ,data.price.toString(),
+                    num.toInt().toString(), totHrg.toString(),
+                    catatan,rnds.toString())
 
 //                val upd = sharedPreference.getValueString("stock")!!
 //                itemView.tv_stock?.text = "Stock : " + upd

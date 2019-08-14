@@ -70,7 +70,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
         var coba = 0
         listProduk.forEach {
             println(it.item.name)
-            coba += it.total * it.item.price!!
+            coba += it.total!! * it.item.price!!
         }
         println("-->" + coba)
 

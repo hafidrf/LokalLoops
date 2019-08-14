@@ -3,8 +3,8 @@ package com.hafidrf.lokaloops.rest
 import com.hafidrf.lokaloops.models.*
 import retrofit2.Call
 import com.hafidrf.lokaloops.models.ApiResponse
-import com.hafidrf.lokaloops.utils.Food
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
+import com.hafidrf.lokaloops.utils.ListPembeli
 import retrofit2.http.*
 
 
@@ -54,8 +54,11 @@ interface InterfacePoint {
         @Query("name") name:String
     ): Call<ListItemResponse>
 
-    @POST("kirim")
-    fun saveData(@Body food: String): Call<String>
+    @POST("kirim1")
+    fun saveData(@Body listPembeli: String): Call<String>
+
+    @POST("kirim2")
+    fun saveData2(@Body ListPesanan: String): Call<String>
 
 
 }

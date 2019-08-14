@@ -66,6 +66,7 @@ class LoginActivity : AppCompatActivity() {
                 if (response.isSuccessful) {
                     user = response.body()!!
 //                    prefs.saveUser(user)
+                    prefs.save("id_owner", user.id_owner)
                     prefs.save("username",user.username)
                     prefs.save("role",user.role)
                     prefs.save("password",user.password)

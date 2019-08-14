@@ -20,7 +20,7 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
         val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
 
 
-        var harga = Integer.parseInt(data.item.price.toString())  * data.total
+        var harga = Integer.parseInt(data.item.price.toString())  * data.total!!
         itemView.tv_item_detail?.text = data.item.name
         itemView.tv_jumlah?.text = "  x "+data.total
 //        itemView.tv_total_harga_barang?.text = " Rp "+tot
