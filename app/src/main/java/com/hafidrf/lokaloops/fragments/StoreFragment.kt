@@ -9,7 +9,6 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.common.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.*
 import com.hafidrf.lokaloops.rest.EndPoint
@@ -22,6 +21,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import com.hafidrf.lokaloops.activities.TransaksiActivity
 import com.hafidrf.lokaloops.utils.SharedPreference
+import android.R.attr.data
+import android.R
+
+
 
 
 class StoreFragment : Fragment(), ListItemVH.Callback {
@@ -43,7 +46,7 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
                               savedInstanceState: Bundle?): View? {
         // Inflate the layout for this fragment
 
-        return inflater.inflate(R.layout.fragment_store, container, false)
+        return inflater.inflate(com.hafidrf.lokaloops.R.layout.fragment_store, container, false)
 
     }
 
@@ -56,6 +59,7 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
+
 
         val sharedPreference: SharedPreference = SharedPreference(view.context)
         var rnds = (0..1000).random()
@@ -82,6 +86,7 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
                         loading.dismiss()
                         listAdapter.updateList(response.body()!!.result)
 
+
                 }
 
                 override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
@@ -91,13 +96,14 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         }
 
         listAdapter = object : com.hafidrf.lokaloops.models.Adapter<ListItem, ListItemVH>(
-            R.layout.item_list,
+            com.hafidrf.lokaloops.R.layout.item_list,
             arrayListOf(),
             ListItemVH::class.java,
             com.hafidrf.lokaloops.models.ListItem::class.java
         ){
             override fun bindView(holder: ListItemVH, model: ListItem, position: Int) {
                 holder.bind(model, this@StoreFragment)
+
             }
 
         }
@@ -159,5 +165,10 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         })
 
 
+    }
+
+    public fun hpsI (){
+        val ft = fragmentManager!!.beginTransaction()
+        ft.detach(this).attach(this).commit()
     }
 }

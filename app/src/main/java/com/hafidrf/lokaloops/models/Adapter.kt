@@ -63,4 +63,8 @@ abstract class Adapter<T, VH : RecyclerView.ViewHolder>(
         notifyDataSetChanged()
     }
 
+    fun haha(){
+        notifyDataSetChanged()
+    }
+
 }

@@ -53,8 +53,8 @@ class MainActivity : AppCompatActivity(), ListItemVH.Callback {
         when (it.itemId) {
 
             R.id.navigation_store -> {
-                val accountFragment = com.hafidrf.lokaloops.fragments.StoreFragment()
-                openFragment(accountFragment)
+                val storeFragment = com.hafidrf.lokaloops.fragments.StoreFragment()
+                openFragment(storeFragment)
                 return@OnNavigationItemSelectedListener true
             }
 

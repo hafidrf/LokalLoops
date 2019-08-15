@@ -7,6 +7,8 @@ import android.view.View
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hafidrf.lokaloops.R
+import com.hafidrf.lokaloops.fragments.StoreFragment
+import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.models.ListItem
 import com.hafidrf.lokaloops.models.NewPassResponse
 import com.hafidrf.lokaloops.models.stockResponse
@@ -31,9 +33,6 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 val sharedPreference : SharedPreference = SharedPreference(itemView.context)
 
-
-
-
     fun bind(data: ListItem, callback: Callback) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
@@ -52,6 +51,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
         itemView.tv_price?.text = hargaBarangRp
         cekStock = Integer.parseInt(data.quantity.toString())
         var stockIn = data.quantity
+
         itemView.iv_product?.apply {
 
             Glide.with(this)
@@ -142,6 +142,8 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
                         println("gagal")
                     }
                 })
+
+
             }
 
             dialog.btn_backtomenu?.setOnClickListener{
@@ -155,7 +157,8 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
     }
 
     interface Callback{
-        fun onSubmit(data: com.hafidrf.lokaloops.models.ListItem, number:Int)
+
+        fun onSubmit(data: ListItem, number:Int)
     }
 
 
