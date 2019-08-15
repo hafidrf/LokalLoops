@@ -23,8 +23,9 @@ import com.hafidrf.lokaloops.activities.TransaksiActivity
 import com.hafidrf.lokaloops.utils.SharedPreference
 import android.R.attr.data
 import android.R
-
-
+import android.text.Editable
+import android.text.TextWatcher
+import android.view.inputmethod.EditorInfo
 
 
 class StoreFragment : Fragment(), ListItemVH.Callback {
@@ -60,7 +61,6 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
 
-
         val sharedPreference: SharedPreference = SharedPreference(view.context)
         var rnds = (0..1000).random()
         sharedPreference.save("id_pembeli", rnds.toString())
@@ -73,9 +73,8 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
             ngaleh()
         }
 
-        btn_cari.setOnClickListener{
+        fun searching() {
             val ap = Cari()
-
             //akses setter untuk mengatur nilainya
             ap.name = et_pencarian?.text.toString()
 
@@ -84,8 +83,7 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
 
                     if(response.isSuccessful)
                         loading.dismiss()
-                        listAdapter.updateList(response.body()!!.result)
-
+                    listAdapter.updateList(response.body()!!.result)
 
                 }
 
@@ -93,6 +91,55 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
 
                 }
             })
+        }
+
+//        btn_cari.setOnClickListener{
+//            val ap = Cari()
+//            //akses setter untuk mengatur nilainya
+//            ap.name = et_pencarian?.text.toString()
+//
+//            EndPoint.client.create(InterfacePoint::class.java).cariData(ap.name).enqueue(object : Callback<ListItemResponse> {
+//                override fun onResponse(call: Call<ListItemResponse>, response: Response<ListItemResponse>) {
+//
+//                    if(response.isSuccessful)
+//                        loading.dismiss()
+//                        listAdapter.updateList(response.body()!!.result)
+//
+//                }
+//
+//                override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
+//
+//                }
+//            })
+//        }
+
+        et_pencarian.addTextChangedListener(object : TextWatcher {
+            override fun afterTextChanged(s: Editable?) {
+                btn_clear.visibility = View.VISIBLE
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                btn_clear.visibility = View.GONE
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                btn_clear.visibility = View.VISIBLE
+            }
+
+        })
+
+        btn_clear.setOnClickListener {
+            et_pencarian.text.clear()
+            btn_clear.visibility = View.GONE
+            val ft = fragmentManager!!.beginTransaction()
+            ft.detach(this).attach(this).commit()
+        }
+
+        et_pencarian.setOnEditorActionListener { v, actionId, event ->
+            if(actionId == EditorInfo.IME_ACTION_SEARCH) {
+                searching()
+            }
+            false
         }
 
         listAdapter = object : com.hafidrf.lokaloops.models.Adapter<ListItem, ListItemVH>(
@@ -103,7 +150,6 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         ){
             override fun bindView(holder: ListItemVH, model: ListItem, position: Int) {
                 holder.bind(model, this@StoreFragment)
-
             }
 
         }
@@ -155,20 +201,11 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
 
                 if(response.isSuccessful)
                     loading.dismiss()
-                    listAdapter.updateList(response.body()!!.result)
-
+                listAdapter.updateList(response.body()!!.result)
             }
-
             override fun onFailure(call: Call<ListItemResponse>, t: Throwable) {
 
             }
         })
-
-
-    }
-
-    public fun hpsI (){
-        val ft = fragmentManager!!.beginTransaction()
-        ft.detach(this).attach(this).commit()
     }
 }

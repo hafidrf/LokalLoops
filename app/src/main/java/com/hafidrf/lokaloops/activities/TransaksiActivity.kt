@@ -116,6 +116,8 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
     override fun onDelete(data: ListItemKeranjang, position: Int) {
         listAdapter.removeItem(position)
         session.remProduct(position)
+        finish()
+        startActivity(intent)
     }
 
 
