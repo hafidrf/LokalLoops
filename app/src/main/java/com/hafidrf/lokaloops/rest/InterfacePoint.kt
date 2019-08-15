@@ -16,11 +16,7 @@ interface InterfacePoint {
         @Query("password") password:String
     ): Call<com.hafidrf.lokaloops.models.UserResponse>
 
-    @GET("edit_password")
-    fun kirimPass(
-        @Query("id") id:String,
-        @Query("password_baru") password_baru: String
-    ): Call<NewPassResponse>
+
 
     @GET("store_offline")
     fun listItem(): Call<ListItemResponse>
@@ -30,9 +26,6 @@ interface InterfacePoint {
 
     @GET("riwayat")
     fun listHistory(): Call<ListHistoryResponse>
-
-    @GET("edit_password")
-    fun listAccount(): Call<ListAccountResponse>
 
 //    @POST("kirim")
 //    fun saveData(@Body test: Test ): Call<ApiResponse>
@@ -60,5 +53,22 @@ interface InterfacePoint {
     @POST("kirim2")
     fun saveData2(@Body ListPesanan: String): Call<String>
 
+    @GET("stock")
+    fun saveStock(
+        @Query("id") id:String,
+        @Query("stock") stock:String
+    ): Call<stockResponse>
+
+    @GET("stock2")
+    fun saveStock2(
+        @Query("id") id:String,
+        @Query("stock") stock:String
+    ): Call<stockResponse>
+
+    @GET("edit_password")
+    fun kirimPass(
+        @Query("id") id:String,
+        @Query("password_baru") password_baru: String
+    ): Call<NewPassResponse>
 
 }

@@ -8,13 +8,21 @@ import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.ListItem
+import com.hafidrf.lokaloops.models.NewPassResponse
+import com.hafidrf.lokaloops.models.stockResponse
+import com.hafidrf.lokaloops.rest.EndPoint
+import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListPesanan
 import com.hafidrf.lokaloops.utils.SharedPreference
+import kotlinx.android.synthetic.main.dialog_edit_password.*
 import kotlinx.android.synthetic.main.fragment_popup_order.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.toast
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
 
@@ -29,6 +37,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
     fun bind(data: ListItem, callback: Callback) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+         lateinit var tes: stockResponse
 
         val idp = sharedPreference.getValueString("id_pembeli")
         //format rupiah
@@ -42,6 +51,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
         itemView.tv_stock?.text = "Stock : " + data.quantity
         itemView.tv_price?.text = hargaBarangRp
         cekStock = Integer.parseInt(data.quantity.toString())
+        var stockIn = data.quantity
         itemView.iv_product?.apply {
 
             Glide.with(this)
@@ -118,16 +128,20 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
 //                itemView.tv_stock?.text = "Stock : " + upd
                 dialog.dismiss()
 
-//                if (sharedPreference.getValueString("id").equals(id)){
-//                    Log.e("data", data.toString())
-//                }else {
-//                    sharedPreference.save("id", id)
-//                    sharedPreference.save("produk", produk)
-//                    sharedPreference.save("price", price)
-//                    sharedPreference.save("num", num)
-//                    sharedPreference.save("catatan", catatan)
-//                    dialog.dismiss()
-//                }
+
+                EndPoint.client.create(InterfacePoint::class.java).saveStock(data.id.toString(), stck.toString()).enqueue(object:
+                    retrofit2.Callback<stockResponse> {
+                    override fun onResponse(call: Call<stockResponse>, response: Response<stockResponse>) {
+                        if (response.isSuccessful) {
+                            sharedPreference.save("stock",stockIn.toString())
+                           println("berhasil")
+                        } else {
+                        }
+                    }
+                    override fun onFailure(call: Call<stockResponse>, t: Throwable) {
+                        println("gagal")
+                    }
+                })
             }
 
             dialog.btn_backtomenu?.setOnClickListener{
