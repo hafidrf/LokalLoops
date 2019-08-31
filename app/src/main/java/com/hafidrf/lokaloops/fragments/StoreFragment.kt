@@ -33,6 +33,12 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
     override fun onSubmit(data: com.hafidrf.lokaloops.models.ListItem, number: Int) {
         tv_name?.text = data.name
         tv_stock?.text = number.toString()
+        refreshs()
+    }
+
+    public fun refreshs(){
+        val ft = fragmentManager!!.beginTransaction()
+        ft.detach(this).attach(this).commit()
     }
 
     companion object {
@@ -56,7 +62,13 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         activity!!.startActivity(intent)
     }
 
+    override fun onResume() {
+        super.onResume()
+//        val ft = fragmentManager!!.beginTransaction()
+//        ft.detach(this).attach(this).commit()
+        println("coba resume")
 
+    }
 
     override fun onViewCreated(view: View, savedInstanceState: Bundle?) {
         super.onViewCreated(view, savedInstanceState)
@@ -72,6 +84,8 @@ class StoreFragment : Fragment(), ListItemVH.Callback {
         btn_bayar.setOnClickListener{
             ngaleh()
         }
+
+//        btn_bayar.setBadgeValue(99)
 
         fun searching() {
             val ap = Cari()

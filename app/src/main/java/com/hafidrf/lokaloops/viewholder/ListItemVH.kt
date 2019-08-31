@@ -1,9 +1,12 @@
 package com.hafidrf.lokaloops.viewholder
 
+import android.content.Context
 import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.RecyclerView
 import android.util.Log
+import android.view.LayoutInflater
 import android.view.View
+import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
 import com.hafidrf.lokaloops.R
@@ -19,6 +22,8 @@ import com.hafidrf.lokaloops.utils.ListPesanan
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.dialog_edit_password.*
 import kotlinx.android.synthetic.main.fragment_popup_order.*
+import kotlinx.android.synthetic.main.fragment_store.*
+import kotlinx.android.synthetic.main.fragment_store.view.*
 import kotlinx.android.synthetic.main.item_list.view.*
 import org.jetbrains.anko.db.insert
 import org.jetbrains.anko.toast
@@ -36,7 +41,9 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
     fun bind(data: ListItem, callback: Callback) {
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
-         lateinit var tes: stockResponse
+        lateinit var tes: stockResponse
+
+        val layy = LayoutInflater.from(itemView.context).inflate(R.layout.fragment_store, null)
 
         val idp = sharedPreference.getValueString("id_pembeli")
         //format rupiah
@@ -101,8 +108,9 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
                 dialog.tv_stock2.text = number.toString()
             }
 
-
+            var bdg = 0
             dialog.btn_keranjang?.setOnClickListener{
+                layy.btn_bayar
                 var a = Integer.parseInt(data.quantity.toString())
                 var stck = a - number
 
@@ -126,7 +134,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
 
 //                val upd = sharedPreference.getValueString("stock")!!
 //                itemView.tv_stock?.text = "Stock : " + upd
-                dialog.dismiss()
+
 
 
                 EndPoint.client.create(InterfacePoint::class.java).saveStock(data.id.toString(), stck.toString()).enqueue(object:
@@ -142,7 +150,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
                         println("gagal")
                     }
                 })
-
+                dialog.dismiss()
 
             }
 
@@ -157,7 +165,6 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
     }
 
     interface Callback{
-
         fun onSubmit(data: ListItem, number:Int)
     }
 
