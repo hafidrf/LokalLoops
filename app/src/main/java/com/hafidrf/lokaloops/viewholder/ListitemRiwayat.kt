@@ -7,6 +7,7 @@ import android.view.View
 import com.hafidrf.lokaloops.activities.DetailHistoryActivity
 import com.hafidrf.lokaloops.models.ListHistory
 import com.hafidrf.lokaloops.utils.KeranjangSession
+import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.history_list.view.*
 import java.text.NumberFormat
 import java.util.*
@@ -16,7 +17,7 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
     fun bind(data: ListHistory, callback: Callback) {
-//        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
 
 
@@ -35,8 +36,16 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 //        itemView.tv_total_harga?.text = data.total_bayar
         val uangBayar = data.uang_bayar.toDouble()
         itemView.tv_total_bayar?.text = formatRupiah.format(uangBayar)
+        var ugbyr = formatRupiah.format(uangBayar)
 //        itemView.tv_uang_kembali?.text = data.uang_kembali
+
+        sharedPreference.save("uangBayar", ugbyr)
+        sharedPreference.save("nama_pembeli", data.nama_pembeli)
+        sharedPreference.save("tanggal", data.tanggal)
+        sharedPreference.save("id_pembeli_riwayat", data.id)
+
         Log.e("data", data.toString())
+        println(data.pesanan)
 
 //        keranjangSession.addHis(data.id,data.nama_pembeli,data.total_bayar,data.uang_bayar,data.uang_kembali,data.tanggal,data.item)
 

@@ -127,10 +127,12 @@ class BayarActivity : AppCompatActivity() {
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
             kembalian = n.toDouble() - hargaAkhir
-            tv_kembalian?.text = ":  Rp " + kembalian.toString()
+//            tv_kembalian?.text = ":  Rp " + kembalian.toString()
+            tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
             ung_byr = total_bayar
+            var ungbyr = Integer.parseInt(ung_byr)
             sharedPreference.save("uang_bayar", ung_byr)
-            tv_grand_bayar.text = formatRupiah.format(ung_byr)
+            tv_grand_bayar.text = ":  "+formatRupiah.format(ungbyr)
             et_byr_manual.text.clear()
         }
         btn20?.setOnClickListener {
@@ -139,7 +141,7 @@ class BayarActivity : AppCompatActivity() {
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 20.000"
             tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
-            tv_kembalian?.text = formatRupiah.format(kembalian)
+//            tv_kembalian?.text = formatRupiah.format(kembalian)
             btn20.isEnabled = false
             btn50.isEnabled = true
             btn100.isEnabled = true

@@ -6,11 +6,19 @@ import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.util.Log
 import android.widget.ArrayAdapter
+import android.widget.Toast
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.models.ListHistory
+import com.hafidrf.lokaloops.models.*
+import com.hafidrf.lokaloops.rest.EndPoint
+import com.hafidrf.lokaloops.rest.InterfacePoint
 import com.hafidrf.lokaloops.utils.PrefsUtil
+import com.hafidrf.lokaloops.utils.SharedPreference
 import com.hafidrf.lokaloops.viewholder.ListitemRiwayat
 import kotlinx.android.synthetic.main.activity_detail_history.*
+import kotlinx.android.synthetic.main.dialog_edit_password.*
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetailHistoryActivity : AppCompatActivity(){
 
@@ -49,9 +57,31 @@ class DetailHistoryActivity : AppCompatActivity(){
 
     }
 
+    private lateinit var dataa : Pesanann
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_history)
+        val sharedPreference: SharedPreference = SharedPreference(this)
+
+        var uangBayar = sharedPreference.getValueString("uangBayar")
+        var nama_pembeli = sharedPreference.getValueString("nama_pembeli")
+        var tanggal = sharedPreference.getValueString("tanggal")
+        var id_pembeli_riwayat = sharedPreference.getValueString("id_pembeli_riwayat")
+
+        EndPoint.client.create(InterfacePoint::class.java).listHistoryDetail(id_pembeli_riwayat.toString()).enqueue(object: Callback<Pesanann>{
+            override fun onResponse(call: Call<Pesanann>, response: Response<Pesanann>) {
+                if (response.isSuccessful) {
+                    dataa = response.body()!!
+                    this@DetailHistoryActivity.tv_total_harga?.text = dataa.jumlah_pesan
+                } else {
+                }
+            }
+            override fun onFailure(call: Call<Pesanann>, t: Throwable) {
+                Toast.makeText(this@DetailHistoryActivity, "Gagal mengganti password", Toast.LENGTH_LONG).show()
+            }
+
+        })
 
 //        val adapter = ArrayAdapter(this,
 //            R.layout.ls_, array)

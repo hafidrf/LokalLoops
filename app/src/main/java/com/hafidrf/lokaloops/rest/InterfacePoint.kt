@@ -27,6 +27,11 @@ interface InterfacePoint {
     @GET("riwayat")
     fun listHistory(): Call<ListHistoryResponse>
 
+    @GET("riwayatdetail")
+    fun listHistoryDetail(
+        @Query("id_pembeli_riwayat") id_pembeli_riwayat:String
+        ): Call<Pesanann>
+
 //    @POST("kirim")
 //    fun saveData(@Body test: Test ): Call<ApiResponse>
 
