@@ -43,6 +43,11 @@ class DetailHistoryActivity : AppCompatActivity() {
 //            }
 //
 //        })
+<<<<<<< HEAD
+=======
+
+
+>>>>>>> 37e12d2aa1a7b3e1bf088d92b5258116d142eee6
         btn_back.setOnClickListener {
             finish()
         }
