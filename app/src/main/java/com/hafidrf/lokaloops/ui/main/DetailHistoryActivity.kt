@@ -24,25 +24,27 @@ class DetailHistoryActivity : AppCompatActivity() {
 
         var id_pembeli_riwayat = sharedPreference.getValueString("id_pembeli_riwayat")
 
-        EndPoint.client.create(InterfacePoint::class.java)
-            .listHistoryDetail(id_pembeli_riwayat.toString()).enqueue(object : Callback<Pesanann> {
-            override fun onResponse(call: Call<Pesanann>, response: Response<Pesanann>) {
-                if (response.isSuccessful) {
-                    dataa = response.body()!!
-                    this@DetailHistoryActivity.tv_total_harga?.text = dataa.jumlah_pesan
-                } else {
-                }
-            }
+//        EndPoint.client.create(InterfacePoint::class.java)
+//            .listHistoryDetail(id_pembeli_riwayat.toString()).enqueue(object : Callback<Pesanann> {
+//            override fun onResponse(call: Call<Pesanann>, response: Response<Pesanann>) {
+//                if (response.isSuccessful) {
+//                    dataa = response.body()!!
+//                    this@DetailHistoryActivity.tv_total_harga?.text = dataa.jumlah_pesan
+//                } else {
+//                }
+//            }
+//
+//            override fun onFailure(call: Call<Pesanann>, t: Throwable) {
+//                Toast.makeText(
+//                    this@DetailHistoryActivity,
+//                    "Gagal mengganti password",
+//                    Toast.LENGTH_LONG
+//                ).show()
+//            }
+//
+//        })
 
-            override fun onFailure(call: Call<Pesanann>, t: Throwable) {
-                Toast.makeText(
-                    this@DetailHistoryActivity,
-                    "Gagal mengganti password",
-                    Toast.LENGTH_LONG
-                ).show()
-            }
 
-        })
         btn_back.setOnClickListener {
             finish()
         }
