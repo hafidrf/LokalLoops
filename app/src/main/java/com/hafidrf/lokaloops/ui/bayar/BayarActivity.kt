@@ -77,8 +77,6 @@ class BayarActivity : AppCompatActivity() {
 
         val price = sharedPreference.getValueString("total_hrg")!!
 
-        val tot = price.toString()
-
         //format rupiah
         val localeID = Locale("in", "ID")
         val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
@@ -102,13 +100,13 @@ class BayarActivity : AppCompatActivity() {
 
 
         var hargaAkhir = 0.00
-        btn_diskon.setOnClickListener {
-            val diskon = et_diskon.text.toString().toDouble() / 100
-            val diskon2 = hargaAwal * diskon
-            hargaAkhir = hargaKenaPpn - diskon2
-//            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
-            tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
-        }
+//        btn_diskon.setOnClickListener {
+//            val diskon = et_diskon.text.toString().toDouble() / 100
+//            val diskon2 = hargaAwal * diskon
+//            hargaAkhir = hargaKenaPpn - diskon2
+////            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
+//            tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
+//        }
 
         if (hargaAkhir.equals(0.00)){
             hargaAkhir = hargaKenaPpn
@@ -123,7 +121,6 @@ class BayarActivity : AppCompatActivity() {
             val total_bayar = et_byr_manual.text.toString()
             var n = Integer.parseInt(total_bayar)
             kembalian = n.toDouble() - hargaAkhir
-//            tv_kembalian?.text = ":  Rp " + kembalian.toString()
             tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
             ung_byr = total_bayar
             var ungbyr = Integer.parseInt(ung_byr)
@@ -137,7 +134,6 @@ class BayarActivity : AppCompatActivity() {
             sharedPreference.save("uang_bayar", ung_byr)
             tv_grand_bayar.text = ":  Rp 20.000"
             tv_kembalian?.text = ":  " + formatRupiah.format(kembalian)
-//            tv_kembalian?.text = formatRupiah.format(kembalian)
             btn20.isEnabled = false
             btn50.isEnabled = true
             btn100.isEnabled = true
@@ -178,10 +174,10 @@ class BayarActivity : AppCompatActivity() {
             et_byr_manual.text.clear()
         }
 
-        btn_sign_up?.setOnClickListener {
-            tv_nama_pelanggan?.text = ":  " + et_nama_user?.text.toString()
-            sharedPreference.save("nama_pembeli", et_nama_user?.text.toString())
-        }
+//        btn_sign_up?.setOnClickListener {
+//            tv_nama_pelanggan?.text = ":  " + et_nama_user?.text.toString()
+//            sharedPreference.save("nama_pembeli", et_nama_user?.text.toString())
+//        }
 
 //        var nm_pm = prefs.getValueString("nama")
 //        var idf = nm_pm + rnds.toString()

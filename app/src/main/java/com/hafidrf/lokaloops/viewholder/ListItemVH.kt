@@ -5,7 +5,6 @@ import android.support.v7.widget.RecyclerView
 import android.view.LayoutInflater
 import android.view.View
 import com.bumptech.glide.Glide
-//import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.ListItem
 import com.hafidrf.lokaloops.models.stockResponse
 import com.hafidrf.lokaloops.network.EndPoint
@@ -20,18 +19,19 @@ import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
 
-//import android.R
 
+class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
-class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
+    val sharedPreference : SharedPreference = SharedPreference(itemView.context)
 
-    fun bind(data: ListItem) {
-        val keranjangSession = KeranjangSession(itemView.context)
-        val sharedPreference = SharedPreference(itemView.context)
-        val layy = LayoutInflater.from(itemView.context)
-            .inflate(com.hafidrf.lokaloops.R.layout.fragment_store, null)
+    fun bind(data: ListItem, callback: Callback) {
+        val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+        val sharedPreference: SharedPreference = SharedPreference(itemView.context)
+        lateinit var tes: stockResponse
+
+        val layy = LayoutInflater.from(itemView.context).inflate(com.hafidrf.lokaloops.R.layout.fragment_store, null)
+
         val idp = sharedPreference.getValueString("id_pembeli")
-
         //format rupiah
         val localeID = Locale("in", "ID")
         val formatRupiah = NumberFormat.getCurrencyInstance(localeID)
@@ -42,7 +42,7 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
         itemView.tv_name?.text = data.name
         itemView.tv_stock?.text = "Stock : " + data.quantity
         itemView.tv_price?.text = hargaBarangRp
-//        cekStock = Integer.parseInt(data.quantity.toString())
+        cekStock = Integer.parseInt(data.quantity.toString())
         var stockIn = data.quantity
 
         itemView.iv_product?.apply {
@@ -53,6 +53,8 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
         }
 
+//        val quan = Integer.parseInt(data.price.toString())
+
         itemView.bt_order?.setOnClickListener {
 
             val dialog = BottomSheetDialog(itemView.context)
@@ -60,6 +62,8 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             dialog.tv_namabarang?.text = data.name + " " + hargaBarangRp
             val quan = Integer.parseInt(data.price.toString())
             var number = Integer.parseInt(dialog.tv_stock2.text.toString())
+//            val subtotal = quan * number
+
 
             dialog.bt_min?.setOnClickListener {
                 number -= 1
@@ -76,7 +80,7 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
             dialog.bt_plus?.setOnClickListener {
                 if (number < cekStock) {
                     number += 1
-                } else {
+                }else{
                     number = cekStock
                 }
 
@@ -90,53 +94,66 @@ class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView) {
                 dialog.tv_stock2.text = number.toString()
             }
 
-            dialog.btn_keranjang?.setOnClickListener {
+            var bdg = 0
+            dialog.btn_keranjang?.setOnClickListener{
                 layy.btn_bayar
                 var a = Integer.parseInt(data.quantity.toString())
                 var stck = a - number
 
+                val id = data.id.toString()
+                val produk = data.name.toString()
+                val price = data.price.toString()
                 val num = number.toString()
                 val catatan = dialog.et_note.text.toString()
-                keranjangSession.addProduct(data, num.toInt(), catatan)
+//                sharedPreference.save("id", id)
+//                sharedPreference.save("produk", produk)
+//                sharedPreference.save("price", price)
+//                sharedPreference.save("num", num)
+//                sharedPreference.save("catatan", catatan)
+//                sharedPreference.save("stock", stck.toString())
+                keranjangSession.addProduct(data,num.toInt(),catatan)
 
                 var totHrg = num.toInt() * data.price!!
-                keranjangSession.addProductPesanan(
-                    data.name.toString(), data.price.toString(),
+                keranjangSession.addProductPesanan(data.name.toString() ,data.price.toString(),
                     num.toInt().toString(), totHrg.toString(),
-                    catatan, idp.toString()
-                )
+                    catatan,idp.toString())
 
-                EndPoint.client.create(InterfacePoint::class.java)
-                    .saveStock(data.id.toString(), stck.toString()).enqueue(object :
+//                val upd = sharedPreference.getValueString("stock")!!
+//                itemView.tv_stock?.text = "Stock : " + upd
+
+
+
+                EndPoint.client.create(InterfacePoint::class.java).saveStock(data.id.toString(), stck.toString()).enqueue(object:
                     retrofit2.Callback<stockResponse> {
-                    override fun onResponse(
-                        call: Call<stockResponse>,
-                        response: Response<stockResponse>
-                    ) {
+                    override fun onResponse(call: Call<stockResponse>, response: Response<stockResponse>) {
                         if (response.isSuccessful) {
-                            sharedPreference.save("stock", stockIn.toString())
+                            sharedPreference.save("stock",stockIn.toString())
                             println("berhasil")
                         } else {
                         }
                     }
-
                     override fun onFailure(call: Call<stockResponse>, t: Throwable) {
                         println("gagal")
                     }
                 })
                 dialog.dismiss()
+
+
             }
-            dialog.btn_backtomenu?.setOnClickListener {
+
+            dialog.btn_backtomenu?.setOnClickListener{
                 dialog.dismiss()
             }
+
+            //dialog.setCancelable(false)
             dialog.show()
         }
 
     }
 
-//    interface Callback {
-//        fun onSubmit(data: ListItem, number: Int)
-//    }
+    interface Callback{
+        fun onSubmit(data: ListItem, number:Int)
+    }
 
 
 }

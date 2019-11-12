@@ -22,20 +22,21 @@ import com.hafidrf.lokaloops.utils.SharedPreference
 import android.text.Editable
 import android.text.TextWatcher
 import android.view.inputmethod.EditorInfo
+import kotlinx.android.synthetic.main.item_list.*
 
 
-class StoreFragment : Fragment() {
+class StoreFragment : Fragment(), ListItemVH.Callback {
 
-//    override fun onSubmit(data: ListItem, number: Int) {
-//        tv_name?.text = data.name
-//        tv_stock?.text = number.toString()
-//        refreshs()
-//    }
+    override fun onSubmit(data: ListItem, number: Int) {
+        tv_name?.text = data.name
+        tv_stock?.text = number.toString()
+        refreshs()
+    }
 
-//    fun refreshs() {
-//        val ft = fragmentManager!!.beginTransaction()
-//        ft.detach(this).attach(this).commit()
-//    }
+    fun refreshs() {
+        val ft = fragmentManager!!.beginTransaction()
+        ft.detach(this).attach(this).commit()
+    }
 
     private lateinit var listAdapter: Adapter<ListItem, ListItemVH>
 
@@ -100,7 +101,7 @@ class StoreFragment : Fragment() {
             ListItem::class.java
         ) {
             override fun bindView(holder: ListItemVH, model: ListItem, position: Int) {
-                holder.bind(model)
+                holder.bind(model, this@StoreFragment)
             }
 
         }
