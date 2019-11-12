@@ -1,4 +1,4 @@
-package com.hafidrf.lokaloops.common
+package com.hafidrf.lokaloops.utils
 
 import android.content.Context
 import android.graphics.Rect

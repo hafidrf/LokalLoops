@@ -1,7 +1,6 @@
 package com.hafidrf.lokaloops.ui.main
 
 import android.app.ProgressDialog
-import android.content.Context
 import android.content.Intent
 import android.os.Bundle
 import android.support.v4.app.Fragment
@@ -9,13 +8,12 @@ import android.support.v7.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import com.hafidrf.lokaloops.common.VerticalSpaceItem
+import com.hafidrf.lokaloops.utils.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.*
 import com.hafidrf.lokaloops.network.EndPoint
 import com.hafidrf.lokaloops.network.InterfacePoint
 import com.hafidrf.lokaloops.viewholder.ListItemVH
 import kotlinx.android.synthetic.main.fragment_store.*
-import kotlinx.android.synthetic.main.item_list.*
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response

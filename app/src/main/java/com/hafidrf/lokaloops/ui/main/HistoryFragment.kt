@@ -11,7 +11,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import com.hafidrf.lokaloops.R
-import com.hafidrf.lokaloops.common.VerticalSpaceItem
+import com.hafidrf.lokaloops.utils.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.models.ListHistory
 import com.hafidrf.lokaloops.models.ListHistoryResponse

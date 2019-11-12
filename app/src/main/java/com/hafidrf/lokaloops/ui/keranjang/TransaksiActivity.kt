@@ -8,7 +8,7 @@ import android.support.v7.widget.LinearLayoutManager
 import android.util.Log
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.ui.bayar.BayarActivity
-import com.hafidrf.lokaloops.common.VerticalSpaceItem
+import com.hafidrf.lokaloops.utils.VerticalSpaceItem
 import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
