@@ -11,6 +11,7 @@ import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.models.*
 import com.hafidrf.lokaloops.rest.EndPoint
 import com.hafidrf.lokaloops.rest.InterfacePoint
+import com.hafidrf.lokaloops.utils.HystorySession
 import com.hafidrf.lokaloops.utils.PrefsUtil
 import com.hafidrf.lokaloops.utils.SharedPreference
 import com.hafidrf.lokaloops.viewholder.ListitemRiwayat
@@ -20,7 +21,18 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailHistoryActivity : AppCompatActivity(){
+class DetailHistoryActivity : AppCompatActivity(), ListitemRiwayat.Callback{
+    override fun onSubmit(data: ListHistory, number: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun onClick(data: ListHistory, position: Int) {
+        TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+    }
+
+    override fun dataSend(data: ListHistory, position: Int) {
+            println("hahaha"+data.nama_pembeli)
+    }
 
     var array = arrayOf("Melbourne", "Vienna", "Vancouver", "Toronto", "Calgary", "Adelaide", "Perth", "Auckland", "Helsinki", "Hamburg", "Munich", "New York", "Sydney", "Paris", "Cape Town", "Barcelona", "London", "Bangkok")
 
@@ -57,31 +69,60 @@ class DetailHistoryActivity : AppCompatActivity(){
 
     }
 
+
+
     private lateinit var dataa : Pesanann
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_history)
         val sharedPreference: SharedPreference = SharedPreference(this)
+        val HystorySession: HystorySession = HystorySession(this)
+
+        var id_pembeli_riwayat = sharedPreference.getValueString("id_pembeli_riwayat")
+        val listProduk = HystorySession.getKeranjangFull()!!
+
+        println(id_pembeli_riwayat+"inilah")
+
+//        for (i in 0 until listProduk.size) {
+////            if (listProduk[i].id == id_pembeli_his){
+//                println(
+//                    "ini perulangan " + listProduk[i].id + "^^" + id_pembeli_riwayat + "--" + listProduk[i].item.jumlah_pesan
+//                            + listProduk[i].item.harga
+//                )
+//            tv_produkitem.text = listProduk[i].item.item
+//            tv_jumlahpesan.text = listProduk[i].item.jumlah_pesan
+//            tv_hargabarang.text = listProduk[i].item.harga
+////            }
+//        }
+
+//        listProduk.forEach {
+//            println("ini coba "+it.item.item+it.item.harga+it.item.total_harga)
+//            tv_produkitem.text = it.item.item
+//            tv_jumlahpesan.text = it.item.jumlah_pesan
+//            tv_hargabarang.text = it.item.total_harga
+//        }
 
         var uangBayar = sharedPreference.getValueString("uangBayar")
         var nama_pembeli = sharedPreference.getValueString("nama_pembeli")
         var tanggal = sharedPreference.getValueString("tanggal")
-        var id_pembeli_riwayat = sharedPreference.getValueString("id_pembeli_riwayat")
 
-        EndPoint.client.create(InterfacePoint::class.java).listHistoryDetail(id_pembeli_riwayat.toString()).enqueue(object: Callback<Pesanann>{
-            override fun onResponse(call: Call<Pesanann>, response: Response<Pesanann>) {
-                if (response.isSuccessful) {
-                    dataa = response.body()!!
-                    this@DetailHistoryActivity.tv_total_harga?.text = dataa.jumlah_pesan
-                } else {
-                }
-            }
-            override fun onFailure(call: Call<Pesanann>, t: Throwable) {
-                Toast.makeText(this@DetailHistoryActivity, "Gagal mengganti password", Toast.LENGTH_LONG).show()
-            }
 
-        })
+//        EndPoint.client.create(InterfacePoint::class.java).listHistoryDetail(id_pembeli_riwayat.toString()).enqueue(object: Callback<Pesanann>{
+//            override fun onResponse(call: Call<Pesanann>, response: Response<Pesanann>) {
+//                if (response.isSuccessful) {
+//                    dataa = response.body()!!
+//                    this@DetailHistoryActivity.tv_total_harga?.text = dataa.jumlah_pesan
+//                } else {
+//                }
+//            }
+//            override fun onFailure(call: Call<Pesanann>, t: Throwable) {
+//                Toast.makeText(this@DetailHistoryActivity, "Gagal mengganti password", Toast.LENGTH_LONG).show()
+//            }
+//
+//        })
+
+
 
 //        val adapter = ArrayAdapter(this,
 //            R.layout.ls_, array)
@@ -113,6 +154,7 @@ class DetailHistoryActivity : AppCompatActivity(){
 
         btn_back.setOnClickListener {
             finish()
+            HystorySession.clearSharedPreference()
         }
 
 

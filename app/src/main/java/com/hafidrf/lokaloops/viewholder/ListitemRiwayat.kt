@@ -6,6 +6,7 @@ import android.util.Log
 import android.view.View
 import com.hafidrf.lokaloops.activities.DetailHistoryActivity
 import com.hafidrf.lokaloops.models.ListHistory
+import com.hafidrf.lokaloops.utils.HystorySession
 import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.history_list.view.*
@@ -16,9 +17,10 @@ import java.util.*
 class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
-    fun bind(data: ListHistory, callback: Callback) {
+    fun bind(data: ListHistory, callback: Callback, position: Int) {
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         val keranjangSession: KeranjangSession = KeranjangSession(itemView.context)
+        val HystorySession: HystorySession = HystorySession(itemView.context)
 
 
         //format rupiah
@@ -27,7 +29,8 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
 
         itemView.rv_to_hisdetail.setOnClickListener {
-            callback.onClick(data)
+            callback.onClick(data, position)
+            callback.dataSend(data,position)
         }
 
         itemView.tv_tanggal?.text = data.tanggal
@@ -39,13 +42,13 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
         var ugbyr = formatRupiah.format(uangBayar)
 //        itemView.tv_uang_kembali?.text = data.uang_kembali
 
+
         sharedPreference.save("uangBayar", ugbyr)
         sharedPreference.save("nama_pembeli", data.nama_pembeli)
         sharedPreference.save("tanggal", data.tanggal)
         sharedPreference.save("id_pembeli_riwayat", data.id)
-
-        Log.e("data", data.toString())
-        println(data.pesanan)
+//        println("posisi"+position)
+//        HystorySession.addProduct(data.pesanan, data.id)
 
 //        keranjangSession.addHis(data.id,data.nama_pembeli,data.total_bayar,data.uang_bayar,data.uang_kembali,data.tanggal,data.item)
 
@@ -73,7 +76,8 @@ class ListitemRiwayat(itemView: View) : RecyclerView.ViewHolder(itemView) {
 
     interface Callback {
         fun onSubmit(data: ListHistory, number: Int)
-        fun onClick(data: ListHistory)
+        fun onClick(data: ListHistory, position: Int)
+        fun dataSend(data: ListHistory, position: Int)
     }
 
 

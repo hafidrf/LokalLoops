@@ -23,14 +23,24 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 import com.hafidrf.lokaloops.activities.DetailHistoryActivity
+import com.hafidrf.lokaloops.utils.SharedPreference
 import org.jetbrains.anko.support.v4.intentFor
 import java.util.*
 
 
 class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
+    override fun dataSend(data: ListHistory, position: Int) {
+        val sharedPreference: SharedPreference = SharedPreference(this.context!!)
+        val cob = sharedPreference.getValueString("nama_pembeli")
+        println("disini"+cob+" posisiiii"+position)
+        sharedPreference.save("harusnya", cob.toString())
+    }
 
-    override fun onClick(data: ListHistory) {
-       startActivity(intentFor<DetailHistoryActivity>() )
+    override fun onClick(data: ListHistory, position: Int) {
+        val sharedPreference: SharedPreference = SharedPreference(this.context!!)
+        val cob = sharedPreference.getValueString("nama_pembeli")
+        println("disini"+cob+" posisiiii"+position)
+        startActivity(intentFor<DetailHistoryActivity>() )
     }
 
     override fun onSubmit(data: ListHistory, number: Int) {
@@ -79,7 +89,7 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
             com.hafidrf.lokaloops.models.ListHistory::class.java
         ){
             override fun bindView(holder: ListitemRiwayat, model: ListHistory, position: Int) {
-                holder.bind(model, this@HistoryFragment)
+                holder.bind(model, this@HistoryFragment,position)
             }
 
         }
