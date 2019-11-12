@@ -1,5 +1,7 @@
 package com.hafidrf.lokaloops.viewholder
 
+import android.app.AlertDialog
+import android.support.design.widget.BottomSheetDialog
 import android.support.v7.widget.RecyclerView
 import android.view.View
 import com.hafidrf.lokaloops.models.stockResponse
@@ -9,11 +11,18 @@ import com.hafidrf.lokaloops.utils.KeranjangSession
 import com.hafidrf.lokaloops.utils.ListItemKeranjang
 import com.hafidrf.lokaloops.utils.SharedPreference
 import kotlinx.android.synthetic.main.activity_transaksi.view.*
+import kotlinx.android.synthetic.main.fragment_popup_hapus.*
 import kotlinx.android.synthetic.main.item_list_checkout.view.*
 import retrofit2.Call
 import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
+import com.hafidrf.lokaloops.activities.MainActivity
+import android.content.DialogInterface
+
+
+
+
 
 
 class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -37,25 +46,46 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 
 
         itemView.btn_delete?.setOnClickListener {
-            callback.onDelete(data, position)
+
+//            val dialog = BottomSheetDialog(itemView.context)
+//            dialog.setContentView(com.hafidrf.lokaloops.R.layout.fragment_popup_hapus)
+
+            // setup the alert builder
+            val builder = AlertDialog.Builder(itemView.context)
+            builder.setTitle("Notice")
+            builder.setMessage("Apakah anda ingin menghapus "+data.item.name+" ini?")
+
+            // add the buttons
+            builder.setPositiveButton(
+                "Ya"
+            ) { dialog, which ->
+                println("berhasil lur")
+                callback.onDelete(data, position)
 //            keranjangSession.remProduct(data.item,data.total,data.catatan)
-            println(position)
+                println(position)
 //            keranjangSession.remProduct(position)
-            var stck = sharedPreference.getValueString("stock")
-            EndPoint.client.create(InterfacePoint::class.java).saveStock2(data.item.id.toString(),
-                data.total.toString()).enqueue(object:
-                retrofit2.Callback<stockResponse> {
-                override fun onResponse(call: Call<stockResponse>, response: Response<stockResponse>) {
-                    if (response.isSuccessful) {
+                var stck = sharedPreference.getValueString("stock")
+                EndPoint.client.create(InterfacePoint::class.java).saveStock2(data.item.id.toString(),
+                    data.total.toString()).enqueue(object:
+                    retrofit2.Callback<stockResponse> {
+                    override fun onResponse(call: Call<stockResponse>, response: Response<stockResponse>) {
+                        if (response.isSuccessful) {
 //                        sharedPreference.removeValue("stock")
-                        println("berhasil")
-                    } else {
+                            println("berhasil")
+                        } else {
+                        }
                     }
-                }
-                override fun onFailure(call: Call<stockResponse>, t: Throwable) {
-                    println("gagal")
-                }
-            })
+                    override fun onFailure(call: Call<stockResponse>, t: Throwable) {
+                        println("gagal")
+                    }
+                })
+            }
+            builder.setNegativeButton("Tidak", null)
+
+            // create and show the alert dialog
+            val dialog = builder.create()
+            dialog.show()
+
 
         }
 
@@ -64,6 +94,10 @@ class ListCheckoutVH(itemView: View) : RecyclerView.ViewHolder(itemView){
 //    interface Callback{
 //        fun onSubmit(data: ListCheckoutVH, number:Int)
 //    }
+
+}
+
+private fun AlertDialog.Builder.setButton(buttonNeutral: Int, s: String, onClickListener: DialogInterface.OnClickListener) {
 
 }
 

@@ -9,7 +9,7 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.Toast
 import com.bumptech.glide.Glide
-import com.hafidrf.lokaloops.R
+//import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.fragments.StoreFragment
 import com.hafidrf.lokaloops.models.Adapter
 import com.hafidrf.lokaloops.models.ListItem
@@ -32,6 +32,10 @@ import retrofit2.Callback
 import retrofit2.Response
 import java.text.NumberFormat
 import java.util.*
+import android.support.v4.content.ContextCompat.startActivity
+import android.content.Intent
+//import android.R
+import com.hafidrf.lokaloops.activities.BayarActivity
 
 
 class ListItemVH(itemView: View) : RecyclerView.ViewHolder(itemView){
@@ -43,7 +47,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
         val sharedPreference: SharedPreference = SharedPreference(itemView.context)
         lateinit var tes: stockResponse
 
-        val layy = LayoutInflater.from(itemView.context).inflate(R.layout.fragment_store, null)
+        val layy = LayoutInflater.from(itemView.context).inflate(com.hafidrf.lokaloops.R.layout.fragment_store, null)
 
         val idp = sharedPreference.getValueString("id_pembeli")
         //format rupiah
@@ -72,7 +76,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
         itemView.bt_order?.setOnClickListener {
 
             val dialog = BottomSheetDialog(itemView.context)
-            dialog.setContentView(R.layout.fragment_popup_order)
+            dialog.setContentView(com.hafidrf.lokaloops.R.layout.fragment_popup_order)
             dialog.tv_namabarang?.text = data.name + " " + hargaBarangRp
             val quan = Integer.parseInt(data.price.toString())
             var number = Integer.parseInt(dialog.tv_stock2.text.toString())
@@ -151,6 +155,7 @@ val sharedPreference : SharedPreference = SharedPreference(itemView.context)
                     }
                 })
                 dialog.dismiss()
+
 
             }
 
