@@ -56,6 +56,8 @@ dependencies {
     implementation project(':library')
     implementation 'com.google.android.gms:play-services-analytics:16.0.6'
     implementation 'com.github.nikartm:image-support:1.0.5'
+    implementation 'android.arch.navigation:navigation-fragment-ktx:1.0.0'
+    implementation 'android.arch.navigation:navigation-ui-ktx:1.0.0'
 
 
 }

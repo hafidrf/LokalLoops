@@ -7,7 +7,7 @@
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
 
     <application
-            android:name=".activities.App"
+            android:name=".utils.App"
             android:allowBackup="true"
             android:icon="@mipmap/icon_logo"
             android:label="@string/app_name"
@@ -16,26 +16,26 @@
             android:theme="@style/AppTheme">
         <activity android:name=".activities.Main2Activity">
         </activity>
-        <activity android:name=".activities.DetailHistoryActivity">
+        <activity android:name=".ui.main.DetailHistoryActivity">
         </activity>
-        <activity android:name=".activities.SplashActivity">
+        <activity android:name=".ui.login.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN"/>
 
                 <category android:name="android.intent.category.LAUNCHER"/>
             </intent-filter>
         </activity>
-        <activity android:name=".activities.BayarActivity">
+        <activity android:name=".ui.bayar.BayarActivity">
         </activity>
-        <activity android:name=".activities.TransaksiActivity">
+        <activity android:name=".ui.keranjang.TransaksiActivity">
         </activity>
-        <activity android:name=".activities.Print_factur">
+        <activity android:name=".utils.Print_factur">
         </activity>
         <activity
-                android:name=".activities.MainActivity"
+                android:name=".ui.main.MainActivity"
                 android:windowSoftInputMode="adjustPan">
         </activity>
-        <activity android:name=".activities.LoginActivity">
+        <activity android:name=".ui.login.LoginActivity">
         </activity>
 
         <receiver

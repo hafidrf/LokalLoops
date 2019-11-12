@@ -3,7 +3,7 @@
               android:layout_width="match_parent"
               android:layout_height="match_parent"
               android:orientation="vertical"
-              tools:context=".activities.Print_factur">
+              tools:context=".utils.Print_factur">
 
     <com.leerybit.escpos.widgets.TicketPreview
             android:id="@+id/ticketHeader"

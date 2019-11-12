@@ -11,7 +11,3 @@ class Cari {
             field = value
         }
 }
-
-data class CariResponse(
-    val result: ArrayList<Cari>
-)
