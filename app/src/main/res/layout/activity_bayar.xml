@@ -146,6 +146,14 @@
                         android:layout_marginStart="12dp"
                         android:text="%" />
 
+                <Button
+                        android:id="@+id/btn_diskon"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:text="OK"
+                        android:background="@drawable/btn_bg"/>
+
 
             </LinearLayout>
 
@@ -217,6 +225,20 @@
                 <!--android:text="Kartu Kredit"-->
                 <!--android:layout_weight="1"-->
                 <!--android:layout_height="wrap_content"/>-->
+            </LinearLayout>
+
+            <LinearLayout
+                    android:id="@+id/bayar_lain"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                <EditText
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginTop="24dp"
+                        android:layout_marginBottom="24dp"/>
             </LinearLayout>
 
             <LinearLayout

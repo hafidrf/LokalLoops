@@ -37,12 +37,6 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
         println(data.nama_pembeli)
     }
 
-    companion object {
-
-        fun getIntent(ctx : Context?) = Intent(ctx, HistoryFragment::class.java)
-
-    }
-
     private lateinit var listAdapter : Adapter<ListHistory, ListitemRiwayat>
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?,
@@ -62,7 +56,7 @@ class HistoryFragment : Fragment(), ListitemRiwayat.Callback {
             R.layout.history_list,
             arrayListOf(),
             ListitemRiwayat::class.java,
-            com.hafidrf.lokaloops.models.ListHistory::class.java
+            ListHistory::class.java
         ){
             override fun bindView(holder: ListitemRiwayat, model: ListHistory, position: Int) {
                 holder.bind(model, this@HistoryFragment)

@@ -4,6 +4,7 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
+import android.view.inputmethod.EditorInfo
 import android.widget.AdapterView
 import android.widget.ArrayAdapter
 import retrofit2.Callback
@@ -48,18 +49,22 @@ class BayarActivity : AppCompatActivity() {
         spin_bayar.onItemSelectedListener = object : AdapterView.OnItemSelectedListener {
             override fun onItemSelected(parent: AdapterView<*>, view: View, position: Int, id: Long) {
                 // Display the selected item text on text view
-                if (parent.getItemAtPosition(position).toString() == "KartuKredit") {
+                if (parent.getItemAtPosition(position).toString() == "KartuKredit" ||
+                    parent.getItemAtPosition(position).toString() == "Ovo" ||
+                    parent.getItemAtPosition(position).toString() == "Sakuku") {
                     btn_tunai1.setVisibility(View.GONE)
                     btn_tunai2.setVisibility(View.GONE)
                     btn_tunai3.setVisibility(View.GONE)
                     btn_tunai4.setVisibility(View.GONE)
                     btn_tunai5.setVisibility(View.GONE)
+                    bayar_lain.setVisibility(View.VISIBLE)
                 } else {
                     btn_tunai1.setVisibility(View.VISIBLE)
                     btn_tunai2.setVisibility(View.VISIBLE)
                     btn_tunai3.setVisibility(View.VISIBLE)
                     btn_tunai4.setVisibility(View.VISIBLE)
                     btn_tunai5.setVisibility(View.VISIBLE)
+                    bayar_lain.setVisibility(View.GONE)
                 }
             }
 
@@ -100,13 +105,24 @@ class BayarActivity : AppCompatActivity() {
 
 
         var hargaAkhir = 0.00
-//        btn_diskon.setOnClickListener {
-//            val diskon = et_diskon.text.toString().toDouble() / 100
-//            val diskon2 = hargaAwal * diskon
-//            hargaAkhir = hargaKenaPpn - diskon2
-////            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
-//            tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
+        fun diskon() {
+            val diskon = et_diskon.text.toString().toDouble() / 100
+            val diskon2 = hargaAwal * diskon
+            hargaAkhir = hargaKenaPpn - diskon2
+//            tv_jml_bayar?.text = ":  Rp " + hargaAkhir
+            tv_jml_bayar?.text = formatRupiah.format(hargaAkhir)
+        }
+
+//        et_diskon.setOnEditorActionListener { v, actionId, event ->
+//            if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+//                diskon()
+//            }
+//            false
 //        }
+//
+        btn_diskon.setOnClickListener{
+            diskon()
+        }
 
         if (hargaAkhir.equals(0.00)){
             hargaAkhir = hargaKenaPpn

@@ -5,7 +5,11 @@ import android.content.Intent
 import android.support.v7.app.AppCompatActivity
 import android.os.Bundle
 import android.support.v7.widget.LinearLayoutManager
+import android.support.v7.widget.RecyclerView
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
+import android.view.inputmethod.EditorInfo
 import com.hafidrf.lokaloops.R
 import com.hafidrf.lokaloops.ui.bayar.BayarActivity
 import com.hafidrf.lokaloops.utils.VerticalSpaceItem
@@ -15,6 +19,7 @@ import com.hafidrf.lokaloops.utils.ListItemKeranjang
 import com.hafidrf.lokaloops.utils.SharedPreference
 import com.hafidrf.lokaloops.viewholder.ListCheckOutListener
 import com.hafidrf.lokaloops.viewholder.ListCheckoutVH
+import kotlinx.android.synthetic.main.activity_bayar.*
 import kotlinx.android.synthetic.main.activity_transaksi.*
 import java.text.NumberFormat
 import java.util.*
@@ -22,11 +27,6 @@ import java.util.*
 
 class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
 
-    companion object {
-
-        fun getIntent(ctx: Context?) = Intent(ctx, TransaksiActivity::class.java)
-
-    }
 
     fun bayarAkhir() {
         val intent = Intent(this, BayarActivity::class.java)
@@ -96,6 +96,7 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
         btn_back.setOnClickListener {
             kembali()
         }
+
         btn_bayar_akhir.setOnClickListener {
             bayarAkhir()
         }
@@ -105,6 +106,8 @@ class TransaksiActivity : AppCompatActivity(), ListCheckOutListener {
             session.clearSharedPreference()
             kembali()
         }
+
+
     }
 
     override fun onDelete(data: ListItemKeranjang, position: Int) {

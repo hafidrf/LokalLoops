@@ -1,10 +1,10 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-          xmlns:tools="http://schemas.android.com/tools"
-          package="com.hafidrf.lokaloops">
+        xmlns:tools="http://schemas.android.com/tools"
+        package="com.hafidrf.lokaloops">
 
-    <uses-permission android:name="android.permission.INTERNET"/>
-    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE"/>
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
 
     <application
             android:name=".utils.App"
@@ -14,58 +14,52 @@
             android:roundIcon="@mipmap/ic_launcher_round"
             android:supportsRtl="true"
             android:theme="@style/AppTheme">
-        <activity android:name=".activities.Main2Activity">
-        </activity>
-        <activity android:name=".ui.main.DetailHistoryActivity">
-        </activity>
+        <activity android:name=".ui.coba.BlankActivity"></activity>
+        <activity android:name=".activities.Main2Activity"></activity>
+        <activity android:name=".ui.main.DetailHistoryActivity"></activity>
         <activity android:name=".ui.login.SplashActivity">
             <intent-filter>
-                <action android:name="android.intent.action.MAIN"/>
+                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER"/>
+                <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.bayar.BayarActivity">
-        </activity>
-        <activity android:name=".ui.keranjang.TransaksiActivity">
-        </activity>
-        <activity android:name=".utils.Print_factur">
-        </activity>
+        <activity android:name=".ui.bayar.BayarActivity"></activity>
+        <activity android:name=".ui.keranjang.TransaksiActivity"></activity>
+        <activity android:name=".utils.Print_factur"></activity>
         <activity
                 android:name=".ui.main.MainActivity"
-                android:windowSoftInputMode="adjustPan">
-        </activity>
-        <activity android:name=".ui.login.LoginActivity">
-        </activity>
+                android:windowSoftInputMode="adjustPan"></activity>
+        <activity android:name=".ui.login.LoginActivity"></activity>
 
         <receiver
                 android:name="com.google.android.gms.analytics.AnalyticsReceiver"
                 android:enabled="true"
                 tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH"/>
+                <action android:name="com.google.android.gms.analytics.ANALYTICS_DISPATCH" />
             </intent-filter>
         </receiver>
 
         <service
                 android:name="com.google.android.gms.analytics.AnalyticsService"
                 android:enabled="true"
-                android:exported="false"/>
+                android:exported="false" />
 
         <receiver
                 android:name="com.google.android.gms.analytics.CampaignTrackingReceiver"
                 android:exported="true"
                 tools:ignore="ExportedReceiver">
             <intent-filter>
-                <action android:name="com.android.vending.INSTALL_REFERRER"/>
+                <action android:name="com.android.vending.INSTALL_REFERRER" />
             </intent-filter>
         </receiver>
 
-        <service android:name="com.google.android.gms.analytics.CampaignTrackingService"/>
+        <service android:name="com.google.android.gms.analytics.CampaignTrackingService" />
 
         <meta-data
                 android:name="com.google.android.gms.version"
-                android:value="@integer/google_play_services_version"/>
+                android:value="@integer/google_play_services_version" />
     </application>
 
 </manifest>
